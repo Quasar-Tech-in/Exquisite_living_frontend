@@ -21,6 +21,13 @@ export default function EnterExperienceButton(
       whileHover={isExiting ? undefined : "hover"}
       initial="initial"
       animate={isExiting ? "exit" : "animate"}
+      variants={{
+        exit: {
+          y: 500,
+          opacity: 0,
+          transition: { duration: 0.65, ease: [0.8, 0, 1, 0.2] },
+        },
+      }}
       className={`${rest.className} group relative flex h-32 w-32 items-center justify-center`}
     >
       {/* Rotating Border and Text Container */}
@@ -30,25 +37,24 @@ export default function EnterExperienceButton(
           animate: {
             rotate: 0,
             opacity: 1,
-            backgroundColor: "rgba(255, 255, 255, 0)",
-            color: "rgba(255, 255, 255, 0.8)",
-            borderColor: "rgba(255, 255, 255, 0.8)",
             transition: { duration: 1.5, delay: isReady ? 0 : 1, ease: "easeOut" },
           },
           hover: {
             rotate: 45,
-            backgroundColor: "rgba(255, 255, 255, 1)",
-            color: "rgba(0, 0, 0, 1)",
-            borderColor: "rgba(0, 0, 0, 1)",
+            opacity: 1,
             transition: { duration: 0.5, delay: 0, ease: "easeInOut" },
           },
           exit: {
-            scale: 0.5,
-            opacity: 0,
-            transition: { duration: 0.5, ease: [0.9, 0, 0.1, 1] },
+            rotate: 45,
+            opacity: 1,
+            transition: { duration: 0.5, delay: 0, ease: "easeInOut" },
           },
         }}
-        className="pointer-events-none absolute inset-0 h-full w-full rounded-full"
+        className={`pointer-events-none absolute inset-0 h-full w-full rounded-full transition-colors duration-500 ${
+          isExiting
+            ? "bg-white text-black"
+            : "bg-transparent text-white/80 group-hover:bg-white group-hover:text-black"
+        }`}
       >
         {/* Custom Dashed Border & Circular Text */}
         <svg
@@ -94,14 +100,22 @@ export default function EnterExperienceButton(
           alt="Arrow Left"
           width={20}
           height={20}
-          className="rotate-180 opacity-60 brightness-0 invert transition-all duration-500 group-hover:opacity-100 group-hover:invert-0"
+          className={`rotate-180 brightness-0 transition-all duration-500 ${
+            isExiting
+              ? "opacity-100 invert-0"
+              : "opacity-60 invert group-hover:opacity-100 group-hover:invert-0"
+          }`}
         />
         <Image
           src="/union.svg"
           alt="Arrow Right"
           width={20}
           height={20}
-          className="opacity-60 brightness-0 invert transition-all duration-500 group-hover:opacity-100 group-hover:invert-0"
+          className={`brightness-0 transition-all duration-500 ${
+            isExiting
+              ? "opacity-100 invert-0"
+              : "opacity-60 invert group-hover:opacity-100 group-hover:invert-0"
+          }`}
         />
       </div>
     </motion.button>

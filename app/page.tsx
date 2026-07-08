@@ -24,7 +24,7 @@ function InnerPage() {
   return (
     <div className="absolute inset-0 h-full w-full cursor-none overflow-hidden bg-[#111]">
       {/* Scene 2 — always mounted behind Scene 1 (z:1–2) */}
-      <Scene2 cloudX={cloudX} cloudY={cloudY} floorX={floorX} floorY={floorY} />
+      <Scene2 cloudX={cloudX} cloudY={cloudY} floorX={floorX} floorY={floorY} textX={textX} />
 
       {/* Scene 1 — unmounts after transition completes */}
       <Scene1

@@ -1,16 +1,9 @@
 import { imprima } from "@/lib/fonts";
 import { HTMLMotionProps, motion, type Transition } from "framer-motion";
-import { useScene } from "@/context/SceneContext";
 
 export default function Navbar({ className, ...props }: HTMLMotionProps<"nav">) {
   // Smooth, premium easing curve for the entrance
   const entryTransition: Transition = { duration: 1.5, delay: 1, ease: [0.16, 1, 0.3, 1] };
-  const exitTransition: Transition = { duration: 0.5, ease: [0.9, 0, 0.1, 1] };
-
-  const { scene } = useScene();
-  const isExiting = scene === "transitioning";
-
-  if (scene === "scene2") return null;
 
   return (
     <motion.nav
@@ -18,8 +11,8 @@ export default function Navbar({ className, ...props }: HTMLMotionProps<"nav">) 
       className={`${imprima.className} ${className || ""} absolute top-0 flex w-full flex-row items-center justify-between p-4`}
       style={{ zIndex: 6, color: "rgba(255, 255, 255, 0.6)" }}
       initial={{ y: -50, opacity: 0 }}
-      animate={isExiting ? { y: -50, opacity: 0 } : { y: 0, opacity: 1 }}
-      transition={isExiting ? exitTransition : entryTransition}
+      animate={{ y: 0, opacity: 1 }}
+      transition={entryTransition}
     >
       {/* Left Links */}
       <div className="flex flex-1 justify-around">

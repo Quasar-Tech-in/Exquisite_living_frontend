@@ -2,6 +2,7 @@
 
 import Scene2CloudsLayer from "./Scene2CloudsLayer";
 import Scene2FloorLayer from "./Scene2FloorLayer";
+import Scene2HeroText from "./Scene2HeroText";
 import { type MotionValue } from "framer-motion";
 
 interface Props {
@@ -9,6 +10,7 @@ interface Props {
   cloudY: MotionValue<number>;
   floorX: MotionValue<number>;
   floorY: MotionValue<number>;
+  textX: MotionValue<number>;
 }
 
 /**
@@ -16,11 +18,12 @@ interface Props {
  * Becomes fully visible once Scene 1 exits.
  * Placeholder for future scrolling-cards content.
  */
-export default function Scene2({ cloudX, cloudY, floorX, floorY }: Props) {
+export default function Scene2({ cloudX, cloudY, floorX, floorY, textX }: Props) {
   return (
     <>
       <Scene2CloudsLayer cloudX={cloudX} cloudY={cloudY} />
       <Scene2FloorLayer floorX={floorX} floorY={floorY} />
+      <Scene2HeroText textX={textX} />
     </>
   );
 }
