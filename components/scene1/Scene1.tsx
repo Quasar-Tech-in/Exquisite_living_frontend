@@ -45,7 +45,7 @@ export default function Scene1({
       <HeroTitleAndSubText textX={textX} isExiting={isExiting} />
       <HomeImageCarousel carouselX={carouselX} isExiting={isExiting} />
       <EnterExperienceButton
-        style={{ zIndex: 4 }}
+        style={{ zIndex: 7 }}
         className="absolute top-[80vh] left-[50vw] translate-x-[-50%]"
         onClick={startTransition}
         isExiting={isExiting}

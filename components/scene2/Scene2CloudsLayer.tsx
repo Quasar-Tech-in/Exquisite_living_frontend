@@ -11,7 +11,7 @@ interface Props {
 const transition = { duration: 2, ease: [0.9, 0, 0.1, 1] } as const;
 
 export default function Scene2CloudsLayer({ cloudX, cloudY }: Props) {
-  const { scene } = useScene();
+  const { scene, isHoveringEnter } = useScene();
   const shouldDarken = scene === "transitioning" || scene === "scene2";
 
   return (
@@ -19,16 +19,16 @@ export default function Scene2CloudsLayer({ cloudX, cloudY }: Props) {
       {/* Base Clouds Layer */}
       <motion.img
         src={"clouds.png"}
-        className="pointer-events-none absolute inset-0 h-full w-full object-cover"
+        className="pointer-events-none absolute inset-0 h-full w-full object-cover brightness-110"
         style={{ zIndex: 1, x: cloudX, y: cloudY }}
         initial={{ scale: 1.5 }}
-        animate={{ scale: 1.1 }}
+        animate={{ scale: scene === "scene2" || scene === "transitioning" ? 1.1 : (isHoveringEnter ? 1.3 : 1.5) }}
         transition={transition}
       />
 
       {/* Darkening Gradient Overlay (dullest at top, completely fades out by 60%) */}
       <motion.div
-        className="pointer-events-none absolute inset-0 h-full w-full bg-linear-to-b from-black/80 to-transparent to-60%"
+        className="pointer-events-none absolute inset-0 h-full w-full bg-linear-to-b from-black/70 to-transparent to-60%"
         style={{ zIndex: 1 }}
         initial={{ opacity: 0 }}
         animate={{ opacity: shouldDarken ? 1 : 0 }}

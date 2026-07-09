@@ -214,7 +214,7 @@ export default function HomeImageCarousel({
   return (
     <motion.div
       className="absolute top-[30vh] right-[-10px] flex flex-col"
-      style={{ zIndex: 4, ...(isExiting ? {} : { x: carouselX }) }}
+      style={{ zIndex: 7, ...(isExiting ? {} : { x: carouselX }) }}
       animate={isExiting ? { x: 2500, scale: 4 } : {}}
       transition={
         isExiting ? { duration: 1.2, delay: 0.05, ease: [0.8, 0, 1, 0.2] } : {}

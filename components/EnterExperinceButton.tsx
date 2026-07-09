@@ -2,12 +2,14 @@
 import Image from "next/image";
 import { HTMLMotionProps, motion } from "framer-motion";
 import { useState, useEffect } from "react";
+import { useScene } from "@/context/SceneContext";
 
 export default function EnterExperienceButton(
   props: HTMLMotionProps<"button"> & { isExiting?: boolean },
 ) {
   const { isExiting = false, ...rest } = props;
   const [isReady, setIsReady] = useState(false);
+  const { setIsHoveringEnter } = useScene();
 
   useEffect(() => {
     // Remove the delay after the initial animation completes (1s delay + 1.5s duration)
@@ -18,6 +20,8 @@ export default function EnterExperienceButton(
   return (
     <motion.button
       {...rest}
+      onHoverStart={() => setIsHoveringEnter(true)}
+      onHoverEnd={() => setIsHoveringEnter(false)}
       whileHover={isExiting ? undefined : "hover"}
       initial="initial"
       animate={isExiting ? "exit" : "animate"}

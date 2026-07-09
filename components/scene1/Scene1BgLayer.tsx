@@ -25,7 +25,7 @@ export default function Scene1BgLayer({ bgX, bgY, onEntryComplete }: Props) {
     <motion.img
       src={"bg1.png"}
       className="pointer-events-none absolute inset-0 h-full w-full object-cover"
-      style={{ zIndex: 3, x: bgX, y: bgY }}
+      style={{ zIndex: 6, x: bgX, y: bgY }}
       initial={{ scale: 1.3 }}
       animate={isExiting ? { scale: 6 } : { scale: 1.08 }}
       transition={isExiting ? exitTransition : entryTransition}

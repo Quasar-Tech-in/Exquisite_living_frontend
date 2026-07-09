@@ -10,26 +10,26 @@ export default function Scene2HeroText({
   textX: MotionValue<number>;
 }) {
   const { scene } = useScene();
-  const isActive = scene === "scene2";
+  const isActive = scene === "transitioning" || scene === "scene2";
 
   return (
     <motion.div
-      className="absolute inset-0 flex -translate-y-40 flex-col items-center justify-center text-center text-white"
-      style={{ zIndex: 4, x: textX }}
+      className="pointer-events-none absolute inset-x-0 top-[15vh] flex flex-col items-center text-center text-white"
+      style={{ zIndex: 5, x: textX }}
     >
       <motion.div
         className={`flex flex-col items-center leading-[1.1] tracking-[0%] uppercase ${viaodaLibre.className}`}
         initial={{ y: 60, opacity: 0 }}
         animate={isActive ? { y: 0, opacity: 1 } : { y: 60, opacity: 0 }}
-        transition={{ duration: 1.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 1.2, delay: 0.5, ease: [0.9, 0, 0.1, 1] }}
       >
         <span className="text-[80px]">Create Beyond Reality</span>
       </motion.div>
       <motion.div
-        className={`mt-4 max-w-[600px] text-[20px] leading-[1.6] text-white/80 ${imprima.className}`}
+        className={`mt-4 max-w-[600px] text-[22px] leading-[1.6] text-white/80 ${imprima.className}`}
         initial={{ y: 40, opacity: 0 }}
         animate={isActive ? { y: 0, opacity: 1 } : { y: 40, opacity: 0 }}
-        transition={{ duration: 1.6, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 1.2, delay: 0.6, ease: [0.9, 0, 0.1, 1] }}
       >
         Exclusive journeys to breathtaking destinations curated for travelers
         seeking rare and unforgettable experiences.

@@ -30,7 +30,7 @@ export default function Scene1Bushes({ fgX, fgY }: Props) {
         src={"left-full.png"}
         className={bushClassName}
         style={{
-          zIndex: 5,
+          zIndex: 8,
           // During exit we drop fgX so animate.x owns the translation exclusively
           ...(isExiting ? {} : { x: fgX }),
           y: fgY,
@@ -54,7 +54,7 @@ export default function Scene1Bushes({ fgX, fgY }: Props) {
         src={"right-full.png"}
         className={bushClassName}
         style={{
-          zIndex: 5,
+          zIndex: 8,
           ...(isExiting ? {} : { x: fgX }),
           y: fgY,
         }}

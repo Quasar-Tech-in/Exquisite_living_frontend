@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { SceneProvider } from "@/context/SceneContext";
+import { SceneProvider, useScene } from "@/context/SceneContext";
 import { useParallax } from "@/hooks/useParallax";
 import Scene1 from "@/components/scene1/Scene1";
 import Scene2 from "@/components/scene2/Scene2";
@@ -12,6 +12,7 @@ import CustomCursor from "@/components/CustomCursor";
 function InnerPage() {
   // Parallax activates once the bg1 entry animation completes (~2s)
   const [isParallaxActive, setIsParallaxActive] = useState(false);
+  const { isDraggingWheel } = useScene();
 
   const {
     cloudX, cloudY,
@@ -19,7 +20,7 @@ function InnerPage() {
     floorX, floorY,
     fgX, fgY,
     textX, carouselX,
-  } = useParallax(isParallaxActive);
+  } = useParallax(isParallaxActive && !isDraggingWheel);
 
   return (
     <div className="absolute inset-0 h-full w-full cursor-none overflow-hidden bg-[#111]">

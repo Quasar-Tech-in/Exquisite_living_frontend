@@ -1,9 +1,9 @@
-import EnterExperienceButton from "@/components/EnterExperinceButton";
+import CardsFerrisWheel from "@/components/CardsFerrisWheel";
 
 export default function page() {
   return (
-    <div className="align-center flex h-full w-full flex-col items-center">
-      <EnterExperienceButton />
+    <div className="flex min-h-dvh w-full flex-col items-center justify-center bg-[#111]">
+      <CardsFerrisWheel />
     </div>
   );
 }

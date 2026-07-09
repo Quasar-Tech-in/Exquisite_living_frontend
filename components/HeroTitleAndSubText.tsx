@@ -11,7 +11,7 @@ export default function HeroTitleAndSubText({
   return (
     <motion.div
       className="absolute top-[30vh] left-[12vw] flex flex-col items-center text-left text-white"
-      style={{ zIndex: 4, ...(isExiting ? {} : { x: textX }) }}
+      style={{ zIndex: 7, ...(isExiting ? {} : { x: textX }) }}
       animate={isExiting ? { x: -2500, scale: 4 } : {}}
       transition={isExiting ? { duration: 1.2, ease: [0.8, 0, 1, 0.2] } : {}}
     >
