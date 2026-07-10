@@ -15,7 +15,7 @@ export default function Scene2FloorLayer({ floorX, floorY }: Props) {
       style={{ zIndex: 2, x: floorX, y: floorY }}
     >
       <img
-        src={"preenchimento-generativo.png"}
+        src={"preenchimento-generativo.webp"}
         alt=""
         className="block h-auto w-full"
       />

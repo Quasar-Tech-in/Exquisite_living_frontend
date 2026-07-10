@@ -26,7 +26,7 @@ export default function Scene1BgLayer({ bgX, bgY, onEntryComplete, isReturning =
 
   return (
     <motion.img
-      src={"bg1.png"}
+      src={"bg1.webp"}
       className="pointer-events-none absolute inset-0 h-full w-full object-cover"
       style={{ zIndex: 6, x: bgX, y: bgY }}
       // When returning: start zoomed in (where Scene 2 left off) and scale back down

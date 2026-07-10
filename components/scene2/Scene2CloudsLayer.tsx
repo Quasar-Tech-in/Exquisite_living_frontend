@@ -18,7 +18,7 @@ export default function Scene2CloudsLayer({ cloudX, cloudY }: Props) {
     <>
       {/* Base Clouds Layer */}
       <motion.img
-        src={"clouds.png"}
+        src={"clouds.webp"}
         className="pointer-events-none absolute inset-0 h-full w-full object-cover brightness-110"
         style={{ zIndex: 1, x: cloudX, y: cloudY }}
         initial={{ scale: 1.5 }}

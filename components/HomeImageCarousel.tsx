@@ -10,17 +10,17 @@ type CardMeta =
 
 const CARDS: { src: string; delay: number; meta: CardMeta }[] = [
   {
-    src: "/carousel-image-1.png",
+    src: "/carousel-image-1.webp",
     delay: 1,
     meta: { kind: "play", label: "Watch Demo" },
   },
   {
-    src: "/carousel-image-2.png",
+    src: "/carousel-image-2.webp",
     delay: 1.15,
     meta: { kind: "stat", number: "32", label: "Global Partners" },
   },
   {
-    src: "/carousel-image-3.png",
+    src: "/carousel-image-3.webp",
     delay: 1.3,
     meta: { kind: "play", label: "Watch Demo" },
   },

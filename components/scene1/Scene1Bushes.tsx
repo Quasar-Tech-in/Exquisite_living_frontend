@@ -29,38 +29,47 @@ export default function Scene1Bushes({ fgX, fgY, isReturning = false }: Props) {
         translates -1500px (off-screen left) while scaling up to 2.5x.
         Return: slides back in from off-screen left to resting position.
       */}
-      <motion.div style={{ zIndex: 8, x: fgX, y: fgY }} className="pointer-events-none absolute inset-0">
-        <motion.img
-          src={"left-full.png"}
-          className={bushClassName}
-          initial={isReturning ? { right: "70vw", x: -2500, scale: 2.5 } : { right: 0, scale: 1.1 }}
-          animate={
-            isExiting
-              ? { right: "70vw", x: -2500, scale: 2.5 }
-              : { right: "70vw", x: 0, scale: 1.1 }
-          }
-          transition={isExiting ? exitTransition : isReturning ? returnTransition : entryTransition}
-        />
-      </motion.div>
+      <motion.img
+        src={"left-full.webp"}
+        className={bushClassName}
+        style={{
+          zIndex: 8,
+          // During exit we drop fgX so animate.x owns the translation exclusively
+          ...(isExiting ? {} : { x: fgX }),
+          y: fgY,
+        }}
+        initial={{ right: 0, scale: 1.1 }}
+        animate={
+          isExiting
+            // keep right stable so CSS position doesn't revert to initial;
+            // x drives the off-screen translation, scale makes it grow as it flies
+            ? { right: "70vw", x: -2500, scale: 2.5 }
+            : { right: "70vw", scale: 1.1 }
+        }
+        transition={isExiting ? exitTransition : entryTransition}
+      />
 
       {/*
         Right bush — entry: slides in from left edge to 70vw.
         Exit: translates +1500px (off-screen right) while scaling up to 2.5x.
         Return: slides back in from off-screen right to resting position.
       */}
-      <motion.div style={{ zIndex: 8, x: fgX, y: fgY }} className="pointer-events-none absolute inset-0">
-        <motion.img
-          src={"right-full.png"}
-          className={bushClassName}
-          initial={isReturning ? { left: "70vw", x: 2500, scale: 2.5 } : { left: 0, scale: 1.1 }}
-          animate={
-            isExiting
-              ? { left: "70vw", x: 2500, scale: 2.5 }
-              : { left: "70vw", x: 0, scale: 1.1 }
-          }
-          transition={isExiting ? exitTransition : isReturning ? returnTransition : entryTransition}
-        />
-      </motion.div>
+      <motion.img
+        src={"right-full.webp"}
+        className={bushClassName}
+        style={{
+          zIndex: 8,
+          ...(isExiting ? {} : { x: fgX }),
+          y: fgY,
+        }}
+        initial={{ left: 0, scale: 1.1 }}
+        animate={
+          isExiting
+            ? { left: "70vw", x: 2500, scale: 2.5 }
+            : { left: "70vw", scale: 1.1 }
+        }
+        transition={isExiting ? exitTransition : entryTransition}
+      />
     </>
   );
 }

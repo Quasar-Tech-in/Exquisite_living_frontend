@@ -30,7 +30,7 @@ export default function Scene2LowerCloudsLayer({ floorX, floorY, activeCardIndex
         transition={{ type: "spring", stiffness: 100, damping: 20 }}
       >
         <img
-          src={"lower-clouds.png"}
+          src={"lower-clouds.webp"}
           alt=""
           className="block w-full h-[30vh] md:h-[413px] scale-x-[-1] brightness-125"
         />
