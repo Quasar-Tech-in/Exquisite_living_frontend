@@ -29,7 +29,6 @@ export default function Scene2LowerCloudsLayer({ floorX, floorY, activeCardIndex
         animate={{ x: cloudXOffset }}
         transition={{ type: "spring", stiffness: 100, damping: 20 }}
       >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={"lower-clouds.png"}
           alt=""

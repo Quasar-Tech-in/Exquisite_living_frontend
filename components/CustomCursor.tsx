@@ -27,6 +27,7 @@ export default function CustomCursor() {
   // Record start position when dragging begins
   useEffect(() => {
     if (isDraggingWheel) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setDragStart({ x: rawX.get(), y: rawY.get() });
     } else {
       setDragStart(null);

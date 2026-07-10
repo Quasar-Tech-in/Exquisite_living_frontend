@@ -8,6 +8,8 @@ interface SceneContextValue {
   scene: Scene;
   startTransition: () => void;
   completeTransition: () => void;
+  returnToScene1: () => void;
+  completeReturn: () => void;
   isHoveringEnter: boolean;
   setIsHoveringEnter: (val: boolean) => void;
   isDraggingWheel: boolean;

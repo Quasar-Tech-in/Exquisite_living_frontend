@@ -21,6 +21,7 @@ interface Props {
 /**
  * Composes all Scene 1 elements.
  * Returns null once the transition to Scene 2 is fully complete.
+ * Remounts during the reverse transition (returningToScene1).
  */
 export default function Scene1({
   bgX,
@@ -33,23 +34,26 @@ export default function Scene1({
 }: Props) {
   const { scene, startTransition } = useScene();
 
-  // Unmount cleanly after transition; Scene 2 is already fully visible by this point
+  // Unmount cleanly after forward transition; Scene 2 is already fully visible by this point
   if (scene === "scene2") return null;
 
   const isExiting = scene === "transitioning";
+  const isReturning = scene === "returningToScene1";
 
   return (
     <>
-      <Scene1BgLayer bgX={bgX} bgY={bgY} onEntryComplete={onBgEntryComplete} />
-      <Scene1Bushes fgX={fgX} fgY={fgY} />
-      <HeroTitleAndSubText textX={textX} isExiting={isExiting} />
-      <HomeImageCarousel carouselX={carouselX} isExiting={isExiting} />
+      <Scene1BgLayer bgX={bgX} bgY={bgY} onEntryComplete={onBgEntryComplete} isReturning={isReturning} />
+      <Scene1Bushes fgX={fgX} fgY={fgY} isReturning={isReturning} />
+      <HeroTitleAndSubText textX={textX} isExiting={isExiting} isReturning={isReturning} />
+      <HomeImageCarousel carouselX={carouselX} isExiting={isExiting} isReturning={isReturning} />
       <EnterExperienceButton
         style={{ zIndex: 7 }}
         className="absolute top-[80vh] left-[50vw] translate-x-[-50%]"
         onClick={startTransition}
         isExiting={isExiting}
+        isReturning={isReturning}
       />
     </>
   );
 }
+

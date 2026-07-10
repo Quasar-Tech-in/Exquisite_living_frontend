@@ -5,9 +5,9 @@ import { useState, useEffect } from "react";
 import { useScene } from "@/context/SceneContext";
 
 export default function EnterExperienceButton(
-  props: HTMLMotionProps<"button"> & { isExiting?: boolean },
+  props: HTMLMotionProps<"button"> & { isExiting?: boolean; isReturning?: boolean },
 ) {
-  const { isExiting = false, ...rest } = props;
+  const { isExiting = false, isReturning = false, ...rest } = props;
   const [isReady, setIsReady] = useState(false);
   const { setIsHoveringEnter } = useScene();
 
@@ -23,9 +23,18 @@ export default function EnterExperienceButton(
       onHoverStart={() => setIsHoveringEnter(true)}
       onHoverEnd={() => setIsHoveringEnter(false)}
       whileHover={isExiting ? undefined : "hover"}
-      initial="initial"
+      initial={isReturning ? "exit" : "initial"}
       animate={isExiting ? "exit" : "animate"}
       variants={{
+        initial: {
+          y: 500,
+          opacity: 0,
+        },
+        animate: {
+          y: 0,
+          opacity: 1,
+          transition: { duration: 0.8, ease: [0.9, 0, 0.1, 1] },
+        },
         exit: {
           y: 500,
           opacity: 0,

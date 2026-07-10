@@ -120,10 +120,12 @@ function CarouselCard({
   src,
   delay,
   meta,
+  isReturning = false,
 }: {
   src: string;
   delay: number;
   meta: CardMeta;
+  isReturning?: boolean;
 }) {
   return (
     /* Wrapper is always the max height so the row never shifts */
@@ -133,8 +135,8 @@ function CarouselCard({
       <motion.div
         className="absolute inset-x-0 bottom-0 overflow-hidden rounded-3xl"
         style={{ cursor: "pointer", height: 160 }}
-        /* enter animation — drop from top */
-        initial={{ y: -60, opacity: 0 }}
+        /* enter animation — drop from top; skipped when returning */
+        initial={isReturning ? { y: 0, opacity: 1 } : { y: -60, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{
           /* entry: staggered drop + fade in */
@@ -207,19 +209,26 @@ function Indicators() {
 export default function HomeImageCarousel({
   carouselX,
   isExiting = false,
+  isReturning = false,
 }: {
   carouselX: MotionValue<number>;
   isExiting?: boolean;
+  isReturning?: boolean;
 }) {
   return (
     <motion.div
       className="absolute top-[30vh] right-[-10px] flex flex-col"
-      style={{ zIndex: 7, ...(isExiting ? {} : { x: carouselX }) }}
-      animate={isExiting ? { x: 2500, scale: 4 } : {}}
-      transition={
-        isExiting ? { duration: 1.2, delay: 0.05, ease: [0.8, 0, 1, 0.2] } : {}
-      }
+      style={{ zIndex: 7, x: carouselX }}
     >
+      <motion.div
+        initial={isReturning ? { x: 2500, scale: 4 } : {}}
+        animate={isExiting ? { x: 2500, scale: 4 } : { x: 0, scale: 1 }}
+        transition={
+          isExiting ? { duration: 1.2, delay: 0.05, ease: [0.8, 0, 1, 0.2] } :
+          isReturning ? { duration: 1.2, delay: 0.05, ease: [0.9, 0, 0.1, 1] } : {}
+        }
+        className="flex flex-col"
+      >
       {/* single shared SVG defs so all play buttons reference the same filter id */}
       <SharedDefs />
       <div className="flex flex-row gap-3">
@@ -227,10 +236,12 @@ export default function HomeImageCarousel({
           <CarouselCard
             key={i}
             {...card}
+            isReturning={isReturning}
           />
         ))}
       </div>
       <Indicators />
+      </motion.div>
     </motion.div>
   );
 }

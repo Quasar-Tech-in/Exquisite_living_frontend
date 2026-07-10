@@ -1,9 +1,15 @@
 import { imprima } from "@/lib/fonts";
 import { HTMLMotionProps, motion, type Transition } from "framer-motion";
+import { useScene } from "@/context/SceneContext";
 
 export default function Navbar({ className, ...props }: HTMLMotionProps<"nav">) {
   // Smooth, premium easing curve for the entrance
   const entryTransition: Transition = { duration: 1.5, delay: 1, ease: [0.16, 1, 0.3, 1] };
+
+  const { scene, returnToScene1 } = useScene();
+  const handleHomeClick = () => {
+    if (scene === "scene2") returnToScene1();
+  };
 
   return (
     <motion.nav
@@ -16,7 +22,12 @@ export default function Navbar({ className, ...props }: HTMLMotionProps<"nav">) 
     >
       {/* Left Links */}
       <div className="flex flex-1 justify-around">
-        <span className="cursor-pointer transition-colors hover:text-white">Home</span>
+        <span
+          className="cursor-pointer transition-colors hover:text-white"
+          onClick={handleHomeClick}
+        >
+          Home
+        </span>
         <span className="cursor-pointer transition-colors hover:text-white">Studio</span>
         <span className="cursor-pointer transition-colors hover:text-white">Experience</span>
       </div>
@@ -43,3 +54,4 @@ export default function Navbar({ className, ...props }: HTMLMotionProps<"nav">) 
     </motion.nav>
   );
 }
+

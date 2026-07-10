@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { useScene } from "@/context/SceneContext";
 import dynamic from "next/dynamic";
@@ -22,6 +23,21 @@ export default function Scene2WheelLayer({
 }: Props) {
   const { scene, setIsDraggingWheel } = useScene();
   const isActive = scene === "transitioning" || scene === "scene2";
+
+  useEffect(() => {
+    if (!isActive) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowRight") {
+        setActiveCardIndex((prev) => prev + 1);
+      } else if (e.key === "ArrowLeft") {
+        setActiveCardIndex((prev) => prev - 1);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isActive, setActiveCardIndex]);
 
   // Calculate rotation based on index. Total cards = 20, angle = 360 / 20 = 18deg.
   // To bring next card (at +18deg) to top, wheel must rotate -18deg.
@@ -57,9 +73,11 @@ export default function Scene2WheelLayer({
           isActive ? { y: 0, rotate: targetRotation } : { y: 500, rotate: -90 }
         }
         transition={{
-          y: { duration: 1.4, ease: [0.9, 0, 0.1, 1], delay: 0.5 },
+          y: { duration: 1.4, ease: [0.9, 0, 0.1, 1], delay: isActive ? 0.5 : 0 },
           rotate: isActive && activeCardIndex === 0
             ? { duration: 1.4, ease: [0.9, 0, 0.1, 1], delay: 0.5 }
+            : !isActive 
+            ? { duration: 1.4, ease: [0.9, 0, 0.1, 1], delay: 0 }
             : { type: "spring", stiffness: 100, damping: 20 },
         }}
       >
