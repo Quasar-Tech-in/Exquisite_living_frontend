@@ -26,30 +26,29 @@ export default function Navbar({ className, ...props }: HTMLMotionProps<"nav">) 
           className="cursor-pointer transition-colors hover:text-white"
           onClick={handleHomeClick}
         >
-          Home
+          Sensibility
         </span>
-        <span className="cursor-pointer transition-colors hover:text-white">Studio</span>
-        <span className="cursor-pointer transition-colors hover:text-white">Experience</span>
+        <span className="cursor-pointer transition-colors hover:text-white">Intelligence</span>
       </div>
 
       {/* Center Icon */}
       <div className="flex shrink-0 justify-center px-12">
         <motion.img
-          src="navbar-icon.svg"
-          alt="navbar-icon"
-          className="cursor-pointer"
+          src="/iconlogo_cream.png"
+          alt="ExQuisite Living"
+          className="h-10 md:h-12 w-auto cursor-pointer"
           initial={{ rotate: -180, scale: 0.5, opacity: 0 }}
           animate={{ rotate: 0, scale: 1, opacity: 1 }}
           whileHover={{ rotate: 90, scale: 1.1 }}
           transition={{ ...entryTransition, duration: 1.5 }}
+          onClick={handleHomeClick}
         />
       </div>
 
       {/* Right Links */}
       <div className="flex flex-1 justify-around">
-        <span className="cursor-pointer transition-colors hover:text-white">Technologies</span>
-        <span className="cursor-pointer transition-colors hover:text-white">Journal</span>
-        <span className="cursor-pointer transition-colors hover:text-white">Contact</span>
+        <span className="cursor-pointer transition-colors hover:text-white">Compositions</span>
+        <span className="cursor-pointer transition-colors hover:text-white">Membership</span>
       </div>
     </motion.nav>
   );

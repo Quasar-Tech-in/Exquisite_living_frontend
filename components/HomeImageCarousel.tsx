@@ -10,19 +10,19 @@ type CardMeta =
 
 const CARDS: { src: string; delay: number; meta: CardMeta }[] = [
   {
-    src: "/carousel-image-1.webp",
+    src: "/scene_dawn.png",
     delay: 1,
-    meta: { kind: "play", label: "Watch Demo" },
+    meta: { kind: "stat", number: "I", label: "The Sensibility" },
   },
   {
-    src: "/carousel-image-2.webp",
+    src: "/scene_mist.png",
     delay: 1.15,
-    meta: { kind: "stat", number: "32", label: "Global Partners" },
+    meta: { kind: "stat", number: "II", label: "The Intelligence" },
   },
   {
-    src: "/carousel-image-3.webp",
+    src: "/closing_ambient.png",
     delay: 1.3,
-    meta: { kind: "play", label: "Watch Demo" },
+    meta: { kind: "stat", number: "III", label: "The Compositions" },
   },
 ];
 
@@ -85,11 +85,11 @@ function CardFooter({ meta }: { meta: CardMeta }) {
     return (
       <div className="flex flex-row items-center gap-2.5">
         <PlayButton />
-        {/* two-line label: "Watch" / "Demo" */}
+        {/* two-line label */}
         <div
           className={`flex flex-col text-[13px] leading-tight text-white ${imprima.className}`}
         >
-          {"Watch Demo".split(" ").map((word, i) => (
+          {meta.label.split(" ").map((word, i) => (
             <span key={i}>{word}</span>
           ))}
         </div>
@@ -103,11 +103,11 @@ function CardFooter({ meta }: { meta: CardMeta }) {
       >
         {meta.number}
       </span>
-      {/* two-line label: "Global" / "Partners" */}
+      {/* two-line label */}
       <div
         className={`flex flex-col text-[13px] leading-tight text-white ${imprima.className}`}
       >
-        {"Global Partners".split(" ").map((word, i) => (
+        {meta.label.split(" ").map((word, i) => (
           <span key={i}>{word}</span>
         ))}
       </div>
