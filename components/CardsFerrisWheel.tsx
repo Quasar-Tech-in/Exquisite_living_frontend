@@ -137,9 +137,16 @@ function UnionIcon({ fill }: { fill: string }) {
   );
 }
 
-export default function CardsFerrisWheel() {
+interface Props {
+  activeCardIndex: number;
+  setActiveCardIndex: React.Dispatch<React.SetStateAction<number>>;
+}
+
+export default function CardsFerrisWheel({ activeCardIndex, setActiveCardIndex }: Props) {
   // Canvas must fit the whole wheel plus cards protruding outward
   const canvasSize = (RADIUS + CARD_H) * 2 + CARD_W;
+
+  const normalizedActiveIndex = ((activeCardIndex % TOTAL_CARDS) + TOTAL_CARDS) % TOTAL_CARDS;
 
   return (
     <div
@@ -156,27 +163,39 @@ export default function CardsFerrisWheel() {
         const cy = -cardCenterR * Math.cos(angleRad);
 
         const bg = cardColors[i];
+        const isWebActive = i === normalizedActiveIndex;
 
         return (
           <div
             key={i}
-            className="absolute flex flex-col justify-end px-4 pb-8 shadow-lg"
+            className="absolute flex flex-col justify-end px-5 pb-8 shadow-2xl cursor-pointer select-none"
             style={{
               width: CARD_W,
               height: CARD_H,
               backgroundColor: bg,
               left: `calc(50% + ${cx}px - ${CARD_W / 2}px)`,
               top: `calc(50% + ${cy}px - ${CARD_H / 2}px)`,
-              // Rotate so the card's bottom edge is tangent to the wheel rim
-              transform: `rotate(${angle}deg)`,
+              // Rotate so the card's bottom edge is tangent to the wheel rim, and scale active/inactive
+              transform: `rotate(${angle}deg) scale(${isWebActive ? 1.05 : 0.82})`,
               transformOrigin: "center center",
               // Uniform 40px radius; circle is inset to align with the corner arc
               borderRadius: CARD_RADIUS,
+              opacity: isWebActive ? 1 : 0.32,
+              boxShadow: isWebActive 
+                ? "0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 30px rgba(255, 255, 255, 0.08)"
+                : "0 8px 16px -4px rgba(0, 0, 0, 0.3)",
+              transition: "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1)",
+            }}
+            onClick={(e) => {
+              e.stopPropagation();
+              // Shortest path navigation logic
+              const diff = ((i - normalizedActiveIndex + 30) % TOTAL_CARDS) - 10;
+              setActiveCardIndex((prev) => prev + diff);
             }}
           >
             {/* Black semi-transparent circle at top-right, inset from corner */}
             <div
-              className="absolute flex items-center justify-center"
+              className="absolute flex items-center justify-center transition-transform duration-300 hover:scale-110"
               style={{
                 width: CIRCLE_R * 2,
                 height: CIRCLE_R * 2,
@@ -193,12 +212,12 @@ export default function CardsFerrisWheel() {
 
             {/* Text — tilted with the card (no counter-rotation) */}
             <h3
-              className={`text-[32px] leading-tight text-black/80 capitalize ${viaodaLibre.className}`}
+              className={`text-[28px] md:text-[30px] font-medium leading-tight text-black/80 capitalize ${viaodaLibre.className}`}
             >
               {cardsData[i % cardsData.length].title}
             </h3>
             <p
-              className={`mt-1 text-[16px] leading-snug text-black/60 ${imprima.className}`}
+              className={`mt-1.5 text-[14px] md:text-[15px] leading-snug text-black/60 ${imprima.className}`}
             >
               {cardsData[i % cardsData.length].subtext}
             </p>

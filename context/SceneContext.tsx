@@ -14,6 +14,8 @@ interface SceneContextValue {
   setIsHoveringEnter: (val: boolean) => void;
   isDraggingWheel: boolean;
   setIsDraggingWheel: (val: boolean) => void;
+  activeCardIndex: number;
+  setActiveCardIndex: React.Dispatch<React.SetStateAction<number>>;
 }
 
 // ── context ────────────────────────────────────────────────────────────────────
@@ -33,3 +35,4 @@ export function useScene(): SceneContextValue {
   if (!ctx) throw new Error("useScene must be used inside <SceneProvider>");
   return ctx;
 }
+
