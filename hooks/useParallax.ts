@@ -7,6 +7,7 @@ import {
   type MotionValue,
 } from "framer-motion";
 import { useEffect } from "react";
+import { useViewportScale } from "./useViewportScale";
 
 export interface ParallaxValues {
   cloudX: MotionValue<number>;
@@ -28,6 +29,7 @@ export interface ParallaxValues {
 export function useParallax(isActive: boolean): ParallaxValues {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
+  const { scale } = useViewportScale();
 
   const smoothX = useSpring(mouseX, { stiffness: 50, damping: 20 });
   const smoothY = useSpring(mouseY, { stiffness: 50, damping: 20 });
@@ -36,6 +38,7 @@ export function useParallax(isActive: boolean): ParallaxValues {
     if (!isActive) return;
 
     const handleMouseMove = (e: MouseEvent) => {
+      if (window.innerWidth < 1024) return;
       mouseX.set((e.clientX / window.innerWidth) * 2 - 1);
       mouseY.set((e.clientY / window.innerHeight) * 2 - 1);
     };
@@ -45,22 +48,22 @@ export function useParallax(isActive: boolean): ParallaxValues {
   }, [isActive, mouseX, mouseY]);
 
   // ── layer offsets (edge-safe ranges — see architecture notes) ────────────────
-  const cloudX = useTransform(smoothX, [-1, 1], [-25, 25]);
-  const cloudY = useTransform(smoothY, [-1, 1], [-25, 25]);
+  const cloudX = useTransform(smoothX, [-1, 1], [-25 * scale, 25 * scale]);
+  const cloudY = useTransform(smoothY, [-1, 1], [-25 * scale, 25 * scale]);
 
-  const bgX = useTransform(smoothX, [-1, 1], [-35, 35]);
-  const bgY = useTransform(smoothY, [-1, 1], [-20, 20]);
+  const bgX = useTransform(smoothX, [-1, 1], [-35 * scale, 35 * scale]);
+  const bgY = useTransform(smoothY, [-1, 1], [-20 * scale, 20 * scale]);
 
   // floor: 110vw wide → 5vw overflow each side, parallax well within that buffer
-  const floorX = useTransform(smoothX, [-1, 1], [-40, 40]);
-  const floorY = useTransform(smoothY, [-1, 1], [-12, 12]);
+  const floorX = useTransform(smoothX, [-1, 1], [-40 * scale, 40 * scale]);
+  const floorY = useTransform(smoothY, [-1, 1], [-12 * scale, 12 * scale]);
 
   // bushes: scale:1.1 + h-[calc(100%+64px)] give sufficient edge buffer
-  const fgX = useTransform(smoothX, [-1, 1], [-80, 80]);
-  const fgY = useTransform(smoothY, [-1, 1], [-25, 25]);
+  const fgX = useTransform(smoothX, [-1, 1], [-80 * scale, 80 * scale]);
+  const fgY = useTransform(smoothY, [-1, 1], [-25 * scale, 25 * scale]);
 
-  const textX = useTransform(smoothX, [-1, 1], [-45, 45]);
-  const carouselX = useTransform(smoothX, [-1, 1], [-45, 45]);
+  const textX = useTransform(smoothX, [-1, 1], [-45 * scale, 45 * scale]);
+  const carouselX = useTransform(smoothX, [-1, 1], [-45 * scale, 45 * scale]);
 
   return { cloudX, cloudY, bgX, bgY, floorX, floorY, fgX, fgY, textX, carouselX };
 }

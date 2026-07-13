@@ -31,14 +31,14 @@ export default function Navbar({ className, ...props }: HTMLMotionProps<"nav">) 
   return (
     <motion.nav
       {...props}
-      className={`${imprima.className} ${className || ""} absolute top-0 flex w-full flex-row items-center justify-between px-6 py-6 md:px-12`}
+      className={`${imprima.className} ${className || ""} absolute top-0 flex w-full flex-row items-center justify-center md:justify-between px-6 py-6 md:px-12`}
       style={{ zIndex: 9 }}
       initial={{ y: -50, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={entryTransition}
     >
       {/* Left Links */}
-      <div className="flex flex-1 justify-around text-sm tracking-[0.15em] uppercase font-light">
+      <div className="hidden md:flex flex-1 justify-around text-sm tracking-[0.15em] uppercase font-light">
         <span
           className={`cursor-pointer transition-colors duration-300 hover:text-white ${
             isSensibilityActive ? "text-white font-normal" : "text-white/50"
@@ -72,7 +72,7 @@ export default function Navbar({ className, ...props }: HTMLMotionProps<"nav">) 
       </div>
 
       {/* Right Links */}
-      <div className="flex flex-1 justify-around text-sm tracking-[0.15em] uppercase font-light">
+      <div className="hidden md:flex flex-1 justify-around text-sm tracking-[0.15em] uppercase font-light">
         <span
           className={`cursor-pointer transition-colors duration-300 hover:text-white ${
             isCompositionsActive ? "text-white font-normal" : "text-white/50"

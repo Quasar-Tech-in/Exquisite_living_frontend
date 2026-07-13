@@ -2,6 +2,7 @@
 
 import { motion, type MotionValue } from "framer-motion";
 import { viaodaLibre, imprima } from "@/lib/fonts";
+import { useViewportScale } from "@/hooks/useViewportScale";
 
 // ── card metadata ──────────────────────────────────────────────────────────────
 type CardMeta =
@@ -130,6 +131,7 @@ function CarouselCard({
   return (
     /* Wrapper is always the max height so the row never shifts */
     <div
+      className="pointer-events-auto"
       style={{ width: 160, height: 200, flexShrink: 0, position: "relative" }}
     >
       <motion.div
@@ -215,14 +217,18 @@ export default function HomeImageCarousel({
   isExiting?: boolean;
   isReturning?: boolean;
 }) {
+  const { width } = useViewportScale();
+  const carouselScale = width < 768 ? 0.7 : 1;
+  const exitX = width + 500;
+
   return (
     <motion.div
-      className="absolute top-[30vh] right-[-10px] flex flex-col"
-      style={{ zIndex: 7, x: carouselX }}
+      className="pointer-events-none absolute top-[30vh] right-[-10px] flex flex-col hidden md:flex"
+      style={{ zIndex: 7, x: carouselX, scale: carouselScale, transformOrigin: "right center" }}
     >
       <motion.div
-        initial={isReturning ? { x: 2500, scale: 4 } : {}}
-        animate={isExiting ? { x: 2500, scale: 4 } : { x: 0, scale: 1 }}
+        initial={isReturning ? { x: exitX, scale: 4 } : {}}
+        animate={isExiting ? { x: exitX, scale: 4 } : { x: 0, scale: 1 }}
         transition={
           isExiting ? { duration: 1.2, delay: 0.05, ease: [0.8, 0, 1, 0.2] } :
           isReturning ? { duration: 1.2, delay: 0.05, ease: [0.9, 0, 0.1, 1] } : {}

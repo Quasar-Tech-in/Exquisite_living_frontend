@@ -2,6 +2,7 @@
 
 import { motion, type MotionValue } from "framer-motion";
 import { useScene } from "@/context/SceneContext";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 interface Props {
   fgX: MotionValue<number>;
@@ -20,6 +21,7 @@ const bushClassName =
 export default function Scene1Bushes({ fgX, fgY, isReturning = false }: Props) {
   const { scene } = useScene();
   const isExiting = scene === "transitioning";
+  const isMobile = useMediaQuery("(max-width: 768px)");
 
   return (
     <>
@@ -38,13 +40,11 @@ export default function Scene1Bushes({ fgX, fgY, isReturning = false }: Props) {
           ...(isExiting ? {} : { x: fgX }),
           y: fgY,
         }}
-        initial={{ right: 0, scale: 1.1 }}
+        initial={{ right: isMobile ? "25vw" : 0, scale: 1.1 }}
         animate={
           isExiting
-            // keep right stable so CSS position doesn't revert to initial;
-            // x drives the off-screen translation, scale makes it grow as it flies
-            ? { right: "70vw", x: -2500, scale: 2.5 }
-            : { right: "70vw", scale: 1.1 }
+            ? { right: isMobile ? "100vw" : "70vw", x: "-150vw", scale: 2.5 }
+            : { right: isMobile ? "100vw" : "70vw", scale: 1.1 }
         }
         transition={isExiting ? exitTransition : entryTransition}
       />
@@ -62,15 +62,14 @@ export default function Scene1Bushes({ fgX, fgY, isReturning = false }: Props) {
           ...(isExiting ? {} : { x: fgX }),
           y: fgY,
         }}
-        initial={{ left: 0, scale: 1.1 }}
+        initial={{ left: isMobile ? "25vw" : 0, scale: 1.1 }}
         animate={
           isExiting
-            ? { left: "70vw", x: 2500, scale: 2.5 }
-            : { left: "70vw", scale: 1.1 }
+            ? { left: isMobile ? "100vw" : "70vw", x: "150vw", scale: 2.5 }
+            : { left: isMobile ? "100vw" : "70vw", scale: 1.1 }
         }
         transition={isExiting ? exitTransition : entryTransition}
       />
     </>
   );
 }
-

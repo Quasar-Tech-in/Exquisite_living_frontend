@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useScene } from "@/context/SceneContext";
 import { imprima } from "@/lib/fonts";
+import { useViewportScale } from "@/hooks/useViewportScale";
 import dynamic from "next/dynamic";
 
 const CardsFerrisWheel = dynamic(
@@ -22,24 +23,7 @@ export default function Scene2WheelLayer({
 }: Props) {
   const { scene, setIsDraggingWheel } = useScene();
   const isActive = scene === "transitioning" || scene === "scene2";
-
-  // Responsive scale of the wheel based on viewport width
-  const [scale, setScale] = useState(1);
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth < 640) {
-        setScale(0.5); // Mobile
-      } else if (window.innerWidth < 1024) {
-        setScale(0.72); // Tablet
-      } else {
-        setScale(0.95); // Desktop
-      }
-    };
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  const { scale } = useViewportScale();
 
   useEffect(() => {
     if (!isActive) return;
@@ -111,7 +95,7 @@ export default function Scene2WheelLayer({
 
       {/* Visual Navigation Controls - Floating left/right arrows */}
       <motion.button
-        className="pointer-events-auto absolute left-6 md:left-10 lg:left-16 top-[52vh] -translate-y-1/2 flex items-center justify-center h-12 w-12 rounded-full border border-white/10 bg-black/40 text-white/70 backdrop-blur-md transition-all duration-300 hover:bg-white hover:text-black hover:border-white hover:opacity-100 select-none z-10 cursor-pointer shadow-xl"
+        className="pointer-events-auto absolute left-6 md:left-10 lg:left-16 top-[68vh] md:top-[52vh] -translate-y-1/2 flex items-center justify-center h-12 w-12 rounded-full border border-white/10 bg-black/40 text-white/70 backdrop-blur-md transition-all duration-300 hover:bg-white hover:text-black hover:border-white hover:opacity-100 select-none z-10 cursor-pointer shadow-xl"
         onClick={(e) => {
           e.stopPropagation();
           setActiveCardIndex((prev) => prev - 1);
@@ -129,7 +113,7 @@ export default function Scene2WheelLayer({
       </motion.button>
 
       <motion.button
-        className="pointer-events-auto absolute right-6 md:right-10 lg:right-16 top-[52vh] -translate-y-1/2 flex items-center justify-center h-12 w-12 rounded-full border border-white/10 bg-black/40 text-white/70 backdrop-blur-md transition-all duration-300 hover:bg-white hover:text-black hover:border-white hover:opacity-100 select-none z-10 cursor-pointer shadow-xl"
+        className="pointer-events-auto absolute right-6 md:right-10 lg:right-16 top-[68vh] md:top-[52vh] -translate-y-1/2 flex items-center justify-center h-12 w-12 rounded-full border border-white/10 bg-black/40 text-white/70 backdrop-blur-md transition-all duration-300 hover:bg-white hover:text-black hover:border-white hover:opacity-100 select-none z-10 cursor-pointer shadow-xl"
         onClick={(e) => {
           e.stopPropagation();
           setActiveCardIndex((prev) => prev + 1);

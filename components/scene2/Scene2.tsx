@@ -329,9 +329,10 @@ export default function Scene2({ cloudX, cloudY, floorX, floorY, textX }: Props)
       </motion.div>
 
       {/* Mobile Drawer Trigger Button */}
-      <div className="absolute bottom-28 left-1/2 -translate-x-1/2 z-[8] lg:hidden pointer-events-auto">
+      <div className={`absolute bottom-36 md:bottom-28 left-1/2 -translate-x-1/2 z-[8] lg:hidden ${isActive ? "pointer-events-auto" : "pointer-events-none"}`}>
         <motion.button
           onClick={() => setIsDetailsOpen(true)}
+          disabled={!isActive}
           className={`px-5 py-2.5 rounded-full border border-white/20 bg-black/50 text-white/90 text-[10px] md:text-xs tracking-[0.15em] uppercase font-light backdrop-blur-md transition-all duration-300 hover:bg-white hover:text-black hover:border-white shadow-lg cursor-pointer ${imprima.className}`}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: isActive ? 1 : 0, y: isActive ? 0 : 20 }}
@@ -409,7 +410,7 @@ export default function Scene2({ cloudX, cloudY, floorX, floorY, textX }: Props)
 
       {/* Floating brand footer */}
       <motion.footer
-        className={`absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-center text-white/50 ${imprima.className}`}
+        className={`pointer-events-none absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-center text-white/50 ${imprima.className}`}
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.8, duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
@@ -434,4 +435,3 @@ export default function Scene2({ cloudX, cloudY, floorX, floorY, textX }: Props)
     </>
   );
 }
-

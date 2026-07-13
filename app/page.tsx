@@ -23,7 +23,7 @@ function InnerPage() {
   } = useParallax(isParallaxActive && !isDraggingWheel);
 
   return (
-    <div className="absolute inset-0 h-full w-full cursor-none overflow-hidden bg-[#111]">
+    <div className="absolute inset-0 h-full w-full md:cursor-none overflow-hidden bg-[#111]">
       {/* Scene 2 — always mounted behind Scene 1 (z:1–2) */}
       <Scene2 cloudX={cloudX} cloudY={cloudY} floorX={floorX} floorY={floorY} textX={textX} />
 

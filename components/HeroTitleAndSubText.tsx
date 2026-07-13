@@ -12,7 +12,7 @@ export default function HeroTitleAndSubText({
 }) {
   return (
     <motion.div
-      className="absolute top-[30vh] left-[12vw] flex flex-col items-center text-left text-white"
+      className="pointer-events-none absolute top-[30vh] left-[12vw] flex flex-col items-center text-left text-white"
       style={{ zIndex: 7, x: textX }}
     >
       <motion.div

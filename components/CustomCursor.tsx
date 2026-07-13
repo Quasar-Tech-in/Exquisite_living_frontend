@@ -36,7 +36,7 @@ export default function CustomCursor() {
 
   return (
     <div
-      className="pointer-events-none fixed top-0 left-0 h-full w-full"
+      className="pointer-events-none fixed top-0 left-0 h-full w-full hidden md:block"
       style={{ zIndex: 9999, mixBlendMode: "difference" }}
     >
       {/* The Trail */}
