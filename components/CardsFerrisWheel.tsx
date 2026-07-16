@@ -213,11 +213,13 @@ export default function CardsFerrisWheel({ activeCardIndex, setActiveCardIndex }
             {/* Text — tilted with the card (no counter-rotation) */}
             <h3
               className={`text-[28px] md:text-[30px] font-medium leading-tight text-black/80 capitalize ${viaodaLibre.className}`}
+              style={{ textShadow: "0 1px 4px rgba(255,255,255,0.6), 0 2px 12px rgba(0,0,0,0.15)" }}
             >
               {cardsData[i % cardsData.length].title}
             </h3>
             <p
               className={`mt-1.5 text-[14px] md:text-[15px] leading-snug text-black/60 ${imprima.className}`}
+              style={{ textShadow: "0 1px 3px rgba(255,255,255,0.5), 0 1px 8px rgba(0,0,0,0.1)" }}
             >
               {cardsData[i % cardsData.length].subtext}
             </p>

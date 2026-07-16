@@ -13,17 +13,17 @@ export function useViewportScale() {
       
       // Fluid scale based on width to avoid collapsing on mobile aspect ratios
       if (width < 640) {
-        // Mobile: 0.45 to 0.6
-        newScale = 0.45 + (Math.max(0, width - 320) / 320) * 0.15;
+        // Mobile: 0.90 to 1.05 (large cards on mobile)
+        newScale = 0.90 + (Math.max(0, width - 320) / 320) * 0.15;
       } else if (width < 1024) {
-        // Tablet: 0.6 to 0.85
-        newScale = 0.6 + ((width - 640) / 384) * 0.25;
+        // Tablet: 1.05 to 1.15
+        newScale = 1.05 + ((width - 640) / 384) * 0.10;
       } else {
-        // Desktop: 0.85 to 1.15
-        newScale = 0.85 + ((width - 1024) / 896) * 0.3;
+        // Desktop: 1.15 to 1.2
+        newScale = 1.15 + ((width - 1024) / 896) * 0.05;
       }
 
-      newScale = Math.max(0.45, Math.min(newScale, 1.2));
+      newScale = Math.max(0.90, Math.min(newScale, 1.2));
 
       setScale(newScale);
       setViewport({ width: window.innerWidth, height: window.innerHeight });

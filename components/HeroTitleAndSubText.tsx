@@ -27,7 +27,7 @@ export default function HeroTitleAndSubText({
         animate={{ translateY: 0, opacity: 1 }}
         transition={{ duration: 1.6, ease: [0.22, 1, 0.36, 1] }}
       >
-        <div className="flex flex-col items-start text-[50px] md:text-[56px] lg:text-[64px]">
+        <div className="flex flex-col items-start text-[50px] md:text-[56px] lg:text-[64px]" style={{ textShadow: "0 2px 20px rgba(0,0,0,0.5), 0 4px 40px rgba(0,0,0,0.3)" }}>
           <span>Some lives are not</span>
           <span className="text-white/90">arranged.</span>
           <span className="mt-2 italic text-[#c19a6b]">They are composed.</span>
@@ -35,6 +35,7 @@ export default function HeroTitleAndSubText({
       </motion.div>
       <motion.p
         className={`mt-6 max-w-[340px] text-[16px] leading-[1.4] font-normal tracking-[0.02em] text-white/80 ${imprima.className}`}
+        style={{ textShadow: "0 1px 12px rgba(0,0,0,0.5), 0 2px 24px rgba(0,0,0,0.3)" }}
         initial={isReturning ? { translateY: 0, opacity: 1 } : { translateY: 60, opacity: 0 }}
         animate={{ translateY: 0, opacity: 1 }}
         transition={{ duration: 1.6, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
