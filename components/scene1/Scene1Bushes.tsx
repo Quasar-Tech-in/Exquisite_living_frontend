@@ -21,38 +21,49 @@ const bushClassName =
 export default function Scene1Bushes({ fgX, fgY, isReturning = false }: Props) {
   const { scene } = useScene();
   const isExiting = scene === "transitioning";
+  // isMobile is ONLY used for animate targets, never for `initial`.
+  // This avoids the hydration false-start (useMediaQuery initialises to false on SSR).
   const isMobile = useMediaQuery("(max-width: 768px)");
+
+  // Resting position: desktop keeps bushes partially framing the scene (70vw from their edge).
+  // Mobile pushes them fully off-screen (120vw so even large images are hidden).
+  const restingRight = isMobile ? "120vw" : "70vw";
+  const restingLeft  = isMobile ? "120vw" : "70vw";
 
   return (
     <>
       {/*
-        Left bush — entry: slides in from right edge to 70vw.
-        Exit: parallax x is removed so animate.x can drive it freely;
-        translates -1500px (off-screen left) while scaling up to 2.5x.
-        Return: slides back in from off-screen left to resting position.
+        Left bush — positioned with CSS `right`.
+        Starts at right:"-30vw" so the image extends 30vw past the right edge into the center,
+        ensuring full overlap with the right bush regardless of image width.
+        Animates to restingRight (off-screen on mobile, framing on desktop).
+        Exit (desktop): scale up + strong leftward x — same as original desktop behaviour.
+        Exit (mobile): NO scale (scaling from center causes inward pop) — just a fast x-slide outward.
       */}
       <motion.img
         src={"left-full.webp"}
         className={bushClassName}
         style={{
           zIndex: 8,
-          // During exit we drop fgX so animate.x owns the translation exclusively
           ...(isExiting ? {} : { x: fgX }),
           y: fgY,
         }}
-        initial={{ right: isMobile ? "25vw" : 0, scale: 1.1 }}
+        initial={{ right: "-30vw", scale: 1.1 }}
         animate={
           isExiting
-            ? { right: isMobile ? "100vw" : "70vw", x: "-150vw", scale: 2.5 }
-            : { right: isMobile ? "100vw" : "70vw", scale: 1.1 }
+            ? isMobile
+              ? { right: restingRight, x: "-150vw", scale: 1.1 }   // mobile: slide out, no scale
+              : { right: "70vw", x: "-150vw", scale: 2.5 }          // desktop: unchanged
+            : { right: restingRight, scale: 1.1 }
         }
         transition={isExiting ? exitTransition : entryTransition}
       />
 
       {/*
-        Right bush — entry: slides in from left edge to 70vw.
-        Exit: translates +1500px (off-screen right) while scaling up to 2.5x.
-        Return: slides back in from off-screen right to resting position.
+        Right bush — positioned with CSS `left`.
+        Starts at left:"-30vw" so the image extends 30vw past the left edge into the center.
+        Exit (desktop): scale up + strong rightward x — unchanged.
+        Exit (mobile): NO scale — fast x-slide outward to the right.
       */}
       <motion.img
         src={"right-full.webp"}
@@ -62,11 +73,13 @@ export default function Scene1Bushes({ fgX, fgY, isReturning = false }: Props) {
           ...(isExiting ? {} : { x: fgX }),
           y: fgY,
         }}
-        initial={{ left: isMobile ? "25vw" : 0, scale: 1.1 }}
+        initial={{ left: "-30vw", scale: 1.1 }}
         animate={
           isExiting
-            ? { left: isMobile ? "100vw" : "70vw", x: "150vw", scale: 2.5 }
-            : { left: isMobile ? "100vw" : "70vw", scale: 1.1 }
+            ? isMobile
+              ? { left: restingLeft, x: "150vw", scale: 1.1 }       // mobile: slide out, no scale
+              : { left: "70vw", x: "150vw", scale: 2.5 }            // desktop: unchanged
+            : { left: restingLeft, scale: 1.1 }
         }
         transition={isExiting ? exitTransition : entryTransition}
       />
