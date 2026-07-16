@@ -22,28 +22,28 @@ export default function Scene2HeroText({
   let title = "Loose leaves, ";
   let italicTitle = "lifted from the book.";
   let subtitle = "A selection of composed worlds and quiet details.";
-  let italicColor = "text-[#5f7d6a]"; // green sage
+  let italicColor = "text-[#1fda64]";
 
   if (normalizedIndex >= 0 && normalizedIndex <= 3) {
     title = "A sensibility, ";
     italicTitle = "not a service.";
     subtitle = "A concierge waits to be asked. We do not.";
-    italicColor = "text-[#c19a6b]"; // warm gold/brass
+    italicColor = "text-[#ecb471]";
   } else if (normalizedIndex >= 4 && normalizedIndex <= 11) {
     title = "A quiet intelligence, ";
     italicTitle = "composing in the background.";
     subtitle = "Built to know each member with depth no concierge could match.";
-    italicColor = "text-[#8fa397]"; // sage-soft
+    italicColor = "text-[#7beea9]";
   } else if (normalizedIndex >= 12 && normalizedIndex <= 17) {
     title = "Loose leaves, ";
     italicTitle = "lifted from the book.";
     subtitle = "Draw near and the pages part — a few composed worlds rise from the binding.";
-    italicColor = "text-[#5f7d6a]"; // green sage
+    italicColor = "text-[#1fda64]";
   } else if (normalizedIndex >= 18 && normalizedIndex <= 19) {
     title = "You do not join us. ";
     italicTitle = "We find you.";
     subtitle = "Conferred quietly, and only when our worlds align.";
-    italicColor = "text-[#c19a6b]"; // warm gold/brass
+    italicColor = "text-[#ecb471]";
   }
 
   let chapterKey = 0;
@@ -65,8 +65,8 @@ export default function Scene2HeroText({
           isReturning
             ? { y: 20, opacity: 0 }
             : isActive
-            ? { y: 0, opacity: 1 }
-            : { y: 20, opacity: 0 }
+              ? { y: 0, opacity: 1 }
+              : { y: 20, opacity: 0 }
         }
         transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1], delay: isActive ? 0.1 : 0 }}
       >
@@ -84,8 +84,8 @@ export default function Scene2HeroText({
           isReturning
             ? { y: 15, opacity: 0 }
             : isActive
-            ? { y: 0, opacity: 1 }
-            : { y: 15, opacity: 0 }
+              ? { y: 0, opacity: 1 }
+              : { y: 15, opacity: 0 }
         }
         transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1], delay: isActive ? 0.25 : 0 }}
       >

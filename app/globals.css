@@ -3,6 +3,30 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --brand-sage: #66786b;
+  --brand-ivory: #e5e4df;
+  --brand-dark-sage: #3f4c43;
+  --brand-light-sage: #bec6be;
+  --brand-warm-white: #f3f1ec;
+}
+
+.hero {
+  background:
+    linear-gradient(
+      180deg,
+      #e5e4df 0%,
+      #d9ddd7 45%,
+      #aab4ab 100%
+    );
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(102, 120, 107, 0.08);
+  pointer-events: none;
+  z-index: 5;
 }
 
 @theme inline {

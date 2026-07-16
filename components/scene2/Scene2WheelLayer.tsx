@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { useScene } from "@/context/SceneContext";
 import { imprima } from "@/lib/fonts";
@@ -25,20 +25,7 @@ export default function Scene2WheelLayer({
   const isActive = scene === "transitioning" || scene === "scene2";
   const { scale } = useViewportScale();
 
-  useEffect(() => {
-    if (!isActive) return;
 
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "ArrowRight") {
-        setActiveCardIndex((prev) => prev + 1);
-      } else if (e.key === "ArrowLeft") {
-        setActiveCardIndex((prev) => prev - 1);
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isActive, setActiveCardIndex]);
 
   // Calculate rotation based on index. Total cards = 20, angle = 360 / 20 = 18deg.
   const targetRotation = -activeCardIndex * (360 / 20);
@@ -130,15 +117,7 @@ export default function Scene2WheelLayer({
         </svg>
       </motion.button>
 
-      {/* Keyboard navigation helper hint */}
-      <motion.div
-        className={`pointer-events-none absolute bottom-[18vh] left-1/2 -translate-x-1/2 z-10 text-[9px] md:text-[10px] tracking-[0.25em] text-white/30 uppercase select-none ${imprima.className}`}
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: isActive ? 1 : 0, y: isActive ? 0 : 10 }}
-        transition={{ duration: 1, delay: 1 }}
-      >
-        Drag the wheel or use ←/→ keys to compose
-      </motion.div>
+
     </>
   );
 }

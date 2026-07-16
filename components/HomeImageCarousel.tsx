@@ -72,7 +72,7 @@ function PlayButton() {
         {/* references the single shared filter defined in <SharedDefs> */}
         <path
           d="M2 1.5L14 9L2 16.5V1.5Z"
-          fill="#e11d48"
+          fill="#66786b"
           filter="url(#play-soft)"
         />
       </svg>
@@ -89,6 +89,7 @@ function CardFooter({ meta }: { meta: CardMeta }) {
         {/* two-line label */}
         <div
           className={`flex flex-col text-[13px] leading-tight text-white ${imprima.className}`}
+          style={{ textShadow: "0 1px 4px rgba(0, 0, 0, 0.4)" }}
         >
           {meta.label.split(" ").map((word, i) => (
             <span key={i}>{word}</span>
@@ -101,12 +102,14 @@ function CardFooter({ meta }: { meta: CardMeta }) {
     <div className="flex flex-row items-center gap-2.5">
       <span
         className={`text-[32px] leading-none text-white ${viaodaLibre.className}`}
+        style={{ textShadow: "0 2px 5px rgba(0, 0, 0, 0.4)" }}
       >
         {meta.number}
       </span>
       {/* two-line label */}
       <div
         className={`flex flex-col text-[13px] leading-tight text-white ${imprima.className}`}
+        style={{ textShadow: "0 1px 4px rgba(0, 0, 0, 0.4)" }}
       >
         {meta.label.split(" ").map((word, i) => (
           <span key={i}>{word}</span>
@@ -168,7 +171,7 @@ function CarouselCard({
           style={{
             height: "50%",
             background:
-              "linear-gradient(to top, rgba(0,0,0,0.45) 0%, transparent 100%)",
+              "linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 100%)",
             backdropFilter: "blur(3px)",
             WebkitBackdropFilter: "blur(3px)",
             maskImage: "linear-gradient(to top, black 55%, transparent 100%)",
