@@ -165,6 +165,19 @@ export default function CardsFerrisWheel({ activeCardIndex, setActiveCardIndex }
         const bg = cardColors[i];
         const isWebActive = i === normalizedActiveIndex;
 
+        // Circular distance on 20-card wheel
+        const dist = Math.min(
+          Math.abs(i - normalizedActiveIndex),
+          TOTAL_CARDS - Math.abs(i - normalizedActiveIndex)
+        );
+
+        let cardOpacity = 0;
+        if (dist === 0) cardOpacity = 1;
+        else if (dist === 1) cardOpacity = 0.65;
+        else if (dist === 2) cardOpacity = 0.35;
+        else if (dist === 3) cardOpacity = 0.1;
+        else cardOpacity = 0;
+
         return (
           <div
             key={i}
@@ -180,8 +193,9 @@ export default function CardsFerrisWheel({ activeCardIndex, setActiveCardIndex }
               transformOrigin: "center center",
               // Uniform 40px radius; circle is inset to align with the corner arc
               borderRadius: CARD_RADIUS,
-              opacity: isWebActive ? 1 : 0.32,
-              boxShadow: isWebActive 
+              opacity: cardOpacity,
+              pointerEvents: cardOpacity > 0 ? "auto" : "none",
+              boxShadow: isWebActive
                 ? "0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 30px rgba(255, 255, 255, 0.08)"
                 : "0 8px 16px -4px rgba(0, 0, 0, 0.3)",
               transition: "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1)",
@@ -212,12 +226,12 @@ export default function CardsFerrisWheel({ activeCardIndex, setActiveCardIndex }
 
             {/* Text — tilted with the card (no counter-rotation) */}
             <h3
-              className={`text-[28px] md:text-[30px] font-medium leading-tight text-black/80 capitalize ${viaodaLibre.className}`}
+              className={`text-[28px] md:text-[30px] font-medium leading-tight text-black capitalize ${viaodaLibre.className}`}
             >
               {cardsData[i % cardsData.length].title}
             </h3>
             <p
-              className={`mt-1.5 text-[14px] md:text-[15px] leading-snug text-black/60 ${imprima.className}`}
+              className={`mt-1.5 text-[14px] md:text-[15px] leading-snug text-black/75 ${imprima.className}`}
             >
               {cardsData[i % cardsData.length].subtext}
             </p>

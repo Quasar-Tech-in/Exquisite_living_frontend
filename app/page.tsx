@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { SceneProvider, useScene } from "@/context/SceneContext";
 import { useParallax } from "@/hooks/useParallax";
 import Scene1 from "@/components/scene1/Scene1";
@@ -14,6 +14,32 @@ function InnerPage() {
   const [isParallaxActive, setIsParallaxActive] = useState(false);
   const { isDraggingWheel } = useScene();
 
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Allow inputs and contenteditables to process keystrokes
+      const activeEl = document.activeElement;
+      if (activeEl && (
+        activeEl.tagName === "INPUT" || 
+        activeEl.tagName === "TEXTAREA" || 
+        activeEl.getAttribute("contenteditable") === "true"
+      )) {
+        return;
+      }
+
+      const blockedKeys = [
+        "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight",
+        " ", "PageUp", "PageDown", "Home", "End"
+      ];
+
+      if (blockedKeys.includes(e.key)) {
+        e.preventDefault();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
   const {
     cloudX, cloudY,
     bgX, bgY,
@@ -23,7 +49,7 @@ function InnerPage() {
   } = useParallax(isParallaxActive && !isDraggingWheel);
 
   return (
-    <div className="absolute inset-0 h-full w-full md:cursor-none overflow-hidden bg-[#111]">
+    <div className="absolute inset-0 h-full w-full md:cursor-none overflow-hidden hero">
       {/* Scene 2 — always mounted behind Scene 1 (z:1–2) */}
       <Scene2 cloudX={cloudX} cloudY={cloudY} floorX={floorX} floorY={floorY} textX={textX} />
 

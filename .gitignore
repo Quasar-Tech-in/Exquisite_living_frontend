@@ -39,3 +39,5 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+/public/archive
+public/archive/Parallax Image/Parallax Image/V1.jpg

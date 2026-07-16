@@ -25,21 +25,20 @@ function ComparisonTable({ activeIndex }: { activeIndex: number }) {
   const isExquisiteActive = activeIndex >= 0 && activeIndex <= 3;
   return (
     <div className="flex flex-col gap-3 font-light text-xs md:text-sm">
-      <div className="flex items-center justify-between p-3 rounded bg-white/5 border border-white/5 opacity-50">
-        <span className="text-[#8fa397] uppercase tracking-[0.1em] text-[10px] md:text-xs">The concierge</span>
-        <span className="text-white/80">Responds to requests</span>
+      <div className="flex items-center justify-between p-3 rounded bg-white/5 border border-white/5 opacity-70">
+        <span className="text-[#7beea9] uppercase tracking-[0.1em] text-[10px] md:text-xs">The concierge</span>
+        <span className="text-white/95">Responds to requests</span>
       </div>
-      <div className="flex items-center justify-between p-3 rounded bg-white/5 border border-white/5 opacity-50">
-        <span className="text-[#8fa397] uppercase tracking-[0.1em] text-[10px] md:text-xs">The advisor</span>
-        <span className="text-white/80">Presents options</span>
+      <div className="flex items-center justify-between p-3 rounded bg-white/5 border border-white/5 opacity-70">
+        <span className="text-[#7beea9] uppercase tracking-[0.1em] text-[10px] md:text-xs">The advisor</span>
+        <span className="text-white/95">Presents options</span>
       </div>
-      <motion.div 
+      <motion.div
         animate={isExquisiteActive ? { scale: 1.02, borderColor: "rgba(193, 154, 107, 0.4)" } : { scale: 1 }}
-        className={`flex items-center justify-between p-3 rounded bg-white/[0.08] border transition-colors ${
-          isExquisiteActive ? "border-[#c19a6b]/40 ring-1 ring-[#c19a6b]/20" : "border-white/10 opacity-70"
-        }`}
+        className={`flex items-center justify-between p-3 rounded bg-white/[0.08] border transition-colors ${isExquisiteActive ? "border-[#ffa02e]/40 ring-1 ring-[#ffa02e]/20" : "border-white/10 opacity-70"
+          }`}
       >
-        <span className="text-[#c19a6b] uppercase tracking-[0.15em] font-medium text-[10px] md:text-xs">ExQuisite</span>
+        <span className="text-[#ffa02e] uppercase tracking-[0.15em] font-medium text-[10px] md:text-xs">ExQuisite</span>
         <span className="text-white font-normal">Composes what was never asked for</span>
       </motion.div>
       <img src="/icon_clover_sage.png" alt="" className="h-6 md:h-8 w-auto mx-auto mt-4 opacity-30" />
@@ -71,13 +70,12 @@ function IntelligenceGrid({ activeIndex }: { activeIndex: number }) {
             <motion.div
               key={idx}
               animate={isActive ? { scale: 1.03, borderColor: "rgba(143, 163, 151, 0.6)" } : { scale: 1 }}
-              className={`flex flex-col justify-center h-14 md:h-16 p-2 md:p-3 rounded border font-light transition-colors ${
-                isActive 
-                  ? "bg-white/[0.08] border-[#8fa397] text-white" 
-                  : "bg-white/5 border-white/5 text-white/40"
-              }`}
+              className={`flex flex-col justify-center h-14 md:h-16 p-2 md:p-3 rounded border font-light transition-colors ${isActive
+                ? "bg-white/[0.08] border-[#7beea9] text-white"
+                : "bg-white/[0.04] border-white/10 text-white/70"
+                }`}
             >
-              <span className={`text-[8px] md:text-[9px] uppercase tracking-[0.1em] ${isActive ? "text-[#c19a6b]" : "text-white/30"}`}>
+              <span className={`text-[8px] md:text-[9px] uppercase tracking-[0.1em] ${isActive ? "text-[#ffa02e]" : "text-white/50"}`}>
                 {p.num}
               </span>
               <span className="mt-0.5 leading-snug truncate">{p.name}</span>
@@ -85,7 +83,7 @@ function IntelligenceGrid({ activeIndex }: { activeIndex: number }) {
           );
         })}
       </div>
-      <p className="text-[9px] md:text-[10px] text-white/35 text-center font-light leading-relaxed">
+      <p className="text-[9px] md:text-[10px] text-white/55 text-center font-light leading-relaxed">
         A small selection of the dimensions we hold. The rest, we keep between us.
       </p>
     </div>
@@ -104,13 +102,13 @@ function YoursResembleBlock() {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
       </div>
-      <span className="text-[#8fa397] uppercase tracking-[0.1em] text-[9px] md:text-[10px] mb-1 block">
+      <span className="text-[#7beea9] uppercase tracking-[0.1em] text-[9px] md:text-[10px] mb-1 block">
         ✦ The last leaf of this chapter
       </span>
       <h4 className={`text-base md:text-lg font-light leading-snug mb-1.5 ${viaodaLibre.className}`}>
         Yours would resemble none of these.
       </h4>
-      <p className="text-white/50 text-[11px] md:text-xs font-light leading-relaxed">
+      <p className="text-white/70 text-[11px] md:text-xs font-light leading-relaxed">
         These are anonymised fragments, offered only to suggest the shape of the work. What we would compose for you is written on a page no one else will read.
       </p>
     </div>
@@ -135,15 +133,15 @@ function RegisterInterestForm() {
       <p className="text-sm md:text-base font-light leading-snug mb-2">
         If our worlds are meant to meet, let us know you exist.
       </p>
-      <p className="text-white/40 text-[10px] md:text-[11px] font-light mb-4 md:mb-6">
+      <p className="text-white/60 text-[10px] md:text-[11px] font-light mb-4 md:mb-6">
         Registering interest places no obligation on either of us.
       </p>
-      
+
       {submitted ? (
         <motion.div
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          className="text-[#c19a6b] font-light text-xs md:text-sm tracking-[0.1em] py-3 border border-dashed border-[#c19a6b]/30 w-full rounded"
+          className="text-[#ffa02e] font-light text-xs md:text-sm tracking-[0.1em] py-3 border border-dashed border-[#ffa02e]/30 w-full rounded"
         >
           ✦ Interest Registered. We will find you. ✦
         </motion.div>
@@ -154,7 +152,7 @@ function RegisterInterestForm() {
             placeholder="Email address or referral name"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full bg-transparent border-b border-white/20 py-2 text-xs md:text-sm text-center focus:outline-none focus:border-white transition-colors placeholder-white/30 font-light"
+            className="w-full bg-transparent border-b border-white/30 py-2 text-xs md:text-sm text-center focus:outline-none focus:border-white transition-colors placeholder-white/50 font-light"
             required
           />
           <button
@@ -180,9 +178,9 @@ function MembershipPolicies() {
   return (
     <div className="grid grid-cols-2 gap-2 text-[10px] md:text-[11px] font-light">
       {policies.map((p, idx) => (
-        <div key={idx} className="p-2 md:p-3 bg-white/5 border border-white/5 rounded flex flex-col justify-between">
-          <span className="text-[#c19a6b] font-medium uppercase tracking-[0.1em] mb-1">{p.title}</span>
-          <span className="text-white/55 leading-snug">{p.desc}</span>
+        <div key={idx} className="p-2 md:p-3 bg-white/5 border border-white/10 rounded flex flex-col justify-between">
+          <span className="text-[#ffa02e] font-medium uppercase tracking-[0.1em] mb-1">{p.title}</span>
+          <span className="text-white/70 leading-snug">{p.desc}</span>
         </div>
       ))}
     </div>
@@ -274,18 +272,18 @@ export default function Scene2({ cloudX, cloudY, floorX, floorY, textX }: Props)
 
       {/* Desktop Left Details Sidebar */}
       <motion.div
-        className={`hidden lg:flex absolute left-[5vw] top-[26vh] w-[26vw] flex-col z-10 select-none max-h-[50vh] overflow-y-auto pr-2 pointer-events-auto bg-black/35 border border-white/5 backdrop-blur-md rounded-2xl p-6 ${imprima.className}`}
+        className={`hidden lg:flex absolute left-[5vw] top-1/2 -translate-y-1/2 w-[28vw] h-fit max-h-[75vh] overflow-y-auto flex-col z-10 select-none pointer-events-auto bg-[#0c1411]/80 border border-white/10 backdrop-blur-md rounded-2xl p-6 ${imprima.className}`}
         initial={{ opacity: 0, x: -40 }}
         animate={{ opacity: isActive ? 1 : 0, x: isActive ? 0 : -40 }}
         transition={{ duration: 1.2, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
       >
-        <span className="text-[#8fa397] uppercase tracking-[0.2em] text-[10px] md:text-[11px] font-light mb-2 block">
+        <span className="text-[#7beea9] uppercase tracking-[0.2em] text-[10px] md:text-[11px] font-light mb-2 block">
           {sectionNum}
         </span>
         <h3 className={`text-xl md:text-2xl font-light leading-tight text-white mb-4 ${viaodaLibre.className}`}>
           {sectionTitle}
         </h3>
-        <p className="text-white/60 text-xs md:text-sm font-light leading-relaxed">
+        <p className="text-white/75 text-xs md:text-sm font-light leading-relaxed">
           {sectionDesc}
         </p>
 
@@ -297,11 +295,11 @@ export default function Scene2({ cloudX, cloudY, floorX, floorY, textX }: Props)
             animate={{ opacity: 1, y: 0 }}
             className="mt-6 pt-5 border-t border-white/10"
           >
-            <span className="text-[#c19a6b] font-medium text-xs tracking-[0.1em] uppercase block mb-0.5">
+            <span className="text-[#ffa02e] font-medium text-xs tracking-[0.1em] uppercase block mb-0.5">
               {activeComp.title}
             </span>
-            <span className="text-white/40 text-[10px] block mb-2">{activeComp.sub}</span>
-            <p className="text-white/70 text-xs font-light leading-relaxed">
+            <span className="text-white/55 text-[10px] block mb-2">{activeComp.sub}</span>
+            <p className="text-white/80 text-xs font-light leading-relaxed">
               {activeComp.desc}
             </p>
           </motion.div>
@@ -317,7 +315,7 @@ export default function Scene2({ cloudX, cloudY, floorX, floorY, textX }: Props)
 
       {/* Desktop Right Component Sidebar */}
       <motion.div
-        className={`hidden lg:flex absolute right-[5vw] top-[26vh] w-[27vw] flex-col z-10 select-none max-h-[52vh] overflow-y-auto pl-2 pointer-events-auto bg-black/35 border border-white/5 backdrop-blur-md rounded-2xl p-6 ${imprima.className}`}
+        className={`hidden lg:flex absolute right-[5vw] top-1/2 -translate-y-1/2 w-[29vw] h-fit max-h-[75vh] overflow-y-auto flex-col z-10 select-none pointer-events-auto bg-[#0c1411]/80 border border-white/10 backdrop-blur-md rounded-2xl p-6 ${imprima.className}`}
         initial={{ opacity: 0, x: 40 }}
         animate={{ opacity: isActive ? 1 : 0, x: isActive ? 0 : 40 }}
         transition={{ duration: 1.2, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
@@ -366,24 +364,24 @@ export default function Scene2({ cloudX, cloudY, floorX, floorY, textX }: Props)
             {/* Content Container (Stacked) */}
             <div className="flex flex-col gap-6 pb-12">
               <div className="flex flex-col text-center">
-                <span className="text-[#8fa397] uppercase tracking-[0.2em] text-[10px] font-light mb-2">
+                <span className="text-[#7beea9] uppercase tracking-[0.2em] text-[10px] font-light mb-2">
                   {sectionNum}
                 </span>
                 <h3 className={`text-2xl font-light text-white mb-3 ${viaodaLibre.className}`}>
                   {sectionTitle}
                 </h3>
-                <p className={`text-white/60 text-xs font-light leading-relaxed px-2 ${imprima.className}`}>
+                <p className={`text-white/75 text-xs font-light leading-relaxed px-2 ${imprima.className}`}>
                   {sectionDesc}
                 </p>
-                
+
                 {/* Compositions narrative injection */}
                 {chapterKey === 3 && activeComp && (
                   <div className="mt-5 p-4 bg-white/5 border border-dashed border-white/10 rounded-lg text-left">
-                    <span className="text-[#c19a6b] font-medium text-xs tracking-[0.1em] uppercase block mb-1">
+                    <span className="text-[#ffa02e] font-medium text-xs tracking-[0.1em] uppercase block mb-1">
                       {activeComp.title}
                     </span>
-                    <span className="text-white/40 text-[10px] block mb-2">{activeComp.sub}</span>
-                    <p className={`text-white/70 text-xs font-light leading-relaxed ${imprima.className}`}>
+                    <span className="text-white/55 text-[10px] block mb-2">{activeComp.sub}</span>
+                    <p className={`text-white/80 text-xs font-light leading-relaxed ${imprima.className}`}>
                       {activeComp.desc}
                     </p>
                   </div>
