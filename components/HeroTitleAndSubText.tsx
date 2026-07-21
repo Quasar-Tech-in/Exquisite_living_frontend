@@ -18,7 +18,7 @@ export default function HeroTitleAndSubText({
       <motion.div
         initial={isReturning ? { x: -2500, scale: 4 } : {}}
         animate={isExiting ? { x: -2500, scale: 4 } : { x: 0, scale: 1 }}
-        transition={isExiting ? { duration: 1.2, ease: [0.8, 0, 1, 0.2] } : isReturning ? { duration: 1.2, ease: [0.9, 0, 0.1, 1] } : {}}
+        transition={isExiting ? { duration: 1.2, ease: [0.8, 0, 1, 0.2] } : isReturning ? { duration: 2, ease: [0.9, 0, 0.1, 1] } : {}}
         className="flex flex-col items-center"
       >
         <motion.div
@@ -35,13 +35,13 @@ export default function HeroTitleAndSubText({
           </div>
         </motion.div>
         <motion.p
-          className={`mt-6 max-w-[340px] text-[16px] leading-[1.4] font-normal tracking-[0.02em] text-white/90 ${imprima.className}`}
+          className={`mt-6 max-w-85 text-[16px] leading-[1.4] font-normal tracking-[0.02em] text-white/90 ${imprima.className}`}
           style={{ textShadow: "0 1px 12px rgba(0,0,0,0.5), 0 2px 24px rgba(0,0,0,0.3)" }}
           initial={isReturning ? { translateY: 0, opacity: 1 } : { translateY: 60, opacity: 0 }}
           animate={{ translateY: 0, opacity: 1 }}
           transition={{ duration: 1.6, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
         >
-          An intelligence devoted to a single question: what would move you, before you thought to ask for it. By invitation.
+          Not a concierge. Not a catalogue. A quiet intelligence that composes what would move you — before you thought to ask. By invitation only.
         </motion.p>
       </motion.div>
     </motion.div>

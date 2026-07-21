@@ -9,6 +9,7 @@ import Scene2FloorLayer from "./Scene2FloorLayer";
 import Scene2WheelLayer from "./Scene2WheelLayer";
 import Scene2LowerCloudsLayer from "./Scene2LowerCloudsLayer";
 import Scene2HeroText from "./Scene2HeroText";
+import ExitExperienceButton from "@/components/ExitExperienceButton";
 
 interface Props {
   cloudX: MotionValue<number>;
@@ -20,28 +21,41 @@ interface Props {
 
 // ── Chapter Subcomponents ──────────────────────────────────────────────────────
 
-// Sensibility Comparison Table
 function ComparisonTable({ activeIndex }: { activeIndex: number }) {
   const isExquisiteActive = activeIndex >= 0 && activeIndex <= 3;
   return (
     <div className="flex flex-col gap-3 font-light text-xs md:text-sm">
-      <div className="flex items-center justify-between p-3 rounded bg-white/5 border border-white/5 opacity-70">
-        <span className="text-[#7beea9] uppercase tracking-[0.1em] text-[10px] md:text-xs">The concierge</span>
-        <span className="text-white/95">Responds to requests</span>
+      {/* Concierge — neutral, recessive */}
+      <div className="flex items-center justify-between p-3 rounded border border-white/6 opacity-50"
+        style={{ background: "rgba(255,255,255,0.02)" }}>
+        <span className="text-white/40 uppercase tracking-widest text-[10px] md:text-xs">The concierge</span>
+        <span className="text-white/60">Responds to requests</span>
       </div>
-      <div className="flex items-center justify-between p-3 rounded bg-white/5 border border-white/5 opacity-70">
-        <span className="text-[#7beea9] uppercase tracking-[0.1em] text-[10px] md:text-xs">The advisor</span>
-        <span className="text-white/95">Presents options</span>
+      {/* Advisor — neutral, recessive */}
+      <div className="flex items-center justify-between p-3 rounded border border-white/6 opacity-50"
+        style={{ background: "rgba(255,255,255,0.02)" }}>
+        <span className="text-white/40 uppercase tracking-widest text-[10px] md:text-xs">The advisor</span>
+        <span className="text-white/60">Presents options</span>
       </div>
+      {/* Separator */}
+      <div className="border-t border-white/8" />
+      {/* ExQuisite — highlighted with signature green */}
       <motion.div
-        animate={isExquisiteActive ? { scale: 1.02, borderColor: "rgba(193, 154, 107, 0.4)" } : { scale: 1 }}
-        className={`flex items-center justify-between p-3 rounded bg-white/[0.08] border transition-colors ${isExquisiteActive ? "border-[#ffa02e]/40 ring-1 ring-[#ffa02e]/20" : "border-white/10 opacity-70"
+        animate={isExquisiteActive ? { scale: 1.02, borderColor: "rgba(123, 238, 169, 0.45)" } : { scale: 1 }}
+        className={`flex items-center justify-between p-3 rounded border transition-colors ${isExquisiteActive
+          ? "border-[#7beea9]/40 ring-1 ring-[#7beea9]/20"
+          : "border-white/10 opacity-70"
           }`}
+        style={{
+          background: isExquisiteActive
+            ? "linear-gradient(135deg, rgba(123,238,169,0.10) 0%, rgba(20,32,25,0.85) 100%)"
+            : "rgba(255,255,255,0.04)",
+        }}
       >
-        <span className="text-[#ffa02e] uppercase tracking-[0.15em] font-medium text-[10px] md:text-xs">ExQuisite</span>
+        <span className="text-[#7beea9] uppercase tracking-[0.15em] font-medium text-[10px] md:text-xs">ExQuisite</span>
         <span className="text-white font-normal">Composes what was never asked for</span>
       </motion.div>
-      <img src="/icon_clover_sage.png" alt="" className="h-6 md:h-8 w-auto mx-auto mt-4 opacity-30" />
+      <img src="/icon_spiral_cream.png" alt="" className="h-6 md:h-8 w-auto mx-auto mt-4 opacity-20" />
     </div>
   );
 }
@@ -71,11 +85,11 @@ function IntelligenceGrid({ activeIndex }: { activeIndex: number }) {
               key={idx}
               animate={isActive ? { scale: 1.03, borderColor: "rgba(143, 163, 151, 0.6)" } : { scale: 1 }}
               className={`flex flex-col justify-center h-14 md:h-16 p-2 md:p-3 rounded border font-light transition-colors ${isActive
-                ? "bg-white/[0.08] border-[#7beea9] text-white"
-                : "bg-white/[0.04] border-white/10 text-white/70"
+                ? "bg-white/8 border-[#7beea9] text-white"
+                : "bg-white/4 border-white/10 text-white/70"
                 }`}
             >
-              <span className={`text-[8px] md:text-[9px] uppercase tracking-[0.1em] ${isActive ? "text-[#ffa02e]" : "text-white/50"}`}>
+              <span className={`text-[8px] md:text-[9px] uppercase tracking-widest ${isActive ? "text-[#ffa02e]" : "text-white/50"}`}>
                 {p.num}
               </span>
               <span className="mt-0.5 leading-snug truncate">{p.name}</span>
@@ -84,7 +98,7 @@ function IntelligenceGrid({ activeIndex }: { activeIndex: number }) {
         })}
       </div>
       <p className="text-[9px] md:text-[10px] text-white/55 text-center font-light leading-relaxed">
-        A small selection of the dimensions we hold. The rest, we keep between us.
+        Eight of more than two hundred. The others, we hold quietly.
       </p>
     </div>
   );
@@ -94,15 +108,15 @@ function IntelligenceGrid({ activeIndex }: { activeIndex: number }) {
 function YoursResembleBlock() {
   return (
     <div className="flex flex-col p-3 md:p-4 bg-white/5 border border-white/5 rounded-xl">
-      <div className="relative aspect-[4/3] overflow-hidden rounded-lg mb-3">
+      <div className="relative aspect-4/3 overflow-hidden rounded-lg mb-3">
         <img
           src="/exp_table.png"
           alt="An intimate composition"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+        <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent"></div>
       </div>
-      <span className="text-[#7beea9] uppercase tracking-[0.1em] text-[9px] md:text-[10px] mb-1 block">
+      <span className="text-[#7beea9] uppercase tracking-widest text-[9px] md:text-[10px] mb-1 block">
         ✦ The last leaf of this chapter
       </span>
       <h4 className={`text-base md:text-lg font-light leading-snug mb-1.5 ${viaodaLibre.className}`}>
@@ -131,17 +145,17 @@ function RegisterInterestForm() {
     <div className="flex flex-col items-center text-center p-3 md:p-4">
       <img src="/icon_tree_cream.png" alt="" className="h-6 md:h-8 w-auto mb-3 md:mb-4 opacity-40" />
       <p className="text-sm md:text-base font-light leading-snug mb-2">
-        If our worlds are meant to meet, let us know you exist.
+        If this is resonating, we would like to know you exist.
       </p>
       <p className="text-white/60 text-[10px] md:text-[11px] font-light mb-4 md:mb-6">
-        Registering interest places no obligation on either of us.
+        No obligation follows. We simply begin to listen.
       </p>
 
       {submitted ? (
         <motion.div
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          className="text-[#ffa02e] font-light text-xs md:text-sm tracking-[0.1em] py-3 border border-dashed border-[#ffa02e]/30 w-full rounded"
+          className="text-[#ffa02e] font-light text-xs md:text-sm tracking-widest py-3 border border-dashed border-[#ffa02e]/30 w-full rounded"
         >
           ✦ Interest Registered. We will find you. ✦
         </motion.div>
@@ -157,7 +171,7 @@ function RegisterInterestForm() {
           />
           <button
             type="submit"
-            className="w-full py-2 border border-white/30 text-white/80 rounded transition-all duration-300 hover:bg-white hover:text-black hover:border-white font-light tracking-[0.1em] text-[10px] md:text-xs uppercase cursor-pointer"
+            className="w-full py-2 border border-white/30 text-white/80 rounded transition-all duration-300 hover:bg-white hover:text-black hover:border-white font-light tracking-widest text-[10px] md:text-xs uppercase cursor-pointer"
           >
             Register Interest
           </button>
@@ -171,15 +185,22 @@ function RegisterInterestForm() {
 function MembershipPolicies() {
   const policies = [
     { title: "By invitation", desc: "Membership is offered, almost always by introduction. One does not apply so much as become known." },
-    { title: "Held to a number", desc: "We keep our membership deliberately small, so that the intelligence remains personal — never industrial." },
+    { title: "Held to a number", desc: "We keep our membership deliberately small, so that the work remains personal — never processed." },
     { title: "Composed, not catered", desc: "No menu, no tiers of perks. Each member receives a world built only for them." },
-    { title: "Discreet by nature", desc: "We do not publish names, partners, or particulars. What we make is known only to the member." },
+    { title: "Discreet by nature", desc: "Names, particulars, and the nature of the work stay entirely between us." },
   ];
   return (
     <div className="grid grid-cols-2 gap-2 text-[10px] md:text-[11px] font-light">
       {policies.map((p, idx) => (
-        <div key={idx} className="p-2 md:p-3 bg-white/5 border border-white/10 rounded flex flex-col justify-between">
-          <span className="text-[#ffa02e] font-medium uppercase tracking-[0.1em] mb-1">{p.title}</span>
+        <div
+          key={idx}
+          className="p-2 md:p-3 border border-white/8 rounded flex flex-col justify-between"
+          style={{
+            background: "linear-gradient(145deg, rgba(20,32,25,0.85) 0%, rgba(10,18,14,0.9) 100%)",
+            boxShadow: "inset 0 1px 0 rgba(255,255,255,0.05)",
+          }}
+        >
+          <span className="text-[#ffa02e] font-medium uppercase tracking-widest mb-1">{p.title}</span>
           <span className="text-white/70 leading-snug">{p.desc}</span>
         </div>
       ))}
@@ -226,6 +247,7 @@ const compositionData: Record<number, { title: string; sub: string; desc: string
 export default function Scene2({ cloudX, cloudY, floorX, floorY, textX }: Props) {
   const { activeCardIndex, setActiveCardIndex, scene } = useScene();
   const isActive = scene === "transitioning" || scene === "scene2";
+  const isReturning = scene === "returningToScene1";
 
   // Mobile drawer state
   const [isDetailsOpen, setIsDetailsOpen] = useState(false);
@@ -242,22 +264,22 @@ export default function Scene2({ cloudX, cloudY, floorX, floorY, textX }: Props)
     chapterKey = 1;
     sectionNum = "I — The Sensibility";
     sectionTitle = "Not a service. A sensibility.";
-    sectionDesc = "A concierge waits to be asked. We do not. ExQuisite Living is not a desk, a hotline, or a catalogue of favours — it is an intelligence devoted to a single question: what would move you, before you thought to ask for it.";
+    sectionDesc = "A concierge waits. We don't. ExQuisite is not a favour desk or a curated catalogue — it is an attentiveness, quietly composing the experiences that would reach you before you'd thought to reach for them.";
   } else if (normalizedIndex >= 4 && normalizedIndex <= 11) {
     chapterKey = 2;
     sectionNum = "II — The Intelligence";
     sectionTitle = "A quiet intelligence, composing in the background.";
-    sectionDesc = "At our core is a Curation Engine built for one purpose: to know each member with a depth no service ever could. It listens across more than two hundred touch-base points — the small, telling dimensions of a life — and from them composes experiences that feel less arranged than inevitable.";
+    sectionDesc = "At the centre is a Curation Engine with a single purpose: to know a member the way a decade of close attention might. It reads across more than two hundred quiet dimensions of a life, and from them makes something that does not feel arranged at all.";
   } else if (normalizedIndex >= 12 && normalizedIndex <= 17) {
     chapterKey = 3;
     sectionNum = "III — Compositions";
     sectionTitle = "Loose leaves, lifted from the book.";
-    sectionDesc = "Draw near and the pages part — a few composed worlds rise from the binding. We rarely speak of what we make; these only hint at it.";
+    sectionDesc = "We rarely speak of what we make. These few are offered only to suggest the shape of it — anonymised pages from a book that otherwise stays closed.";
   } else if (normalizedIndex >= 18 && normalizedIndex <= 19) {
     chapterKey = 4;
     sectionNum = "IV — Membership";
     sectionTitle = "You do not join us. We find you.";
-    sectionDesc = "Membership is conferred — quietly, and only when our worlds align.";
+    sectionDesc = "You do not apply. You become known. Membership, when it comes, is a quiet conferral — extended only when both worlds are in the right place.";
   }
 
   const activeComp = compositionData[normalizedIndex];
@@ -270,16 +292,67 @@ export default function Scene2({ cloudX, cloudY, floorX, floorY, textX }: Props)
       <Scene2LowerCloudsLayer floorX={floorX} floorY={floorY} activeCardIndex={activeCardIndex} />
       <Scene2HeroText textX={textX} activeCardIndex={activeCardIndex} />
 
+      {/* Chapter progress dots — desktop only, sits below the hero text */}
+      <motion.div
+        className={`pointer-events-none hidden lg:flex absolute inset-x-0 top-[30vh] justify-center gap-1.5 z-10 ${imprima.className}`}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: isActive ? 1 : 0 }}
+        transition={isReturning
+          ? { duration: 0.8, delay: 0, ease: [0.8, 0, 1, 0.2] }
+          : { duration: 0.8, delay: 1.2 }
+        }
+      >
+        {(() => {
+          // Chapter boundaries
+          const chapters = [
+            { start: 0, end: 3 },   // Sensibility
+            { start: 4, end: 11 },  // Intelligence
+            { start: 12, end: 17 }, // Compositions
+            { start: 18, end: 19 }, // Membership
+          ];
+          const currentChapter = chapters.find(
+            (c) => normalizedIndex >= c.start && normalizedIndex <= c.end
+          );
+          if (!currentChapter) return null;
+          const total = currentChapter.end - currentChapter.start + 1;
+          const position = normalizedIndex - currentChapter.start;
+          return Array.from({ length: total }).map((_, i) => (
+            <div
+              key={i}
+              className="rounded-full transition-all duration-400"
+              style={{
+                width: i === position ? 20 : 6,
+                height: 4,
+                background: i === position ? "rgba(123,238,169,0.8)" : "rgba(255,255,255,0.2)",
+              }}
+            />
+          ));
+        })()}
+      </motion.div>
+
       {/* Desktop Left Details Sidebar */}
       <motion.div
-        className={`hidden lg:flex absolute left-[5vw] top-1/2 -translate-y-1/2 w-[28vw] h-fit max-h-[75vh] overflow-y-auto flex-col z-10 select-none pointer-events-auto bg-[#0c1411]/80 border border-white/10 backdrop-blur-md rounded-2xl p-6 ${imprima.className}`}
+        className={`hidden lg:flex absolute left-[5vw] top-1/2 -translate-y-1/2 w-[28vw] h-fit max-h-[75vh] overflow-y-auto flex-col z-10 select-none pointer-events-auto border border-white/8 backdrop-blur-md rounded-2xl p-6 ${imprima.className}`}
+        style={{
+          background: "linear-gradient(145deg, rgba(20,32,25,0.92) 0%, rgba(10,18,14,0.96) 100%)",
+          boxShadow: "inset 0 1px 0 rgba(255,255,255,0.06), 0 24px 48px rgba(0,0,0,0.45)",
+        }}
         initial={{ opacity: 0, x: -40 }}
         animate={{ opacity: isActive ? 1 : 0, x: isActive ? 0 : -40 }}
-        transition={{ duration: 1.2, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        transition={isReturning
+          ? { duration: 1.2, delay: 0, ease: [0.8, 0, 1, 0.2] }
+          : { duration: 1.2, delay: 0.8, ease: [0.16, 1, 0.3, 1] }
+        }
       >
-        <span className="text-[#7beea9] uppercase tracking-[0.2em] text-[10px] md:text-[11px] font-light mb-2 block">
-          {sectionNum}
-        </span>
+        <div className="flex items-center gap-2 mb-2">
+          {chapterKey === 1 && <img src="/icon_spiral_cream.png" alt="" className="h-4 w-auto opacity-40" />}
+          {chapterKey === 2 && <img src="/icon_clover_cream.png" alt="" className="h-4 w-auto opacity-40" />}
+          {chapterKey === 3 && <img src="/icon_tree_cream.png" alt="" className="h-4 w-auto opacity-40" />}
+          {chapterKey === 4 && <img src="/icon_clover_cream.png" alt="" className="h-4 w-auto opacity-40" />}
+          <span className="text-[#7beea9] uppercase tracking-[0.2em] text-[10px] md:text-[11px] font-light">
+            {sectionNum}
+          </span>
+        </div>
         <h3 className={`text-xl md:text-2xl font-light leading-tight text-white mb-4 ${viaodaLibre.className}`}>
           {sectionTitle}
         </h3>
@@ -295,7 +368,7 @@ export default function Scene2({ cloudX, cloudY, floorX, floorY, textX }: Props)
             animate={{ opacity: 1, y: 0 }}
             className="mt-6 pt-5 border-t border-white/10"
           >
-            <span className="text-[#ffa02e] font-medium text-xs tracking-[0.1em] uppercase block mb-0.5">
+            <span className="text-[#ffa02e] font-medium text-xs tracking-widest uppercase block mb-0.5">
               {activeComp.title}
             </span>
             <span className="text-white/55 text-[10px] block mb-2">{activeComp.sub}</span>
@@ -315,10 +388,17 @@ export default function Scene2({ cloudX, cloudY, floorX, floorY, textX }: Props)
 
       {/* Desktop Right Component Sidebar */}
       <motion.div
-        className={`hidden lg:flex absolute right-[5vw] top-1/2 -translate-y-1/2 w-[29vw] h-fit max-h-[75vh] overflow-y-auto flex-col z-10 select-none pointer-events-auto bg-[#0c1411]/80 border border-white/10 backdrop-blur-md rounded-2xl p-6 ${imprima.className}`}
+        className={`hidden lg:flex absolute right-[5vw] top-1/2 -translate-y-1/2 w-[29vw] h-fit max-h-[75vh] overflow-y-auto flex-col z-10 select-none pointer-events-auto border border-white/8 backdrop-blur-md rounded-2xl p-6 ${imprima.className}`}
+        style={{
+          background: "linear-gradient(145deg, rgba(20,32,25,0.92) 0%, rgba(10,18,14,0.96) 100%)",
+          boxShadow: "inset 0 1px 0 rgba(255,255,255,0.06), 0 24px 48px rgba(0,0,0,0.45)",
+        }}
         initial={{ opacity: 0, x: 40 }}
         animate={{ opacity: isActive ? 1 : 0, x: isActive ? 0 : 40 }}
-        transition={{ duration: 1.2, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        transition={isReturning
+          ? { duration: 1.2, delay: 0, ease: [0.8, 0, 1, 0.2] }
+          : { duration: 1.2, delay: 0.8, ease: [0.16, 1, 0.3, 1] }
+        }
       >
         {chapterKey === 1 && <ComparisonTable activeIndex={normalizedIndex} />}
         {chapterKey === 2 && <IntelligenceGrid activeIndex={normalizedIndex} />}
@@ -327,16 +407,22 @@ export default function Scene2({ cloudX, cloudY, floorX, floorY, textX }: Props)
       </motion.div>
 
       {/* Mobile Drawer Trigger Button */}
-      <div className={`absolute bottom-36 md:bottom-28 left-1/2 -translate-x-1/2 z-[8] lg:hidden ${isActive ? "pointer-events-auto" : "pointer-events-none"}`}>
+      <div className={`absolute bottom-36 md:bottom-28 left-1/2 -translate-x-1/2 z-8 lg:hidden ${isActive ? "pointer-events-auto" : "pointer-events-none"}`}>
         <motion.button
           onClick={() => setIsDetailsOpen(true)}
           disabled={!isActive}
-          className={`px-5 py-2.5 rounded-full border border-white/20 bg-black/50 text-white/90 text-[10px] md:text-xs tracking-[0.15em] uppercase font-light backdrop-blur-md transition-all duration-300 hover:bg-white hover:text-black hover:border-white shadow-lg cursor-pointer ${imprima.className}`}
+          className={`flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/20 bg-black/50 text-white/90 text-[10px] md:text-xs tracking-[0.15em] uppercase font-light backdrop-blur-md transition-all duration-300 hover:bg-white hover:text-black hover:border-white shadow-lg cursor-pointer ${imprima.className}`}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: isActive ? 1 : 0, y: isActive ? 0 : 20 }}
-          transition={{ duration: 0.8, delay: 1 }}
+          transition={isReturning
+            ? { duration: 0.8, delay: 0, ease: [0.8, 0, 1, 0.2] }
+            : { duration: 0.8, delay: 1 }
+          }
         >
-          ✦ View Chapter Details
+          ✦ View Details
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-3 h-3">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+          </svg>
         </motion.button>
       </div>
 
@@ -347,7 +433,10 @@ export default function Scene2({ cloudX, cloudY, floorX, floorY, textX }: Props)
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-[#0c1411]/95 backdrop-blur-md flex flex-col p-6 overflow-y-auto"
+            className="fixed inset-0 z-50 backdrop-blur-md flex flex-col p-6 overflow-y-auto"
+            style={{
+              background: "linear-gradient(145deg, rgba(12,20,17,0.97) 0%, rgba(6,12,10,0.99) 100%)",
+            }}
           >
             {/* Close Button */}
             <div className="flex justify-end mb-4">
@@ -377,7 +466,7 @@ export default function Scene2({ cloudX, cloudY, floorX, floorY, textX }: Props)
                 {/* Compositions narrative injection */}
                 {chapterKey === 3 && activeComp && (
                   <div className="mt-5 p-4 bg-white/5 border border-dashed border-white/10 rounded-lg text-left">
-                    <span className="text-[#ffa02e] font-medium text-xs tracking-[0.1em] uppercase block mb-1">
+                    <span className="text-[#ffa02e] font-medium text-xs tracking-widest uppercase block mb-1">
                       {activeComp.title}
                     </span>
                     <span className="text-white/55 text-[10px] block mb-2">{activeComp.sub}</span>
@@ -405,31 +494,13 @@ export default function Scene2({ cloudX, cloudY, floorX, floorY, textX }: Props)
           </motion.div>
         )}
       </AnimatePresence>
+      {/* Exit Experience Button */}
+      <ExitExperienceButton />
 
-      {/* Floating brand footer */}
-      <motion.footer
-        className={`pointer-events-none absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-center text-white/50 ${imprima.className}`}
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.8, duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-      >
-        <img
-          src="/wordmark_cream.png"
-          alt="ExQuisite Living"
-          className="h-4 md:h-5 w-auto opacity-80"
-        />
-        <div className="flex items-center gap-2.5 opacity-40">
-          <img src="/icon_tree_cream.png" alt="" className="h-3.5 w-auto" />
-          <img src="/icon_clover_cream.png" alt="" className="h-3.5 w-auto" />
-          <img src="/icon_spiral_cream.png" alt="" className="h-3.5 w-auto" />
-        </div>
-        <p className="text-[10px] md:text-xs tracking-[0.05em] uppercase font-light text-white/40">
-          Some lives are not arranged. They are composed.
-        </p>
-        <p className="text-[9px] text-white/30 font-light mt-0.5">
-          © 2026 ExQuisite Living. Not a concierge service.
-        </p>
-      </motion.footer>
+      {/* Minimal copyright */}
+      <p className={`pointer-events-none absolute bottom-4 left-1/2 -translate-x-1/2 z-10 text-[9px] text-white/20 font-light tracking-wider whitespace-nowrap ${imprima.className}`}>
+        © 2026 ExQuisite Living.
+      </p>
     </>
   );
 }

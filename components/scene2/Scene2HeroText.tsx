@@ -68,7 +68,11 @@ export default function Scene2HeroText({
               ? { y: 0, opacity: 1 }
               : { y: 20, opacity: 0 }
         }
-        transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1], delay: isActive ? 0.1 : 0 }}
+        transition={
+          isReturning
+            ? { duration: 1.0, ease: [0.8, 0, 1, 0.2], delay: 0 }
+            : { duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: isActive ? 0.8 : 0 }
+        }
       >
         <span className="text-[32px] sm:text-[44px] md:text-[50px] lg:text-[58px] px-4" style={{ textShadow: "0 2px 20px rgba(0,0,0,0.6), 0 4px 40px rgba(0,0,0,0.4)" }}>
           {title}
@@ -77,7 +81,7 @@ export default function Scene2HeroText({
       </motion.div>
       <motion.div
         key={`sub-${chapterKey}`}
-        className={`mt-3 max-w-[90%] md:max-w-[620px] text-[15px] md:text-[17px] leading-[1.6] text-white/50 px-4 ${imprima.className}`}
+        className={`mt-3 max-w-[90%] md:max-w-155 text-[15px] md:text-[17px] leading-[1.6] text-white/50 px-4 ${imprima.className}`}
         style={{ textShadow: "0 1px 12px rgba(0,0,0,0.6), 0 2px 24px rgba(0,0,0,0.4)" }}
         initial={{ y: 15, opacity: 0 }}
         animate={
@@ -87,7 +91,11 @@ export default function Scene2HeroText({
               ? { y: 0, opacity: 1 }
               : { y: 15, opacity: 0 }
         }
-        transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1], delay: isActive ? 0.25 : 0 }}
+        transition={
+          isReturning
+            ? { duration: 1.0, ease: [0.8, 0, 1, 0.2], delay: 0 }
+            : { duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: isActive ? 0.95 : 0 }
+        }
       >
         {subtitle}
       </motion.div>

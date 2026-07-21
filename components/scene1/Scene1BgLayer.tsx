@@ -12,8 +12,8 @@ interface Props {
 
 const entryTransition = { duration: 2, ease: [0.9, 0, 0.1, 1] } as const;
 const exitTransition = { duration: 1.2, ease: [0.8, 0, 1, 0.2] } as const;
-// Mirror of exitTransition but playing in reverse — same ease, slightly longer for drama
-const returnTransition = { duration: 1.4, ease: [0.9, 0, 0.1, 1] } as const;
+// Mirror entry — same ease and duration so the return feels as cinematic as the forward transition
+const returnTransition = { duration: 2, ease: [0.9, 0, 0.1, 1] } as const;
 
 /**
  * bg1.png — owns both entry (scale in), exit (scale up + fade), and reverse entry.

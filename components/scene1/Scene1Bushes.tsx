@@ -12,7 +12,8 @@ interface Props {
 
 const entryTransition = { duration: 2, ease: [0.9, 0, 0.1, 1] } as const;
 const exitTransition = { duration: 0.9, ease: [0.8, 0, 1, 0.2] } as const;
-const returnTransition = { duration: 1.2, ease: [0.9, 0, 0.1, 1] } as const;
+// Match entry pace — bushes slide back in from their exited state
+const returnTransition = { duration: 2, ease: [0.9, 0, 0.1, 1] } as const;
 
 // -top-8 / h-[calc(100%+64px)] gives 32px top+bottom overflow so fgY(±25px) never exposes edges
 const bushClassName =
@@ -34,54 +35,70 @@ export default function Scene1Bushes({ fgX, fgY, isReturning = false }: Props) {
     <>
       {/*
         Left bush — positioned with CSS `right`.
-        Starts at right:"-30vw" so the image extends 30vw past the right edge into the center,
-        ensuring full overlap with the right bush regardless of image width.
-        Animates to restingRight (off-screen on mobile, framing on desktop).
-        Exit (desktop): scale up + strong leftward x — same as original desktop behaviour.
-        Exit (mobile): NO scale (scaling from center causes inward pop) — just a fast x-slide outward.
+        Entry: sweeps in from center (right: -30vw) to resting.
+        Exit  (entering scene2): scale up + strong leftward x.
+        Return (exiting scene2): starts from the exited position and reverses back to resting.
+        NOTE: `initial` uses hardcoded desktop exit values (right:"70vw", x:"-150vw", scale:2.5)
+              because isMobile cannot be used in `initial` (SSR hydration risk).
       */}
       <motion.img
         src={"left-full.webp"}
         className={bushClassName}
         style={{
           zIndex: 8,
-          ...(isExiting ? {} : { x: fgX }),
+          ...((isExiting || isReturning) ? {} : { x: fgX }),
           y: fgY,
         }}
-        initial={{ right: "-30vw", scale: 1.1 }}
+        initial={
+          isReturning
+            ? { right: "70vw", x: "-150vw", scale: 2.5 }  // desktop exit state → reverse from here
+            : { right: "-30vw", scale: 1.1 }
+        }
         animate={
           isExiting
             ? isMobile
               ? { right: restingRight, x: "-150vw", scale: 1.1 }   // mobile: slide out, no scale
-              : { right: "70vw", x: "-150vw", scale: 2.5 }          // desktop: unchanged
-            : { right: restingRight, scale: 1.1 }
+              : { right: "70vw", x: "-150vw", scale: 2.5 }          // desktop: scale + slide left
+            : { right: restingRight, x: 0, scale: 1.1 }             // entry + return: settle at resting
         }
-        transition={isExiting ? exitTransition : entryTransition}
+        transition={
+          isExiting ? exitTransition
+          : isReturning ? returnTransition
+          : entryTransition
+        }
       />
 
       {/*
         Right bush — positioned with CSS `left`.
-        Starts at left:"-30vw" so the image extends 30vw past the left edge into the center.
-        Exit (desktop): scale up + strong rightward x — unchanged.
-        Exit (mobile): NO scale — fast x-slide outward to the right.
+        Entry: sweeps in from center (left: -30vw) to resting.
+        Exit  (entering scene2): scale up + strong rightward x.
+        Return (exiting scene2): starts from the exited position and reverses back to resting.
       */}
       <motion.img
         src={"right-full.webp"}
         className={bushClassName}
         style={{
           zIndex: 8,
-          ...(isExiting ? {} : { x: fgX }),
+          ...((isExiting || isReturning) ? {} : { x: fgX }),
           y: fgY,
         }}
-        initial={{ left: "-30vw", scale: 1.1 }}
+        initial={
+          isReturning
+            ? { left: "70vw", x: "150vw", scale: 2.5 }   // desktop exit state → reverse from here
+            : { left: "-30vw", scale: 1.1 }
+        }
         animate={
           isExiting
             ? isMobile
               ? { left: restingLeft, x: "150vw", scale: 1.1 }       // mobile: slide out, no scale
-              : { left: "70vw", x: "150vw", scale: 2.5 }            // desktop: unchanged
-            : { left: restingLeft, scale: 1.1 }
+              : { left: "70vw", x: "150vw", scale: 2.5 }            // desktop: scale + slide right
+            : { left: restingLeft, x: 0, scale: 1.1 }               // entry + return: settle at resting
         }
-        transition={isExiting ? exitTransition : entryTransition}
+        transition={
+          isExiting ? exitTransition
+          : isReturning ? returnTransition
+          : entryTransition
+        }
       />
     </>
   );

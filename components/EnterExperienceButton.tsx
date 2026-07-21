@@ -33,7 +33,7 @@ export default function EnterExperienceButton(
         animate: {
           y: 0,
           opacity: 1,
-          transition: { duration: 0.8, ease: [0.9, 0, 0.1, 1] },
+          transition: { duration: isReturning ? 1.4 : 0.8, delay: isReturning ? 0.6 : 0, ease: [0.9, 0, 0.1, 1] },
         },
         exit: {
           y: 500,
@@ -41,7 +41,7 @@ export default function EnterExperienceButton(
           transition: { duration: 0.65, ease: [0.8, 0, 1, 0.2] },
         },
       }}
-      className={`${rest.className} group relative flex h-32 w-32 items-center justify-center`}
+      className={`${rest.className} group flex h-32 w-32 items-center justify-center`}
     >
       {/* Rotating Border and Text Container */}
       <motion.div

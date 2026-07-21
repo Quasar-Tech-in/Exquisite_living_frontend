@@ -32,7 +32,7 @@ export default function Scene2CloudsLayer({ cloudX, cloudY }: Props) {
         style={{ zIndex: 1 }}
         initial={{ opacity: 0 }}
         animate={{ opacity: shouldDarken ? 1 : 0 }}
-        transition={{ duration: 1.2, ease: [0.8, 0, 1, 0.2] }}
+        transition={{ duration: 1.2, ease: shouldDarken ? [0.16, 1, 0.3, 1] : [0.8, 0, 1, 0.2] }}
       />
     </>
   );

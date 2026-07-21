@@ -5,7 +5,7 @@ import Scene1BgLayer from "./Scene1BgLayer";
 import Scene1Bushes from "./Scene1Bushes";
 import HeroTitleAndSubText from "@/components/HeroTitleAndSubText";
 import HomeImageCarousel from "@/components/HomeImageCarousel";
-import EnterExperienceButton from "@/components/EnterExperinceButton";
+import EnterExperienceButton from "@/components/EnterExperienceButton";
 import { type MotionValue } from "framer-motion";
 
 interface Props {
@@ -43,6 +43,14 @@ export default function Scene1({
   return (
     <>
       <Scene1BgLayer bgX={bgX} bgY={bgY} onEntryComplete={onBgEntryComplete} isReturning={isReturning} />
+      {/* Top gradient veil — darkens the sky behind the Navbar so the cream logo is legible on load */}
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 h-[22vh]"
+        style={{
+          zIndex: 7,
+          background: "linear-gradient(to bottom, rgba(0,0,0,0.42) 0%, transparent 100%)",
+        }}
+      />
       <Scene1Bushes fgX={fgX} fgY={fgY} isReturning={isReturning} />
       <HeroTitleAndSubText textX={textX} isExiting={isExiting} isReturning={isReturning} />
       <HomeImageCarousel carouselX={carouselX} isExiting={isExiting} isReturning={isReturning} />

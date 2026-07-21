@@ -9,21 +9,24 @@ type CardMeta =
   | { kind: "play"; label: string }
   | { kind: "stat"; number: string; label: string };
 
-const CARDS: { src: string; delay: number; meta: CardMeta }[] = [
+const CARDS: { src: string; delay: number; meta: CardMeta; icon: string }[] = [
   {
     src: "/scene_dawn.png",
     delay: 1,
     meta: { kind: "stat", number: "I", label: "The Sensibility" },
+    icon: "/icon_spiral_cream.png",
   },
   {
     src: "/scene_mist.png",
     delay: 1.15,
     meta: { kind: "stat", number: "II", label: "The Intelligence" },
+    icon: "/icon_clover_cream.png",
   },
   {
     src: "/closing_ambient.png",
     delay: 1.3,
     meta: { kind: "stat", number: "III", label: "The Compositions" },
+    icon: "/icon_tree_cream.png",
   },
 ];
 
@@ -124,11 +127,13 @@ function CarouselCard({
   src,
   delay,
   meta,
+  icon,
   isReturning = false,
 }: {
   src: string;
   delay: number;
   meta: CardMeta;
+  icon: string;
   isReturning?: boolean;
 }) {
   return (
@@ -181,8 +186,10 @@ function CarouselCard({
         />
 
         {/* bottom text — above the blur */}
-        <div className="absolute inset-x-0 bottom-0 flex items-end px-3 pb-3">
+        <div className="absolute inset-x-0 bottom-0 flex items-end justify-between px-3 pb-3">
           <CardFooter meta={meta} />
+          {/* Brand icon — top right of card */}
+          <img src={icon} alt="" className="h-5 w-auto opacity-50 mb-0.5" style={{ filter: "brightness(0) invert(1)" }} />
         </div>
       </motion.div>
     </div>
@@ -195,7 +202,7 @@ const INDICATOR_OPACITIES = [1, 0.5, 0.3, 0.15];
 function Indicators() {
   return (
     /* ml-[18px] = half of w-9 (36px) so dots start under play button centre */
-    <div className="mt-3 ml-[18px] flex flex-row items-center justify-start gap-1.5">
+    <div className="mt-3 ml-4.5 flex flex-row items-center justify-start gap-1.5">
       {INDICATOR_OPACITIES.map((op, i) => (
         <div
           key={i}
@@ -226,7 +233,7 @@ export default function HomeImageCarousel({
 
   return (
     <motion.div
-      className="pointer-events-none absolute top-[30vh] right-[-10px] flex flex-col hidden md:flex"
+      className="pointer-events-none absolute top-[30vh] -right-2.5 hidden flex-col md:flex"
       style={{ zIndex: 7, x: carouselX, scale: carouselScale, transformOrigin: "right center" }}
     >
       <motion.div
@@ -234,7 +241,7 @@ export default function HomeImageCarousel({
         animate={isExiting ? { x: exitX, scale: 4 } : { x: 0, scale: 1 }}
         transition={
           isExiting ? { duration: 1.2, delay: 0.05, ease: [0.8, 0, 1, 0.2] } :
-          isReturning ? { duration: 1.2, delay: 0.05, ease: [0.9, 0, 0.1, 1] } : {}
+          isReturning ? { duration: 2, delay: 0.05, ease: [0.9, 0, 0.1, 1] } : {}
         }
         className="flex flex-col"
       >
