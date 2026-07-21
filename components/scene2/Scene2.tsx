@@ -208,39 +208,7 @@ function MembershipPolicies() {
   );
 }
 
-// Composition narrative dataset
-const compositionData: Record<number, { title: string; sub: string; desc: string }> = {
-  12: {
-    title: "An undisclosed ridge",
-    sub: "A solitude composed from a passing remark",
-    desc: "A solitude composed from a passing remark — the where, the silence, a single unhurried dawn, arranged so quietly it felt like your own idea.",
-  },
-  13: {
-    title: "An unhurried dawn",
-    sub: "A morning owned by no calendar",
-    desc: "A morning owned by no calendar, arranged quietly and kept completely free from the demands of the world.",
-  },
-  14: {
-    title: "A closed hall",
-    sub: "Dinner for one in a room made for hundreds",
-    desc: "Not a reservation but a composition: a chef drawn out of retirement, a space emptied of everyone, a menu read from preferences you never named.",
-  },
-  15: {
-    title: "Cuisine artistry",
-    sub: "A chef drawn from retirement for preferences unnamed",
-    desc: "A private dining experience where the menu, the speed, and the setting are tailored around culinary preferences you never had to formulate.",
-  },
-  16: {
-    title: "Vanishing craft",
-    sub: "An afternoon inside a workshop without a sign",
-    desc: "Hours beside a master few are permitted to meet, making something by hand that cannot be bought — only learned, briefly, in confidence.",
-  },
-  17: {
-    title: "Unnamed coast",
-    sub: "A passage, slow, the world kept completely out",
-    desc: "A route composed for the way you watch light leave water. No itinerary survived it — only the feeling of being somewhere arranged entirely around you.",
-  },
-};
+import { cardsData } from "@/lib/cardsData";
 
 // ── main Scene 2 component ──────────────────────────────────────────────────────
 
@@ -282,7 +250,7 @@ export default function Scene2({ cloudX, cloudY, floorX, floorY, textX }: Props)
     sectionDesc = "You do not apply. You become known. Membership, when it comes, is a quiet conferral — extended only when both worlds are in the right place.";
   }
 
-  const activeComp = compositionData[normalizedIndex];
+  const activeComp = cardsData[normalizedIndex];
 
   return (
     <>
@@ -360,8 +328,8 @@ export default function Scene2({ cloudX, cloudY, floorX, floorY, textX }: Props)
           {sectionDesc}
         </p>
 
-        {/* Dynamic narrative for compositions on left */}
-        {chapterKey === 3 && activeComp && (
+        {/* Dynamic narrative for all cards on left */}
+        {activeComp && (
           <motion.div
             key={normalizedIndex}
             initial={{ opacity: 0, y: 10 }}
@@ -371,7 +339,7 @@ export default function Scene2({ cloudX, cloudY, floorX, floorY, textX }: Props)
             <span className="text-[#ffa02e] font-medium text-xs tracking-widest uppercase block mb-0.5">
               {activeComp.title}
             </span>
-            <span className="text-white/55 text-[10px] block mb-2">{activeComp.sub}</span>
+            <span className="text-white/55 text-[10px] block mb-2">{activeComp.subtext}</span>
             <p className="text-white/80 text-xs font-light leading-relaxed">
               {activeComp.desc}
             </p>
@@ -463,13 +431,13 @@ export default function Scene2({ cloudX, cloudY, floorX, floorY, textX }: Props)
                   {sectionDesc}
                 </p>
 
-                {/* Compositions narrative injection */}
-                {chapterKey === 3 && activeComp && (
+                {/* Narrative injection for all cards */}
+                {activeComp && (
                   <div className="mt-5 p-4 bg-white/5 border border-dashed border-white/10 rounded-lg text-left">
                     <span className="text-[#ffa02e] font-medium text-xs tracking-widest uppercase block mb-1">
                       {activeComp.title}
                     </span>
-                    <span className="text-white/55 text-[10px] block mb-2">{activeComp.sub}</span>
+                    <span className="text-white/55 text-[10px] block mb-2">{activeComp.subtext}</span>
                     <p className={`text-white/80 text-xs font-light leading-relaxed ${imprima.className}`}>
                       {activeComp.desc}
                     </p>
