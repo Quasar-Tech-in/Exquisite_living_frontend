@@ -7,6 +7,7 @@ import Scene1 from "@/components/scene1/Scene1";
 import Scene2 from "@/components/scene2/Scene2";
 import Navbar from "@/components/Navbar";
 import CustomCursor from "@/components/CustomCursor";
+import Preloader from "@/components/Preloader";
 
 // ── inner page (needs to be a child of SceneProvider to use useScene) ──────────
 function InnerPage() {
@@ -74,10 +75,20 @@ function InnerPage() {
 }
 
 // ── root — SceneProvider wraps everything so any descendant can call useScene() ──
+function MainApp() {
+  const { isLoaded } = useScene();
+  return (
+    <>
+      <Preloader />
+      {isLoaded && <InnerPage />}
+    </>
+  );
+}
+
 export default function Home() {
   return (
     <SceneProvider>
-      <InnerPage />
+      <MainApp />
     </SceneProvider>
   );
 }

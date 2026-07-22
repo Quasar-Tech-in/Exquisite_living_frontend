@@ -5,6 +5,8 @@ import { useSceneState, type Scene } from "@/hooks/useSceneState";
 
 // ── types ──────────────────────────────────────────────────────────────────────
 interface SceneContextValue {
+  isLoaded: boolean;
+  setIsLoaded: React.Dispatch<React.SetStateAction<boolean>>;
   scene: Scene;
   startTransition: () => void;
   completeTransition: () => void;

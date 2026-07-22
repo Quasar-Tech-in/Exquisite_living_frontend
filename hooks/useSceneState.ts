@@ -3,6 +3,7 @@ import { useState } from "react";
 export type Scene = "scene1" | "transitioning" | "scene2" | "returningToScene1";
 
 export function useSceneState() {
+  const [isLoaded, setIsLoaded] = useState(false);
   const [scene, setScene] = useState<Scene>("scene1");
   const [isHoveringEnter, setIsHoveringEnter] = useState(false);
   const [isDraggingWheel, setIsDraggingWheel] = useState(false);
@@ -17,6 +18,8 @@ export function useSceneState() {
   };
 
   return {
+    isLoaded,
+    setIsLoaded,
     scene,
     startTransition,
     completeTransition,
