@@ -41,7 +41,9 @@ export default function HeroTitleAndSubText({
           animate={{ translateY: 0, opacity: 1 }}
           transition={{ duration: 1.6, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
         >
-          Not a concierge. Not a catalogue. A quiet intelligence that composes what would move you — before you thought to ask. By invitation only.
+          Not a concierge. Not a catalogue. 
+          <br />A quiet intelligence that composes what would move you — before you thought to ask. 
+          <br />By invitation only.
         </motion.p>
       </motion.div>
     </motion.div>

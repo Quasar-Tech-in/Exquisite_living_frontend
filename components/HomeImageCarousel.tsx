@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion, type MotionValue } from "framer-motion";
 import { viaodaLibre, imprima } from "@/lib/fonts";
 import { useViewportScale } from "@/hooks/useViewportScale";
@@ -28,9 +29,15 @@ const CARDS: { src: string; delay: number; meta: CardMeta; icon: string }[] = [
     meta: { kind: "stat", number: "III", label: "The Compositions" },
     icon: "/icon_tree_cream.png",
   },
+  {
+    src: "/exp_table.png",
+    delay: 1.45,
+    meta: { kind: "stat", number: "IV", label: "The Membership" },
+    icon: "/iconlogo_cream.png",
+  },
 ];
 
-// Shared SVG filter — defined once so all 3 play buttons reference the same id
+// Shared SVG filter — defined once so all play buttons reference the same id
 function SharedDefs() {
   return (
     <svg
@@ -72,7 +79,6 @@ function PlayButton() {
         xmlns="http://www.w3.org/2000/svg"
         className="h-4 w-4 translate-x-[1.5px]"
       >
-        {/* references the single shared filter defined in <SharedDefs> */}
         <path
           d="M2 1.5L14 9L2 16.5V1.5Z"
           fill="#66786b"
@@ -137,14 +143,15 @@ function CarouselCard({
   isReturning?: boolean;
 }) {
   return (
-    /* Wrapper is always the max height so the row never shifts */
-    <div
+    <motion.div
+      layout
+      transition={{ layout: { type: "spring", stiffness: 140, damping: 22 } }}
       className="pointer-events-auto"
       style={{ width: 160, height: 200, flexShrink: 0, position: "relative" }}
     >
       <motion.div
         className="absolute inset-x-0 bottom-0 overflow-hidden rounded-3xl"
-        style={{ cursor: "pointer", height: 160 }}
+        style={{ cursor: "pointer", height: 180 }}
         /* enter animation — drop from top; skipped when returning */
         initial={isReturning ? { y: 0, opacity: 1 } : { y: -60, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -152,11 +159,11 @@ function CarouselCard({
           /* entry: staggered drop + fade in */
           y: { delay, duration: 0.65, ease: [0.22, 1, 0.36, 1] },
           opacity: { delay, duration: 0.5, ease: "easeOut" },
-          /* hover height: instant spring */
-          height: { type: "spring", stiffness: 280, damping: 24 },
+          /* hover scale: spring */
+          scale: { type: "spring", stiffness: 240, damping: 18 },
         }}
-        /* hover — grow upward from bottom, no layout shift */
-        whileHover={{ height: 200 }}
+        /* hover — grow in size (scale) */
+        whileHover={{ scale: 1.08 }}
       >
         {/* background image layer — zooms more than the div */}
         <motion.div
@@ -166,11 +173,11 @@ function CarouselCard({
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
-          whileHover={{ scale: 1.4 }}
+          whileHover={{ scale: 1.25 }}
           transition={{ type: "spring", stiffness: 200, damping: 20 }}
         />
 
-        {/* bottom blur — 50% height, fades out toward top */}
+        {/* bottom blur ── 50% height, fades out toward top */}
         <div
           className="pointer-events-none absolute inset-x-0 bottom-0"
           style={{
@@ -192,27 +199,33 @@ function CarouselCard({
           <img src={icon} alt="" className="h-5 w-auto opacity-50 mb-0.5" style={{ filter: "brightness(0) invert(1)" }} />
         </div>
       </motion.div>
-    </div>
+    </motion.div>
   );
 }
 
 // ── indicators ─────────────────────────────────────────────────────────────────
-const INDICATOR_OPACITIES = [1, 0.5, 0.3, 0.15];
-
-function Indicators() {
+function Indicators({ startIndex }: { startIndex: number }) {
+  // Rotate indicators based on active/startIndex to reflect dynamic cycling
+  const opacities = [1, 0.5, 0.3, 0.15];
+  
   return (
-    /* ml-[18px] = half of w-9 (36px) so dots start under play button centre */
     <div className="mt-3 ml-4.5 flex flex-row items-center justify-start gap-1.5">
-      {INDICATOR_OPACITIES.map((op, i) => (
-        <div
-          key={i}
-          className="h-1.5 rounded-full bg-white"
-          style={{
-            width: 20, // all same length
-            opacity: op,
-          }}
-        />
-      ))}
+      {Array.from({ length: 4 }).map((_, i) => {
+        // Calculate relative opacity for each dot in the cycle
+        const relativeIndex = (i - startIndex + 4) % 4;
+        const op = opacities[relativeIndex];
+        
+        return (
+          <div
+            key={i}
+            className="h-1.5 rounded-full bg-white transition-opacity duration-300"
+            style={{
+              width: 20,
+              opacity: op,
+            }}
+          />
+        );
+      })}
     </div>
   );
 }
@@ -231,10 +244,34 @@ export default function HomeImageCarousel({
   const carouselScale = width < 768 ? 0.7 : 1;
   const exitX = width + 500;
 
+  // Cycle start index state
+  const [startIndex, setStartIndex] = useState(0);
+  // Hover tracking state to pause auto-cycle
+  const [isHovered, setIsHovered] = useState(false);
+
+  // Auto revolving cycle logic
+  useEffect(() => {
+    if (isExiting || isHovered) return;
+    const interval = setInterval(() => {
+      setStartIndex((prev) => (prev + 1) % 4);
+    }, 4500);
+
+    return () => clearInterval(interval);
+  }, [isExiting, isHovered]);
+
+  // Construct cycled array
+  const cycledCards = [
+    ...CARDS.slice(startIndex),
+    ...CARDS.slice(0, startIndex),
+  ];
+
+  // Slice to only show exactly 3 visible cards at a time (preserving layout size)
+  const visibleCards = cycledCards.slice(0, 3);
+
   return (
     <motion.div
       className="pointer-events-none absolute top-[30vh] -right-2.5 hidden flex-col md:flex"
-      style={{ zIndex: 7, x: carouselX, scale: carouselScale, transformOrigin: "right center" }}
+      style={{ zIndex: 10, x: carouselX, scale: carouselScale, transformOrigin: "right center" }}
     >
       <motion.div
         initial={isReturning ? { x: exitX, scale: 4 } : {}}
@@ -245,18 +282,25 @@ export default function HomeImageCarousel({
         }
         className="flex flex-col"
       >
-      {/* single shared SVG defs so all play buttons reference the same filter id */}
-      <SharedDefs />
-      <div className="flex flex-row gap-3">
-        {CARDS.map((card, i) => (
-          <CarouselCard
-            key={i}
-            {...card}
-            isReturning={isReturning}
-          />
-        ))}
-      </div>
-      <Indicators />
+        {/* single shared SVG defs so all play buttons reference the same filter id */}
+        <SharedDefs />
+        
+        {/* Flex container containing the visible subset of cycled cards */}
+        <div 
+          className="flex flex-row gap-3 pointer-events-auto"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          {visibleCards.map((card) => (
+            <CarouselCard
+              key={card.meta.label}
+              {...card}
+              isReturning={isReturning}
+            />
+          ))}
+        </div>
+        
+        <Indicators startIndex={startIndex} />
       </motion.div>
     </motion.div>
   );

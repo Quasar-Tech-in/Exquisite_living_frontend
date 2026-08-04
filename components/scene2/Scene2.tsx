@@ -108,7 +108,7 @@ function IntelligenceGrid({ activeIndex }: { activeIndex: number }) {
 function YoursResembleBlock() {
   return (
     <div className="flex flex-col p-3 md:p-4 bg-white/5 border border-white/5 rounded-xl">
-      <div className="relative aspect-4/3 overflow-hidden rounded-lg mb-3">
+      <div className="relative aspect-[16/10] overflow-hidden rounded-lg mb-3">
         <img
           src="/exp_table.png"
           alt="An intimate composition"
@@ -144,10 +144,10 @@ function RegisterInterestForm() {
   return (
     <div className="flex flex-col items-center text-center p-3 md:p-4">
       <img src="/icon_tree_cream.png" alt="" className="h-6 md:h-8 w-auto mb-3 md:mb-4 opacity-40" />
-      <p className="text-sm md:text-base font-light leading-snug mb-2">
+      <p className="text-base md:text-lg lg:text-xl font-light leading-snug mb-2.5">
         If this is resonating, we would like to know you exist.
       </p>
-      <p className="text-white/60 text-[10px] md:text-[11px] font-light mb-4 md:mb-6">
+      <p className="text-white/60 text-xs md:text-sm lg:text-base font-light mb-5 md:mb-7">
         No obligation follows. We simply begin to listen.
       </p>
 
@@ -155,7 +155,7 @@ function RegisterInterestForm() {
         <motion.div
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          className="text-[#ffa02e] font-light text-xs md:text-sm tracking-widest py-3 border border-dashed border-[#ffa02e]/30 w-full rounded"
+          className="text-[#ffa02e] font-light text-sm md:text-base lg:text-lg tracking-widest py-4 border border-dashed border-[#ffa02e]/30 w-full rounded"
         >
           ✦ Interest Registered. We will find you. ✦
         </motion.div>
@@ -166,12 +166,12 @@ function RegisterInterestForm() {
             placeholder="Email address or referral name"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full bg-transparent border-b border-white/30 py-2 text-xs md:text-sm text-center focus:outline-none focus:border-white transition-colors placeholder-white/50 font-light"
+            className="w-full bg-transparent border-b border-white/30 py-2.5 text-sm md:text-base lg:text-lg text-center focus:outline-none focus:border-white transition-colors placeholder-white/50 font-light"
             required
           />
           <button
             type="submit"
-            className="w-full py-2 border border-white/30 text-white/80 rounded transition-all duration-300 hover:bg-white hover:text-black hover:border-white font-light tracking-widest text-[10px] md:text-xs uppercase cursor-pointer"
+            className="w-full py-3 border border-white/30 text-white/80 rounded transition-all duration-300 hover:bg-white hover:text-black hover:border-white font-normal tracking-widest text-xs md:text-sm lg:text-base uppercase cursor-pointer"
           >
             Register Interest
           </button>
@@ -356,13 +356,17 @@ export default function Scene2({ cloudX, cloudY, floorX, floorY, textX }: Props)
 
       {/* Desktop Right Component Sidebar */}
       <motion.div
-        className={`hidden lg:flex absolute right-[5vw] top-1/2 -translate-y-1/2 w-[29vw] h-fit max-h-[75vh] overflow-y-auto flex-col z-10 select-none pointer-events-auto border border-white/8 backdrop-blur-md rounded-2xl p-6 ${imprima.className}`}
+        className={`hidden lg:flex absolute right-[5vw] top-1/2 -translate-y-1/2 h-fit max-h-[75vh] overflow-y-auto flex-col z-10 select-none pointer-events-auto border border-white/8 backdrop-blur-md rounded-2xl p-6 ${imprima.className}`}
         style={{
           background: "linear-gradient(145deg, rgba(20,32,25,0.92) 0%, rgba(10,18,14,0.96) 100%)",
           boxShadow: "inset 0 1px 0 rgba(255,255,255,0.06), 0 24px 48px rgba(0,0,0,0.45)",
         }}
-        initial={{ opacity: 0, x: 40 }}
-        animate={{ opacity: isActive ? 1 : 0, x: isActive ? 0 : 40 }}
+        initial={{ opacity: 0, x: 40, width: "29vw" }}
+        animate={{ 
+          opacity: isActive ? 1 : 0, 
+          x: isActive ? 0 : 40,
+          width: chapterKey === 3 ? "23vw" : "29vw"
+        }}
         transition={isReturning
           ? { duration: 1.2, delay: 0, ease: [0.8, 0, 1, 0.2] }
           : { duration: 1.2, delay: 0.8, ease: [0.16, 1, 0.3, 1] }
