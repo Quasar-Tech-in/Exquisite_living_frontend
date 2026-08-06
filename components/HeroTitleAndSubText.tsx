@@ -12,7 +12,7 @@ export default function HeroTitleAndSubText({
 }) {
   return (
     <motion.div
-      className="pointer-events-none absolute top-[30vh] left-[12vw] flex flex-col items-center text-left text-white"
+      className="pointer-events-none absolute top-[30dvh] short:top-[16dvh] left-[12vw] flex flex-col items-center text-left text-white"
       style={{ zIndex: 7, x: textX }}
     >
       <motion.div
@@ -28,14 +28,14 @@ export default function HeroTitleAndSubText({
           animate={{ translateY: 0, opacity: 1 }}
           transition={{ duration: 1.6, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div className="flex flex-col items-start text-[50px] md:text-[56px] lg:text-[64px]">
+          <div className="flex flex-col items-start text-[50px] md:text-[56px] lg:text-[64px] short:text-[26px]!">
             <span>Some lives are not</span>
             <span className="text-white/90">arranged.</span>
             <span className="mt-2 italic text-[#ffa02e]">They are composed.</span>
           </div>
         </motion.div>
         <motion.p
-          className={`mt-6 max-w-85 text-[16px] leading-[1.4] font-normal tracking-[0.02em] text-white/90 ${imprima.className}`}
+          className={`mt-6 short:mt-2 max-w-85 short:max-w-70 text-[16px] short:text-[12px] leading-[1.4] font-normal tracking-[0.02em] text-white/90 ${imprima.className}`}
           style={{ textShadow: "0 1px 12px rgba(0,0,0,0.5), 0 2px 24px rgba(0,0,0,0.3)" }}
           initial={isReturning ? { translateY: 0, opacity: 1 } : { translateY: 60, opacity: 0 }}
           animate={{ translateY: 0, opacity: 1 }}

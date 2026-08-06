@@ -36,14 +36,14 @@ export default function Navbar({ className, ...props }: HTMLMotionProps<"nav">) 
   return (
     <motion.nav
       {...props}
-      className={`${imprima.className} ${className || ""} absolute top-0 flex w-full flex-row items-center justify-center md:justify-between px-6 py-6 md:px-12`}
+      className={`${imprima.className} ${className || ""} absolute top-0 flex w-full flex-row items-center justify-center md:justify-between px-6 py-6 short:py-2 md:px-12 mt-[env(safe-area-inset-top)]`}
       style={{ zIndex: 9 }}
       initial={{ y: -50, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={entryTransition}
     >
       {/* Left Links */}
-      <div className="hidden md:flex flex-1 justify-around text-sm tracking-[0.15em] uppercase font-light">
+      <div className="hidden md:flex short:hidden! flex-1 justify-around text-sm tracking-[0.15em] uppercase font-light">
         <span
           className={`cursor-pointer transition-colors duration-300 hover:text-white ${
             isSensibilityActive ? "text-white font-normal" : "text-white/50"
@@ -67,7 +67,7 @@ export default function Navbar({ className, ...props }: HTMLMotionProps<"nav">) 
         <motion.img
           src="/iconlogo_cream.png"
           alt="ExQuisite Living"
-          className="h-10 md:h-12 w-auto cursor-pointer"
+          className="h-10 md:h-12 w-auto cursor-pointer short:h-7!"
           style={{ filter: "drop-shadow(0 2px 8px rgba(0,0,0,0.55))" }}
           initial={{ rotate: -180, scale: 0.5, opacity: 0 }}
           animate={{ rotate: 0, scale: 1, opacity: 1 }}
@@ -98,7 +98,7 @@ export default function Navbar({ className, ...props }: HTMLMotionProps<"nav">) 
       </div>
 
       {/* Right Links */}
-      <div className="hidden md:flex flex-1 justify-around text-sm tracking-[0.15em] uppercase font-light">
+      <div className="hidden md:flex short:hidden! flex-1 justify-around text-sm tracking-[0.15em] uppercase font-light">
         <span
           className={`cursor-pointer transition-colors duration-300 hover:text-white ${
             isCompositionsActive ? "text-white font-normal" : "text-white/50"
@@ -121,7 +121,7 @@ export default function Navbar({ className, ...props }: HTMLMotionProps<"nav">) 
       <AnimatePresence>
         {isInScene2 && (
           <motion.button
-            className={`md:hidden absolute left-6 top-1/2 -translate-y-1/2 flex items-center gap-1.5 text-white/50 text-[9px] tracking-[0.15em] uppercase cursor-pointer hover:text-white transition-colors duration-300 ${imprima.className}`}
+            className={`md:hidden short:flex! absolute left-6 top-1/2 -translate-y-1/2 flex items-center gap-1.5 text-white/50 text-[9px] tracking-[0.15em] uppercase cursor-pointer hover:text-white transition-colors duration-300 ${imprima.className}`}
             initial={{ opacity: 0, x: -8 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -8, transition: { duration: 0.4, delay: 0, ease: [0.8, 0, 1, 0.2] } }}

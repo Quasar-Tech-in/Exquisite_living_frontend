@@ -8,6 +8,7 @@ import Scene2 from "@/components/scene2/Scene2";
 import Navbar from "@/components/Navbar";
 import CustomCursor from "@/components/CustomCursor";
 import Preloader from "@/components/Preloader";
+import DebugViewportOverlay from "@/components/DebugViewportOverlay";
 
 // ── inner page (needs to be a child of SceneProvider to use useScene) ──────────
 function InnerPage() {
@@ -50,7 +51,7 @@ function InnerPage() {
   } = useParallax(isParallaxActive && !isDraggingWheel);
 
   return (
-    <div className="absolute inset-0 h-full w-full md:cursor-none overflow-hidden hero">
+    <div className="absolute inset-0 h-dvh w-full overflow-hidden hero pointer-fine:cursor-none">
       {/* Scene 2 — always mounted behind Scene 1 (z:1–2) */}
       <Scene2 cloudX={cloudX} cloudY={cloudY} floorX={floorX} floorY={floorY} textX={textX} />
 
@@ -70,6 +71,9 @@ function InnerPage() {
 
       {/* Cursor — always above everything */}
       <CustomCursor />
+
+      {/* Dev-only — remove once the responsive/orientation fixes are confirmed on-device */}
+      {process.env.NODE_ENV === "development" && <DebugViewportOverlay />}
     </div>
   );
 }

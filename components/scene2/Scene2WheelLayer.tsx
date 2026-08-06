@@ -37,7 +37,9 @@ export default function Scene2WheelLayer({
   const targetRotation = -activeCardIndex * (360 / 20);
 
   // Wheel center is at canvas center (1255px). Active card sits at radius 785px above center.
-  // Visual offset is scale * 785. We adjust top to keep active card locked near 42vh.
+  // Visual offset is scale * 785. We adjust top to keep active card locked near 42dvh.
+  // No separate landscape anchor needed: useViewportScale's height cap already
+  // keeps `scale` (and so the card's on-screen size) within budget on short screens.
   const visualRadiusOffset = 1255 - scale * 785;
 
   return (
@@ -46,7 +48,7 @@ export default function Scene2WheelLayer({
       <div
         className="pointer-events-none absolute left-1/2 -translate-x-1/2 overflow-visible"
         style={{
-          top: `calc(42vh - ${visualRadiusOffset}px)`,
+          top: `calc(42dvh - ${visualRadiusOffset}px)`,
           zIndex: 3,
         }}
       >
@@ -97,7 +99,7 @@ export default function Scene2WheelLayer({
 
       {/* Visual Navigation Controls - Floating left/right arrows */}
       <motion.button
-        className="pointer-events-auto absolute left-6 md:left-10 lg:left-16 top-[46vh] md:top-[44vh] -translate-y-1/2 flex items-center justify-center h-12 w-12 rounded-full border border-white/10 bg-black/40 text-white/70 backdrop-blur-md transition-all duration-300 hover:bg-white hover:text-black hover:border-white hover:opacity-100 select-none z-10 cursor-pointer shadow-xl"
+        className="pointer-events-auto absolute left-6 md:left-10 lg:left-16 top-[46dvh] md:top-[44dvh] -translate-y-1/2 short:top-[50dvh]! flex items-center justify-center h-12 w-12 rounded-full border border-white/10 bg-black/40 text-white/70 backdrop-blur-md transition-all duration-300 hover:bg-white hover:text-black hover:border-white hover:opacity-100 select-none z-10 cursor-pointer shadow-xl"
         onClick={(e) => {
           e.stopPropagation();
           handleInteraction();
@@ -119,7 +121,7 @@ export default function Scene2WheelLayer({
       </motion.button>
 
       <motion.button
-        className="pointer-events-auto absolute right-6 md:right-10 lg:right-16 top-[46vh] md:top-[44vh] -translate-y-1/2 flex items-center justify-center h-12 w-12 rounded-full border border-white/10 bg-black/40 text-white/70 backdrop-blur-md transition-all duration-300 hover:bg-white hover:text-black hover:border-white hover:opacity-100 select-none z-10 cursor-pointer shadow-xl"
+        className="pointer-events-auto absolute right-6 md:right-10 lg:right-16 top-[46dvh] md:top-[44dvh] -translate-y-1/2 short:top-[50dvh]! flex items-center justify-center h-12 w-12 rounded-full border border-white/10 bg-black/40 text-white/70 backdrop-blur-md transition-all duration-300 hover:bg-white hover:text-black hover:border-white hover:opacity-100 select-none z-10 cursor-pointer shadow-xl"
         onClick={(e) => {
           e.stopPropagation();
           handleInteraction();

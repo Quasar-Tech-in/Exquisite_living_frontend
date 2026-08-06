@@ -1,5 +1,16 @@
 @import "tailwindcss";
 
+/*
+ * `short` — targets viewports where height, not width, is the constraint
+ * (landscape phones chief among them: e.g. 844x390). This is distinct from
+ * Tailwind's built-in `landscape:`/`portrait:` variants, which key off aspect
+ * ratio alone — a landscape tablet (1024x768) is *not* short and must keep
+ * the roomy desktop-ish layout. Threshold chosen to just clear the tallest
+ * common landscape phone chrome (~410-460px of usable height) while staying
+ * below tablet landscape heights (600px+).
+ */
+@custom-variant short (@media (max-height: 520px));
+
 :root {
   --background: #ffffff;
   --foreground: #171717;

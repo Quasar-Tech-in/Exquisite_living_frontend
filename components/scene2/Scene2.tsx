@@ -262,7 +262,7 @@ export default function Scene2({ cloudX, cloudY, floorX, floorY, textX }: Props)
 
       {/* Chapter progress dots — desktop only, sits below the hero text */}
       <motion.div
-        className={`pointer-events-none hidden lg:flex absolute inset-x-0 top-[30vh] justify-center gap-1.5 z-10 ${imprima.className}`}
+        className={`pointer-events-none hidden lg:flex absolute inset-x-0 top-[30dvh] justify-center gap-1.5 z-10 ${imprima.className}`}
         initial={{ opacity: 0 }}
         animate={{ opacity: isActive ? 1 : 0 }}
         transition={isReturning
@@ -300,7 +300,7 @@ export default function Scene2({ cloudX, cloudY, floorX, floorY, textX }: Props)
 
       {/* Desktop Left Details Sidebar */}
       <motion.div
-        className={`hidden lg:flex absolute left-[5vw] top-1/2 -translate-y-1/2 w-[28vw] h-fit max-h-[75vh] overflow-y-auto flex-col z-10 select-none pointer-events-auto border border-white/8 backdrop-blur-md rounded-2xl p-6 ${imprima.className}`}
+        className={`hidden lg:flex absolute left-[5vw] top-1/2 -translate-y-1/2 w-[28vw] h-fit max-h-[75dvh] overflow-y-auto flex-col z-10 select-none pointer-events-auto border border-white/8 backdrop-blur-md rounded-2xl p-6 ${imprima.className}`}
         style={{
           background: "linear-gradient(145deg, rgba(20,32,25,0.92) 0%, rgba(10,18,14,0.96) 100%)",
           boxShadow: "inset 0 1px 0 rgba(255,255,255,0.06), 0 24px 48px rgba(0,0,0,0.45)",
@@ -356,7 +356,7 @@ export default function Scene2({ cloudX, cloudY, floorX, floorY, textX }: Props)
 
       {/* Desktop Right Component Sidebar */}
       <motion.div
-        className={`hidden lg:flex absolute right-[5vw] top-1/2 -translate-y-1/2 h-fit max-h-[75vh] overflow-y-auto flex-col z-10 select-none pointer-events-auto border border-white/8 backdrop-blur-md rounded-2xl p-6 ${imprima.className}`}
+        className={`hidden lg:flex absolute right-[5vw] top-1/2 -translate-y-1/2 h-fit max-h-[75dvh] overflow-y-auto flex-col z-10 select-none pointer-events-auto border border-white/8 backdrop-blur-md rounded-2xl p-6 ${imprima.className}`}
         style={{
           background: "linear-gradient(145deg, rgba(20,32,25,0.92) 0%, rgba(10,18,14,0.96) 100%)",
           boxShadow: "inset 0 1px 0 rgba(255,255,255,0.06), 0 24px 48px rgba(0,0,0,0.45)",
@@ -379,11 +379,11 @@ export default function Scene2({ cloudX, cloudY, floorX, floorY, textX }: Props)
       </motion.div>
 
       {/* Mobile Drawer Trigger Button */}
-      <div className={`absolute bottom-36 md:bottom-28 left-1/2 -translate-x-1/2 z-8 lg:hidden ${isActive ? "pointer-events-auto" : "pointer-events-none"}`}>
+      <div className={`absolute bottom-36 md:bottom-28 short:bottom-4! left-1/2 -translate-x-1/2 mb-[env(safe-area-inset-bottom)] z-8 lg:hidden ${isActive ? "pointer-events-auto" : "pointer-events-none"}`}>
         <motion.button
           onClick={() => setIsDetailsOpen(true)}
           disabled={!isActive}
-          className={`flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/20 bg-black/50 text-white/90 text-[10px] md:text-xs tracking-[0.15em] uppercase font-light backdrop-blur-md transition-all duration-300 hover:bg-white hover:text-black hover:border-white shadow-lg cursor-pointer ${imprima.className}`}
+          className={`flex items-center gap-2 px-5 short:px-3 py-2.5 short:py-1.5 rounded-full border border-white/20 bg-black/50 text-white/90 text-[10px] md:text-xs short:text-[9px]! tracking-[0.15em] uppercase font-light backdrop-blur-md transition-all duration-300 hover:bg-white hover:text-black hover:border-white shadow-lg cursor-pointer ${imprima.className}`}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: isActive ? 1 : 0, y: isActive ? 0 : 20 }}
           transition={isReturning
@@ -405,7 +405,7 @@ export default function Scene2({ cloudX, cloudY, floorX, floorY, textX }: Props)
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 backdrop-blur-md flex flex-col p-6 overflow-y-auto"
+            className="fixed inset-0 h-dvh z-50 backdrop-blur-md flex flex-col p-6 overflow-y-auto"
             style={{
               background: "linear-gradient(145deg, rgba(12,20,17,0.97) 0%, rgba(6,12,10,0.99) 100%)",
             }}
@@ -470,7 +470,7 @@ export default function Scene2({ cloudX, cloudY, floorX, floorY, textX }: Props)
       <ExitExperienceButton />
 
       {/* Minimal copyright */}
-      <p className={`pointer-events-none absolute bottom-4 left-1/2 -translate-x-1/2 z-10 text-[9px] text-white/20 font-light tracking-wider whitespace-nowrap ${imprima.className}`}>
+      <p className={`pointer-events-none absolute bottom-4 left-1/2 -translate-x-1/2 mb-[env(safe-area-inset-bottom)] z-10 text-[9px] text-white/20 font-light tracking-wider whitespace-nowrap short:hidden ${imprima.className}`}>
         © 2026 ExQuisite Living.
       </p>
     </>

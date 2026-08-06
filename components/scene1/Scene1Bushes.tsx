@@ -2,7 +2,7 @@
 
 import { motion, type MotionValue } from "framer-motion";
 import { useScene } from "@/context/SceneContext";
-import { useMediaQuery } from "@/hooks/useMediaQuery";
+import { useViewportScale } from "@/hooks/useViewportScale";
 
 interface Props {
   fgX: MotionValue<number>;
@@ -22,24 +22,33 @@ const bushClassName =
 export default function Scene1Bushes({ fgX, fgY, isReturning = false }: Props) {
   const { scene } = useScene();
   const isExiting = scene === "transitioning";
-  // isMobile is ONLY used for animate targets, never for `initial`.
-  // This avoids the hydration false-start (useMediaQuery initialises to false on SSR).
-  const isMobile = useMediaQuery("(max-width: 768px)");
+  // InnerPage (the only place this mounts) is gated behind isLoaded, so this
+  // never server-renders — the real value is available on the first render,
+  // no SSR/hydration mismatch to guard against.
+  const { isCompact } = useViewportScale();
 
   // Resting position: desktop keeps bushes partially framing the scene (70vw from their edge).
-  // Mobile pushes them fully off-screen (120vw so even large images are hidden).
-  const restingRight = isMobile ? "120vw" : "70vw";
-  const restingLeft  = isMobile ? "120vw" : "70vw";
+  // Compact (narrow OR short, e.g. a landscape phone) pushes them fully off-screen (120vw).
+  const restingRight = isCompact ? "120vw" : "70vw";
+  const restingLeft = isCompact ? "120vw" : "70vw";
+
+  // Exit state mirrors the `animate` isExiting target below, so `isReturning`
+  // always starts from wherever this device's exit animation actually left off
+  // — instead of a hardcoded desktop-shaped state on every device.
+  const exitedRight = isCompact
+    ? { right: restingRight, x: "-150vw", scale: 1.1 }
+    : { right: "70vw", x: "-150vw", scale: 2.5 };
+  const exitedLeft = isCompact
+    ? { left: restingLeft, x: "150vw", scale: 1.1 }
+    : { left: "70vw", x: "150vw", scale: 2.5 };
 
   return (
     <>
       {/*
         Left bush — positioned with CSS `right`.
         Entry: sweeps in from center (right: -30vw) to resting.
-        Exit  (entering scene2): scale up + strong leftward x.
+        Exit  (entering scene2): scale up + strong leftward x on desktop; flat slide-out on compact.
         Return (exiting scene2): starts from the exited position and reverses back to resting.
-        NOTE: `initial` uses hardcoded desktop exit values (right:"70vw", x:"-150vw", scale:2.5)
-              because isMobile cannot be used in `initial` (SSR hydration risk).
       */}
       <motion.img
         src={"left-full.webp"}
@@ -49,18 +58,8 @@ export default function Scene1Bushes({ fgX, fgY, isReturning = false }: Props) {
           ...((isExiting || isReturning) ? {} : { x: fgX }),
           y: fgY,
         }}
-        initial={
-          isReturning
-            ? { right: "70vw", x: "-150vw", scale: 2.5 }  // desktop exit state → reverse from here
-            : { right: "-30vw", scale: 1.1 }
-        }
-        animate={
-          isExiting
-            ? isMobile
-              ? { right: restingRight, x: "-150vw", scale: 1.1 }   // mobile: slide out, no scale
-              : { right: "70vw", x: "-150vw", scale: 2.5 }          // desktop: scale + slide left
-            : { right: restingRight, x: 0, scale: 1.1 }             // entry + return: settle at resting
-        }
+        initial={isReturning ? exitedRight : { right: "-30vw", scale: 1.1 }}
+        animate={isExiting ? exitedRight : { right: restingRight, x: 0, scale: 1.1 }}
         transition={
           isExiting ? exitTransition
           : isReturning ? returnTransition
@@ -71,7 +70,7 @@ export default function Scene1Bushes({ fgX, fgY, isReturning = false }: Props) {
       {/*
         Right bush — positioned with CSS `left`.
         Entry: sweeps in from center (left: -30vw) to resting.
-        Exit  (entering scene2): scale up + strong rightward x.
+        Exit  (entering scene2): scale up + strong rightward x on desktop; flat slide-out on compact.
         Return (exiting scene2): starts from the exited position and reverses back to resting.
       */}
       <motion.img
@@ -82,18 +81,8 @@ export default function Scene1Bushes({ fgX, fgY, isReturning = false }: Props) {
           ...((isExiting || isReturning) ? {} : { x: fgX }),
           y: fgY,
         }}
-        initial={
-          isReturning
-            ? { left: "70vw", x: "150vw", scale: 2.5 }   // desktop exit state → reverse from here
-            : { left: "-30vw", scale: 1.1 }
-        }
-        animate={
-          isExiting
-            ? isMobile
-              ? { left: restingLeft, x: "150vw", scale: 1.1 }       // mobile: slide out, no scale
-              : { left: "70vw", x: "150vw", scale: 2.5 }            // desktop: scale + slide right
-            : { left: restingLeft, x: 0, scale: 1.1 }               // entry + return: settle at resting
-        }
+        initial={isReturning ? exitedLeft : { left: "-30vw", scale: 1.1 }}
+        animate={isExiting ? exitedLeft : { left: restingLeft, x: 0, scale: 1.1 }}
         transition={
           isExiting ? exitTransition
           : isReturning ? returnTransition

@@ -240,8 +240,11 @@ export default function HomeImageCarousel({
   isExiting?: boolean;
   isReturning?: boolean;
 }) {
-  const { width } = useViewportScale();
-  const carouselScale = width < 768 ? 0.7 : 1;
+  const { width, isCompact } = useViewportScale();
+  // isCompact also covers landscape phones (short but wide) — the width-only
+  // check alone would leave 3 full-size cards fighting the hero text for
+  // space on an 844x390 screen.
+  const carouselScale = isCompact ? 0.55 : width < 768 ? 0.7 : 1;
   const exitX = width + 500;
 
   // Cycle start index state
@@ -270,7 +273,7 @@ export default function HomeImageCarousel({
 
   return (
     <motion.div
-      className="pointer-events-none absolute top-[30vh] -right-2.5 hidden flex-col md:flex"
+      className="pointer-events-none absolute top-[30dvh] short:top-[22dvh] -right-2.5 hidden flex-col md:flex short:flex!"
       style={{ zIndex: 10, x: carouselX, scale: carouselScale, transformOrigin: "right center" }}
     >
       <motion.div
