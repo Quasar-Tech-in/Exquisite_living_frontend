@@ -10,6 +10,8 @@ import Scene2WheelLayer from "./Scene2WheelLayer";
 import Scene2LowerCloudsLayer from "./Scene2LowerCloudsLayer";
 import Scene2HeroText from "./Scene2HeroText";
 import ExitExperienceButton from "@/components/ExitExperienceButton";
+import { useDocumentTitle } from "@/hooks/useDocumentTitle";
+import { DEFAULT_TITLE } from "@/lib/siteMeta";
 
 interface Props {
   cloudX: MotionValue<number>;
@@ -61,7 +63,13 @@ function ComparisonTable({ activeIndex }: { activeIndex: number }) {
 }
 
 // Intelligence Dimensions Grid
-function IntelligenceGrid({ activeIndex }: { activeIndex: number }) {
+function IntelligenceGrid({
+  activeIndex,
+  setActiveCardIndex,
+}: {
+  activeIndex: number;
+  setActiveCardIndex: React.Dispatch<React.SetStateAction<number>>;
+}) {
   const currentActivePoint = activeIndex >= 4 && activeIndex <= 11 ? activeIndex - 3 : -1;
 
   const points = [
@@ -80,11 +88,19 @@ function IntelligenceGrid({ activeIndex }: { activeIndex: number }) {
       <div className="grid grid-cols-2 gap-2 text-[11px] md:text-xs">
         {points.map((p, idx) => {
           const isActive = idx + 1 === currentActivePoint;
+          const targetIndex = 4 + idx; // idx 0-7 maps to normalizedIndex 4-11
           return (
             <motion.div
               key={idx}
-              animate={isActive ? { scale: 1.03, borderColor: "rgba(143, 163, 151, 0.6)" } : { scale: 1 }}
-              className={`flex flex-col justify-center h-14 md:h-16 p-2 md:p-3 rounded border font-light transition-colors ${isActive
+              onClick={(e) => {
+                e.stopPropagation();
+                const diff = ((targetIndex - activeIndex + 30) % 20) - 10;
+                setActiveCardIndex((prev) => prev + diff);
+              }}
+              animate={isActive
+                ? { scale: 1.03, borderColor: "rgba(123, 238, 169, 0.6)" }
+                : { scale: 1, borderColor: "rgba(255, 255, 255, 0.1)" }}
+              className={`flex cursor-pointer flex-col justify-center h-14 md:h-16 p-2 md:p-3 rounded border font-light transition-colors ${isActive
                 ? "bg-white/8 border-[#7beea9] text-white"
                 : "bg-white/4 border-white/10 text-white/70"
                 }`}
@@ -119,7 +135,7 @@ function YoursResembleBlock() {
       <span className="text-[#7beea9] uppercase tracking-widest text-[9px] md:text-[10px] mb-1 block">
         ✦ The last leaf of this chapter
       </span>
-      <h4 className={`text-base md:text-lg font-light leading-snug mb-1.5 ${viaodaLibre.className}`}>
+      <h4 className={`text-base md:text-lg font-light leading-snug mb-1.5 text-white ${viaodaLibre.className}`}>
         Yours would resemble none of these.
       </h4>
       <p className="text-white/70 text-[11px] md:text-xs font-light leading-relaxed">
@@ -144,7 +160,7 @@ function RegisterInterestForm() {
   return (
     <div className="flex flex-col items-center text-center p-3 md:p-4">
       <img src="/icon_tree_cream.png" alt="" className="h-6 md:h-8 w-auto mb-3 md:mb-4 opacity-40" />
-      <p className="text-base md:text-lg lg:text-xl font-light leading-snug mb-2.5">
+      <p className="text-base md:text-lg lg:text-xl font-light leading-snug mb-2.5 text-white">
         If this is resonating, we would like to know you exist.
       </p>
       <p className="text-white/60 text-xs md:text-sm lg:text-base font-light mb-5 md:mb-7">
@@ -226,6 +242,7 @@ export default function Scene2({ cloudX, cloudY, floorX, floorY, textX }: Props)
   let sectionNum = "";
   let sectionTitle = "";
   let sectionDesc = "";
+  let tabTitle = "";
   let chapterKey = 0;
 
   if (normalizedIndex >= 0 && normalizedIndex <= 3) {
@@ -233,22 +250,28 @@ export default function Scene2({ cloudX, cloudY, floorX, floorY, textX }: Props)
     sectionNum = "I — The Sensibility";
     sectionTitle = "Not a service. A sensibility.";
     sectionDesc = "A concierge waits. We don't. ExQuisite is not a favour desk or a curated catalogue — it is an attentiveness, quietly composing the experiences that would reach you before you'd thought to reach for them.";
+    tabTitle = "ExQuisite Living — The Sensibility";
   } else if (normalizedIndex >= 4 && normalizedIndex <= 11) {
     chapterKey = 2;
     sectionNum = "II — The Intelligence";
     sectionTitle = "A quiet intelligence, composing in the background.";
     sectionDesc = "At the centre is a Curation Engine with a single purpose: to know a member the way a decade of close attention might. It reads across more than two hundred quiet dimensions of a life, and from them makes something that does not feel arranged at all.";
+    tabTitle = "ExQuisite Living — The Intelligence";
   } else if (normalizedIndex >= 12 && normalizedIndex <= 17) {
     chapterKey = 3;
     sectionNum = "III — Compositions";
     sectionTitle = "Loose leaves, lifted from the book.";
     sectionDesc = "We rarely speak of what we make. These few are offered only to suggest the shape of it — anonymised pages from a book that otherwise stays closed.";
+    tabTitle = "ExQuisite Living — Compositions";
   } else if (normalizedIndex >= 18 && normalizedIndex <= 19) {
     chapterKey = 4;
     sectionNum = "IV — Membership";
     sectionTitle = "You do not join us. We find you.";
     sectionDesc = "You do not apply. You become known. Membership, when it comes, is a quiet conferral — extended only when both worlds are in the right place.";
+    tabTitle = "ExQuisite Living — Membership";
   }
+
+  useDocumentTitle(scene === "scene1" ? DEFAULT_TITLE : tabTitle);
 
   const activeComp = cardsData[normalizedIndex];
 
@@ -373,7 +396,7 @@ export default function Scene2({ cloudX, cloudY, floorX, floorY, textX }: Props)
         }
       >
         {chapterKey === 1 && <ComparisonTable activeIndex={normalizedIndex} />}
-        {chapterKey === 2 && <IntelligenceGrid activeIndex={normalizedIndex} />}
+        {chapterKey === 2 && <IntelligenceGrid activeIndex={normalizedIndex} setActiveCardIndex={setActiveCardIndex} />}
         {chapterKey === 3 && <YoursResembleBlock />}
         {chapterKey === 4 && <RegisterInterestForm />}
       </motion.div>
@@ -458,7 +481,7 @@ export default function Scene2({ cloudX, cloudY, floorX, floorY, textX }: Props)
 
               <div className="border-t border-white/10 pt-6">
                 {chapterKey === 1 && <ComparisonTable activeIndex={normalizedIndex} />}
-                {chapterKey === 2 && <IntelligenceGrid activeIndex={normalizedIndex} />}
+                {chapterKey === 2 && <IntelligenceGrid activeIndex={normalizedIndex} setActiveCardIndex={setActiveCardIndex} />}
                 {chapterKey === 3 && <YoursResembleBlock />}
                 {chapterKey === 4 && <RegisterInterestForm />}
               </div>

@@ -98,8 +98,11 @@ export default function Scene2WheelLayer({
 
 
       {/* Visual Navigation Controls - Floating left/right arrows */}
+      {/* z-20: the desktop sidebars (Scene2.tsx) are z-10 and render later in
+          the DOM, so at a tied z-index they painted over these buttons
+          wherever their bounding boxes overlapped. */}
       <motion.button
-        className="pointer-events-auto absolute left-6 md:left-10 lg:left-16 top-[46dvh] md:top-[44dvh] -translate-y-1/2 short:top-[50dvh]! flex items-center justify-center h-12 w-12 rounded-full border border-white/10 bg-black/40 text-white/70 backdrop-blur-md transition-all duration-300 hover:bg-white hover:text-black hover:border-white hover:opacity-100 select-none z-10 cursor-pointer shadow-xl"
+        className="pointer-events-auto absolute left-6 md:left-10 lg:left-16 top-[46dvh] md:top-[44dvh] -translate-y-1/2 short:top-[50dvh]! flex items-center justify-center h-12 w-12 rounded-full border border-white/10 bg-black/40 text-white/70 backdrop-blur-md transition-all duration-300 hover:bg-white hover:text-black hover:border-white hover:opacity-100 select-none z-20 cursor-pointer shadow-xl"
         onClick={(e) => {
           e.stopPropagation();
           handleInteraction();
@@ -121,7 +124,7 @@ export default function Scene2WheelLayer({
       </motion.button>
 
       <motion.button
-        className="pointer-events-auto absolute right-6 md:right-10 lg:right-16 top-[46dvh] md:top-[44dvh] -translate-y-1/2 short:top-[50dvh]! flex items-center justify-center h-12 w-12 rounded-full border border-white/10 bg-black/40 text-white/70 backdrop-blur-md transition-all duration-300 hover:bg-white hover:text-black hover:border-white hover:opacity-100 select-none z-10 cursor-pointer shadow-xl"
+        className="pointer-events-auto absolute right-6 md:right-10 lg:right-16 top-[46dvh] md:top-[44dvh] -translate-y-1/2 short:top-[50dvh]! flex items-center justify-center h-12 w-12 rounded-full border border-white/10 bg-black/40 text-white/70 backdrop-blur-md transition-all duration-300 hover:bg-white hover:text-black hover:border-white hover:opacity-100 select-none z-20 cursor-pointer shadow-xl"
         onClick={(e) => {
           e.stopPropagation();
           handleInteraction();

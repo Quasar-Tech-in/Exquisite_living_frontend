@@ -1,6 +1,6 @@
 "use client";
 
-import { viaodaLibre, imprima } from "@/lib/fonts";
+import { viaodaLibre } from "@/lib/fonts";
 import { motion, type MotionValue } from "framer-motion";
 import { useScene } from "@/context/SceneContext";
 
@@ -21,28 +21,23 @@ export default function Scene2HeroText({
 
   let title = "Loose leaves, ";
   let italicTitle = "lifted from the book.";
-  let subtitle = "A selection of composed worlds and quiet details.";
   let italicColor = "text-[#1fda64]";
 
   if (normalizedIndex >= 0 && normalizedIndex <= 3) {
     title = "A sensibility, ";
     italicTitle = "not a service.";
-    subtitle = "A concierge waits to be asked. We do not.";
     italicColor = "text-[#ecb471]";
   } else if (normalizedIndex >= 4 && normalizedIndex <= 11) {
     title = "A quiet intelligence, ";
     italicTitle = "composing in the background.";
-    subtitle = "Built to know each member with depth no concierge could match.";
     italicColor = "text-[#7beea9]";
   } else if (normalizedIndex >= 12 && normalizedIndex <= 17) {
     title = "Loose leaves, ";
     italicTitle = "lifted from the book.";
-    subtitle = "Draw near and the pages part — a few composed worlds rise from the binding.";
     italicColor = "text-[#1fda64]";
   } else if (normalizedIndex >= 18 && normalizedIndex <= 19) {
     title = "You do not join us. ";
     italicTitle = "We find you.";
-    subtitle = "Conferred quietly, and only when our worlds align.";
     italicColor = "text-[#ecb471]";
   }
 
@@ -78,26 +73,6 @@ export default function Scene2HeroText({
           {title}
           <span className={`italic ${italicColor}`}>{italicTitle}</span>
         </span>
-      </motion.div>
-      <motion.div
-        key={`sub-${chapterKey}`}
-        className={`mt-3 max-w-[90%] md:max-w-155 text-[15px] md:text-[17px] leading-[1.6] text-white/50 px-4 short:hidden ${imprima.className}`}
-        style={{ textShadow: "0 1px 12px rgba(0,0,0,0.6), 0 2px 24px rgba(0,0,0,0.4)" }}
-        initial={{ y: 15, opacity: 0 }}
-        animate={
-          isReturning
-            ? { y: 15, opacity: 0 }
-            : isActive
-              ? { y: 0, opacity: 1 }
-              : { y: 15, opacity: 0 }
-        }
-        transition={
-          isReturning
-            ? { duration: 1.0, ease: [0.8, 0, 1, 0.2], delay: 0 }
-            : { duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: isActive ? 0.95 : 0 }
-        }
-      >
-        {subtitle}
       </motion.div>
     </motion.div>
   );

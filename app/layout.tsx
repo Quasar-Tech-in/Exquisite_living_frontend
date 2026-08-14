@@ -1,8 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import { DEFAULT_TITLE } from "@/lib/siteMeta";
 
 export const metadata: Metadata = {
-  title: "ExQuisite Living — A sensibility, not a service",
+  title: DEFAULT_TITLE,
   description: "ExQuisite Living is an intelligence devoted to a single question: what would move you, before you thought to ask for it. By invitation.",
 };
 
