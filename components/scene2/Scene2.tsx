@@ -165,12 +165,12 @@ function YoursResembleBlock() {
       <h4
         className={`mb-1.5 text-base leading-snug font-light text-white md:text-lg ${viaodaLibre.className}`}
       >
-        Yours would resemble none of these.
+        The best experiences never feel designed.
       </h4>
       <p className="text-[11px] leading-relaxed font-light text-white/70 md:text-xs">
-        These are anonymised fragments, offered only to suggest the shape of the
-        work. What we would compose for you is written on a page no one else
-        will read.
+        They simply feel right. Behind that feeling is thoughtful planning,
+        quiet attention, and a deep understanding of what matters most to you.
+        That's how every experience we create begins.
       </p>
     </div>
   );
@@ -306,25 +306,25 @@ export default function Scene2({
 
   if (normalizedIndex >= 0 && normalizedIndex <= 3) {
     chapterKey = 1;
-    sectionNum = "I — The Sensibility";
-    sectionTitle = "Not a service. A sensibility.";
+    sectionNum = "I — Sensibility";
+    sectionTitle = "Every client is different, and so is every decision we make.";
     sectionDesc =
-      "A concierge waits. We don't. ExQuisite is not a favour desk or a curated catalogue — it is an attentiveness, quietly composing the experiences that would reach you before you'd thought to reach for them.";
-    tabTitle = "ExQuisite Living — The Sensibility";
+      "We take the time to understand your preferences, routines, values, and the details that matter most to you. Every recommendation, introduction, and experience is thoughtfully curated to feel personal, intuitive, and unmistakably yours.";
+    tabTitle = "ExQuisite Living — Sensibility";
   } else if (normalizedIndex >= 4 && normalizedIndex <= 11) {
     chapterKey = 2;
-    sectionNum = "II — The Intelligence";
-    sectionTitle = "A quiet intelligence, composing in the background.";
+    sectionNum = "II — Intelligence";
+    sectionTitle = "Behind every effortless experience is thoughtful planning.";
     sectionDesc =
-      "At the centre is a Curation Engine with a single purpose: to know a member the way a decade of close attention might. It reads across more than two hundred quiet dimensions of a life, and from them makes something that does not feel arranged at all.";
-    tabTitle = "ExQuisite Living — The Intelligence";
+      "We combine trusted relationships, meticulous research, and proactive execution to anticipate needs, simplify complexity, and ensure every detail is considered long before it becomes a request.";
+    tabTitle = "ExQuisite Living — Intelligence";
   } else if (normalizedIndex >= 12 && normalizedIndex <= 17) {
     chapterKey = 3;
-    sectionNum = "III — Compositions";
-    sectionTitle = "Loose leaves, lifted from the book.";
+    sectionNum = "III — Composition";
+    sectionTitle = "Every detail, thoughtfully curated";
     sectionDesc =
-      "We rarely speak of what we make. These few are offered only to suggest the shape of it — anonymised pages from a book that otherwise stays closed.";
-    tabTitle = "ExQuisite Living — Compositions";
+      "No two lives are the same, and neither are the experiences we create. Every journey, celebration, introduction, and moment is thoughtfully composed around your preferences, priorities, and the way you choose to live—never from a template, always with intention.";
+    tabTitle = "ExQuisite Living — Composition";
   } else if (normalizedIndex >= 18 && normalizedIndex <= 19) {
     chapterKey = 4;
     sectionNum = "IV — Membership";

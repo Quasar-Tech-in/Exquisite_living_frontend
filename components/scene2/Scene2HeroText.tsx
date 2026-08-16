@@ -19,21 +19,21 @@ export default function Scene2HeroText({
 
   const normalizedIndex = ((activeCardIndex % 20) + 20) % 20;
 
-  let title = "Loose leaves, ";
-  let italicTitle = "lifted from the book.";
+  let title = "Every detail, ";
+  let italicTitle = "thoughtfully curated.";
   let italicColor = "text-[#1fda64]";
 
   if (normalizedIndex >= 0 && normalizedIndex <= 3) {
-    title = "A sensibility, ";
-    italicTitle = "not a service.";
+    title = "Every client is different, ";
+    italicTitle = "and so is every decision we make.";
     italicColor = "text-[#ecb471]";
   } else if (normalizedIndex >= 4 && normalizedIndex <= 11) {
-    title = "A quiet intelligence, ";
-    italicTitle = "composing in the background.";
+    title = "Behind every effortless experience, ";
+    italicTitle = "is thoughtful planning.";
     italicColor = "text-[#7beea9]";
   } else if (normalizedIndex >= 12 && normalizedIndex <= 17) {
-    title = "Loose leaves, ";
-    italicTitle = "lifted from the book.";
+    title = "Every detail, ";
+    italicTitle = "thoughtfully curated.";
     italicColor = "text-[#1fda64]";
   } else if (normalizedIndex >= 18 && normalizedIndex <= 19) {
     title = "You do not join us. ";

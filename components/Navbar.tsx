@@ -30,7 +30,7 @@ export default function Navbar({ className, ...props }: HTMLMotionProps<"nav">) 
   
   const isSensibilityActive = isExperienceActive && normalizedIndex >= 0 && normalizedIndex <= 3;
   const isIntelligenceActive = isExperienceActive && normalizedIndex >= 4 && normalizedIndex <= 11;
-  const isCompositionsActive = isExperienceActive && normalizedIndex >= 12 && normalizedIndex <= 17;
+  const isCompositionActive = isExperienceActive && normalizedIndex >= 12 && normalizedIndex <= 17;
   const isMembershipActive = isExperienceActive && normalizedIndex >= 18 && normalizedIndex <= 19;
 
   return (
@@ -101,11 +101,11 @@ export default function Navbar({ className, ...props }: HTMLMotionProps<"nav">) 
       <div className="hidden md:flex short:hidden! flex-1 justify-around text-sm tracking-[0.15em] uppercase font-light">
         <span
           className={`cursor-pointer transition-colors duration-300 hover:text-white ${
-            isCompositionsActive ? "text-white font-normal" : "text-white/50"
+            isCompositionActive ? "text-white font-normal" : "text-white/50"
           }`}
           onClick={() => handleNavClick(12)}
         >
-          Compositions
+          Composition
         </span>
         <span
           className={`cursor-pointer transition-colors duration-300 hover:text-white ${
