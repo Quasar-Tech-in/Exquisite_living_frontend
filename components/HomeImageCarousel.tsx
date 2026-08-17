@@ -33,7 +33,7 @@ const CARDS: { src: string; delay: number; meta: CardMeta; icon: string }[] = [
   {
     src: "/closing_ambient.png",
     delay: 1.3,
-    meta: { kind: "stat", number: "III", label: "The Composition" },
+    meta: { kind: "stat", number: "III", label: "The Curation" },
     icon: "/icon_tree_cream.png",
   },
   {

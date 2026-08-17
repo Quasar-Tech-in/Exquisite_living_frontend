@@ -35,7 +35,7 @@ export const cardsData: CardData[] = [
   },
   {
     title: "Aesthetic Sensibility",
-    subtext: "Your taste is shaped by countless details.",
+    subtext: "The art of knowing what feels right.",
     desc: "Your taste is shaped by countless details—from the spaces you're drawn to and the design you admire, to the colours, textures, and atmosphere that make you feel at home. We learn those nuances, so every recommendation feels instinctively right.",
   },
   {
@@ -60,7 +60,7 @@ export const cardsData: CardData[] = [
   },
   {
     title: "Curiosities & Fixations",
-    subtext: "The things that genuinely fascinate you.",
+    subtext: "What captures your attention, beyond the expected.",
     desc: "The things that genuinely fascinate you often become the most meaningful experiences. Whether it's art, watches, architecture, motorsport, wine, wellness, or something entirely unexpected, we quietly take notice and curate around your interests.",
   },
   {
@@ -69,7 +69,7 @@ export const cardsData: CardData[] = [
     desc: "By understanding your natural rhythm, we plan experiences that feel effortless, energising, and perfectly timed.",
   },
 
-  // --- Chapter 3: Composition (Indices 12-17) ---
+  // --- Chapter 3: Curation (Indices 12-17) ---
   {
     title: "Cuisine Artistry",
     subtext: "Every meal, thoughtfully curated.",

@@ -56,11 +56,10 @@ function ComparisonTable({ activeIndex }: { activeIndex: number }) {
             ? { scale: 1.02, borderColor: "rgba(123, 238, 169, 0.45)" }
             : { scale: 1 }
         }
-        className={`flex items-center justify-between rounded border p-3 transition-colors ${
-          isExquisiteActive
+        className={`flex items-center justify-between rounded border p-3 transition-colors ${isExquisiteActive
             ? "border-[#7beea9]/40 ring-1 ring-[#7beea9]/20"
             : "border-white/10 opacity-70"
-        }`}
+          }`}
         style={{
           background: isExquisiteActive
             ? "linear-gradient(135deg, rgba(123,238,169,0.10) 0%, rgba(20,32,25,0.85) 100%)"
@@ -124,14 +123,13 @@ function IntelligenceGrid({
                   ? { scale: 1.03, borderColor: "rgba(123, 238, 169, 0.6)" }
                   : { scale: 1, borderColor: "rgba(255, 255, 255, 0.1)" }
               }
-              className={`flex h-14 cursor-pointer flex-col justify-center rounded border p-2 font-light transition-colors md:h-16 md:p-3 ${
-                isActive
+              className={`flex h-14 cursor-pointer flex-col justify-center rounded border p-2 font-light transition-colors md:h-16 md:p-3 ${isActive
                   ? "border-[#7beea9] bg-white/8 text-white"
                   : "border-white/10 bg-white/4 text-white/70"
-              }`}
+                }`}
             >
               <span
-                className={`text-[8px] tracking-widest uppercase md:text-[9px] ${isActive ? "text-[#ffa02e]" : "text-white/50"}`}
+                className={`text-[8px] tracking-widest uppercase md:text-[9px] ${isActive ? "text-[#E6C19A]" : "text-white/50"}`}
               >
                 {p.num}
               </span>
@@ -147,7 +145,7 @@ function IntelligenceGrid({
   );
 }
 
-// Compositions Split Layout Image Block
+// Curation Split Layout Image Block
 function YoursResembleBlock() {
   return (
     <div className="flex flex-col rounded-xl border border-white/5 bg-white/5 p-3 md:p-4">
@@ -170,7 +168,7 @@ function YoursResembleBlock() {
       <p className="text-[11px] leading-relaxed font-light text-white/70 md:text-xs">
         They simply feel right. Behind that feeling is thoughtful planning,
         quiet attention, and a deep understanding of what matters most to you.
-        That's how every experience we create begins.
+        That&apos;s how every experience we create begins.
       </p>
     </div>
   );
@@ -206,7 +204,7 @@ function RegisterInterestForm() {
         <motion.div
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          className="w-full rounded border border-dashed border-[#ffa02e]/30 py-4 text-sm font-light tracking-widest text-[#ffa02e] md:text-base lg:text-lg"
+          className="w-full rounded border border-dashed border-[#E6C19A]/30 py-4 text-sm font-light tracking-widest text-[#E6C19A] md:text-base lg:text-lg"
         >
           ✦ Interest Registered. We will find you. ✦
         </motion.div>
@@ -267,7 +265,7 @@ function MembershipPolicies() {
             boxShadow: "inset 0 1px 0 rgba(255,255,255,0.05)",
           }}
         >
-          <span className="mb-1 font-medium tracking-widest text-[#ffa02e] uppercase">
+          <span className="mb-1 font-medium tracking-widest text-[#E6C19A] uppercase">
             {p.title}
           </span>
           <span className="leading-snug text-white/70">{p.desc}</span>
@@ -320,11 +318,11 @@ export default function Scene2({
     tabTitle = "ExQuisite Living — Intelligence";
   } else if (normalizedIndex >= 12 && normalizedIndex <= 17) {
     chapterKey = 3;
-    sectionNum = "III — Composition";
+    sectionNum = "III — Curation";
     sectionTitle = "Every detail, thoughtfully curated";
     sectionDesc =
       "No two lives are the same, and neither are the experiences we create. Every journey, celebration, introduction, and moment is thoughtfully composed around your preferences, priorities, and the way you choose to live—never from a template, always with intention.";
-    tabTitle = "ExQuisite Living — Composition";
+    tabTitle = "ExQuisite Living — Curation";
   } else if (normalizedIndex >= 18 && normalizedIndex <= 19) {
     chapterKey = 4;
     sectionNum = "IV — Membership";
@@ -378,7 +376,7 @@ export default function Scene2({
           const chapters = [
             { start: 0, end: 3 }, // Sensibility
             { start: 4, end: 11 }, // Intelligence
-            { start: 12, end: 17 }, // Compositions
+            { start: 12, end: 17 }, // Curation
             { start: 18, end: 19 }, // Membership
           ];
           const currentChapter = chapters.find(
@@ -406,7 +404,7 @@ export default function Scene2({
 
       {/* Desktop Left Details Sidebar */}
       <motion.div
-        className={`pointer-events-auto absolute top-1/2 left-[5vw] z-10 hidden h-fit max-h-[75dvh] w-[28vw] -translate-y-1/2 flex-col overflow-y-auto rounded-2xl border border-white/8 p-6 backdrop-blur-md select-none lg:flex ${imprima.className}`}
+        className={`pointer-events-auto absolute top-[56dvh] left-[5vw] z-10 hidden h-fit max-h-[75dvh] w-[28vw] -translate-y-1/2 flex-col overflow-y-auto rounded-2xl border border-white/8 p-6 backdrop-blur-md select-none lg:flex ${imprima.className}`}
         style={{
           background:
             "linear-gradient(145deg, rgba(20,32,25,0.92) 0%, rgba(10,18,14,0.96) 100%)",
@@ -471,7 +469,7 @@ export default function Scene2({
             animate={{ opacity: 1, y: 0 }}
             className="mt-6 border-t border-white/10 pt-5"
           >
-            <span className="mb-0.5 block text-xs font-medium tracking-widest text-[#ffa02e] uppercase">
+            <span className="mb-0.5 block text-xs font-medium tracking-widest text-[#E6C19A] uppercase">
               {activeComp.title}
             </span>
             <span className="mb-2 block text-[10px] text-white/55">
@@ -493,7 +491,7 @@ export default function Scene2({
 
       {/* Desktop Right Component Sidebar */}
       <motion.div
-        className={`pointer-events-auto absolute top-1/2 right-[5vw] z-10 hidden h-fit max-h-[75dvh] -translate-y-1/2 flex-col overflow-y-auto rounded-2xl border border-white/8 p-6 backdrop-blur-md select-none lg:flex ${imprima.className}`}
+        className={`pointer-events-auto absolute top-[56dvh] right-[5vw] z-10 hidden h-fit max-h-[75dvh] -translate-y-1/2 flex-col overflow-y-auto rounded-2xl border border-white/8 p-6 backdrop-blur-md select-none lg:flex ${imprima.className}`}
         style={{
           background:
             "linear-gradient(145deg, rgba(20,32,25,0.92) 0%, rgba(10,18,14,0.96) 100%)",
@@ -613,7 +611,7 @@ export default function Scene2({
                 {/* Narrative injection for all cards */}
                 {activeComp && (
                   <div className="mt-5 rounded-lg border border-dashed border-white/10 bg-white/5 p-4 text-left">
-                    <span className="mb-1 block text-xs font-medium tracking-widest text-[#ffa02e] uppercase">
+                    <span className="mb-1 block text-xs font-medium tracking-widest text-[#E6C19A] uppercase">
                       {activeComp.title}
                     </span>
                     <span className="mb-2 block text-[10px] text-white/55">

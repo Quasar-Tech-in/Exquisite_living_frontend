@@ -101,49 +101,49 @@ export default function Scene2WheelLayer({
       {/* z-20: the desktop sidebars (Scene2.tsx) are z-10 and render later in
           the DOM, so at a tied z-index they painted over these buttons
           wherever their bounding boxes overlapped. */}
-      <motion.button
-        className="pointer-events-auto absolute left-6 md:left-10 lg:left-16 top-[46dvh] md:top-[44dvh] -translate-y-1/2 short:top-[50dvh]! flex items-center justify-center h-12 w-12 rounded-full border border-white/10 bg-black/40 text-white/70 backdrop-blur-md transition-all duration-300 hover:bg-white hover:text-black hover:border-white hover:opacity-100 select-none z-20 cursor-pointer shadow-xl"
-        onClick={(e) => {
-          e.stopPropagation();
-          handleInteraction();
-          setActiveCardIndex((prev) => prev - 1);
-        }}
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: isActive ? 0.9 : 0, x: isActive ? 0 : -20 }}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        transition={isReturning
-          ? { duration: 0.8, delay: 0, ease: [0.8, 0, 1, 0.2] }
-          : { duration: 0.8, delay: 0.6 }
-        }
-        aria-label="Previous card"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-        </svg>
-      </motion.button>
+    <motion.button
+      className="pointer-events-auto absolute left-3 md:left-4 top-[46dvh] md:top-[44dvh] -translate-y-1/2 short:top-[50dvh]! flex items-center justify-center h-12 w-12 rounded-full border border-white/10 bg-black/40 text-white/70 backdrop-blur-md transition-all duration-300 hover:bg-white hover:text-black hover:border-white hover:opacity-100 select-none z-20 cursor-pointer shadow-xl"
+      onClick={(e) => {
+        e.stopPropagation();
+        handleInteraction();
+        setActiveCardIndex((prev) => prev - 1);
+      }}
+      initial={{ opacity: 0, x: -20 }}
+      animate={{ opacity: isActive ? 0.9 : 0, x: isActive ? 0 : -20 }}
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+      transition={isReturning
+        ? { duration: 0.8, delay: 0, ease: [0.8, 0, 1, 0.2] }
+        : { duration: 0.8, delay: 0.6 }
+      }
+      aria-label="Previous card"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+      </svg>
+    </motion.button>
 
-      <motion.button
-        className="pointer-events-auto absolute right-6 md:right-10 lg:right-16 top-[46dvh] md:top-[44dvh] -translate-y-1/2 short:top-[50dvh]! flex items-center justify-center h-12 w-12 rounded-full border border-white/10 bg-black/40 text-white/70 backdrop-blur-md transition-all duration-300 hover:bg-white hover:text-black hover:border-white hover:opacity-100 select-none z-20 cursor-pointer shadow-xl"
-        onClick={(e) => {
-          e.stopPropagation();
-          handleInteraction();
-          setActiveCardIndex((prev) => prev + 1);
-        }}
-        initial={{ opacity: 0, x: 20 }}
-        animate={{ opacity: isActive ? 0.9 : 0, x: isActive ? 0 : 20 }}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        transition={isReturning
-          ? { duration: 0.8, delay: 0, ease: [0.8, 0, 1, 0.2] }
-          : { duration: 0.8, delay: 0.6 }
-        }
-        aria-label="Next card"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-        </svg>
-      </motion.button>
+    <motion.button
+      className="pointer-events-auto absolute right-3 md:right-4 top-[46dvh] md:top-[44dvh] -translate-y-1/2 short:top-[50dvh]! flex items-center justify-center h-12 w-12 rounded-full border border-white/10 bg-black/40 text-white/70 backdrop-blur-md transition-all duration-300 hover:bg-white hover:text-black hover:border-white hover:opacity-100 select-none z-20 cursor-pointer shadow-xl"
+      onClick={(e) => {
+        e.stopPropagation();
+        handleInteraction();
+        setActiveCardIndex((prev) => prev + 1);
+      }}
+      initial={{ opacity: 0, x: 20 }}
+      animate={{ opacity: isActive ? 0.9 : 0, x: isActive ? 0 : 20 }}
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+      transition={isReturning
+        ? { duration: 0.8, delay: 0, ease: [0.8, 0, 1, 0.2] }
+        : { duration: 0.8, delay: 0.6 }
+      }
+      aria-label="Next card"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+      </svg>
+    </motion.button>
     </>
   );
 }
