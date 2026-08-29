@@ -11,7 +11,7 @@ import Scene2LowerCloudsLayer from "./Scene2LowerCloudsLayer";
 import Scene2HeroText from "./Scene2HeroText";
 import ExitExperienceButton from "@/components/ExitExperienceButton";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
-import { DEFAULT_TITLE } from "@/lib/siteMeta";
+import { CONTACT_EMAIL, DEFAULT_TITLE } from "@/lib/siteMeta";
 
 interface Props {
   cloudX: MotionValue<number>;
@@ -20,6 +20,16 @@ interface Props {
   floorY: MotionValue<number>;
   textX: MotionValue<number>;
 }
+
+// Chapter boundaries over the 20-card wheel. Single source of truth shared by
+// the desktop progress dots and the mobile chapter indicator, so the two can't
+// drift apart when card counts change.
+const CHAPTERS = [
+  { start: 0, end: 3, num: "I", name: "Sensibility" },
+  { start: 4, end: 11, num: "II", name: "Intelligence" },
+  { start: 12, end: 17, num: "III", name: "Curation" },
+  { start: 18, end: 19, num: "IV", name: "Membership" },
+] as const;
 
 // ── Chapter Subcomponents ──────────────────────────────────────────────────────
 
@@ -56,10 +66,11 @@ function ComparisonTable({ activeIndex }: { activeIndex: number }) {
             ? { scale: 1.02, borderColor: "rgba(123, 238, 169, 0.45)" }
             : { scale: 1 }
         }
-        className={`flex items-center justify-between rounded border p-3 transition-colors ${isExquisiteActive
+        className={`flex items-center justify-between rounded border p-3 transition-colors ${
+          isExquisiteActive
             ? "border-[#3E5343]/40 ring-1 ring-[#3E5343]/20"
             : "border-white/10 opacity-70"
-          }`}
+        }`}
         style={{
           background: isExquisiteActive
             ? "linear-gradient(135deg, rgba(123,238,169,0.10) 0%, rgba(20,32,25,0.85) 100%)"
@@ -123,10 +134,11 @@ function IntelligenceGrid({
                   ? { scale: 1.03, borderColor: "rgba(123, 238, 169, 0.6)" }
                   : { scale: 1, borderColor: "rgba(255, 255, 255, 0.1)" }
               }
-              className={`flex h-14 cursor-pointer flex-col justify-center rounded border p-2 font-light transition-colors md:h-16 md:p-3 ${isActive
+              className={`flex h-14 cursor-pointer flex-col justify-center rounded border p-2 font-light transition-colors md:h-16 md:p-3 ${
+                isActive
                   ? "border-[#3E5343] bg-white/8 text-white"
                   : "border-white/10 bg-white/4 text-white/70"
-                }`}
+              }`}
             >
               <span
                 className={`text-[8px] tracking-widest uppercase md:text-[9px] ${isActive ? "text-[#E6C19A]" : "text-white/50"}`}
@@ -174,61 +186,71 @@ function YoursResembleBlock() {
   );
 }
 
-// Membership Registration Interest Form
-function RegisterInterestForm() {
-  const [email, setEmail] = useState("");
-  const [submitted, setSubmitted] = useState(false);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (email.trim()) {
-      setSubmitted(true);
-    }
-  };
-
+// Membership Correspondence Block — replaces the former register-interest form.
+// Single mark at the top (acts as a letterhead seal); no closing glyph.
+function CorrespondenceBlock() {
   return (
     <div className="flex flex-col items-center p-3 text-center md:p-4">
       <img
         src="/icon_tree_cream.png"
         alt=""
-        className="mb-3 h-6 w-auto opacity-40 md:mb-4 md:h-8"
+        className="mb-5 h-7 w-auto opacity-70 md:mb-6 md:h-9"
       />
-      <p className="mb-2.5 text-base leading-snug font-light text-white md:text-lg lg:text-xl">
-        If this is resonating, we would like to know you exist.
-      </p>
-      <p className="mb-5 text-xs font-light text-white/60 md:mb-7 md:text-sm lg:text-base">
-        No obligation follows. We simply begin to listen.
+
+      <p
+        className={`text-base leading-relaxed font-light text-[#E6C19A] italic md:text-lg lg:text-xl ${viaodaLibre.className}`}
+      >
+        For those genuinely aligned,
+        <br />
+        the path is always quiet — and the door, deliberate.
       </p>
 
-      {submitted ? (
-        <motion.div
-          initial={{ scale: 0.9, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          className="w-full rounded border border-dashed border-[#E6C19A]/30 py-4 text-sm font-light tracking-widest text-[#E6C19A] md:text-base lg:text-lg"
+      {/* Diamond rule */}
+      <div
+        className="my-6 flex items-center justify-center gap-2 md:my-7"
+        aria-hidden="true"
+      >
+        <span className="block h-px w-10 bg-[#E6C19A]/40" />
+        <svg
+          viewBox="0 0 8 8"
+          className="h-1.5 w-1.5 text-[#E6C19A]/70"
+          fill="currentColor"
         >
-          ✦ Interest Registered. We will find you. ✦
-        </motion.div>
-      ) : (
-        <form
-          onSubmit={handleSubmit}
-          className="flex w-full flex-col gap-3 md:gap-4"
+          <path d="M4 0 8 4 4 8 0 4Z" />
+        </svg>
+        <span className="block h-px w-10 bg-[#E6C19A]/40" />
+      </div>
+
+      <span className="mb-4 block text-[10px] font-normal tracking-[0.3em] text-[#E6C19A] uppercase md:text-[11px]">
+        Correspondence
+      </span>
+
+      <a
+        href={`mailto:${CONTACT_EMAIL}`}
+        className={`group flex cursor-pointer items-center gap-2.5 text-base text-white transition-colors duration-300 hover:text-[#E6C19A] md:text-lg lg:text-xl ${viaodaLibre.className}`}
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth="1.5"
+          stroke="currentColor"
+          className="h-4 w-4 shrink-0 text-[#E6C19A] md:h-[18px] md:w-[18px]"
         >
-          <input
-            type="text"
-            placeholder="Email address or referral name"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="w-full border-b border-white/30 bg-transparent py-2.5 text-center text-sm font-light placeholder-white/50 transition-colors focus:border-white focus:outline-none md:text-base lg:text-lg"
-            required
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"
           />
-          <button
-            type="submit"
-            className="w-full cursor-pointer rounded border border-white/30 py-3 text-xs font-normal tracking-widest text-white/80 uppercase transition-all duration-300 hover:border-white hover:bg-white hover:text-black md:text-sm lg:text-base"
-          >
-            Register Interest
-          </button>
-        </form>
-      )}
+        </svg>
+        <span className="break-all underline-offset-4 group-hover:underline">
+          {CONTACT_EMAIL}
+        </span>
+      </a>
+
+      <p className="mt-3 text-xs font-light text-white/55 md:text-sm">
+        For matters beyond membership.
+      </p>
     </div>
   );
 }
@@ -277,6 +299,61 @@ function MembershipPolicies() {
 
 import { cardsData } from "@/lib/cardsData";
 
+// Mobile/tablet chapter indicator. Below `lg` both the desktop progress dots
+// and the navbar chapter links are hidden, which left phones with no signal of
+// which chapter they were in. One row carries both facts: four segments for the
+// four chapters, the current one filling as you move through its cards.
+function MobileChapterIndicator({
+  normalizedIndex,
+}: {
+  normalizedIndex: number;
+}) {
+  const activeChapter = CHAPTERS.findIndex(
+    (c) => normalizedIndex >= c.start && normalizedIndex <= c.end,
+  );
+  if (activeChapter === -1) return null;
+
+  const chapter = CHAPTERS[activeChapter];
+  const total = chapter.end - chapter.start + 1;
+  const position = normalizedIndex - chapter.start;
+
+  return (
+    <div className="short:gap-1.5 flex flex-col items-center gap-2">
+      <div className="short:gap-1 flex items-center gap-1.5">
+        {CHAPTERS.map((c, i) => (
+          <span
+            key={c.num}
+            className="short:w-7 block h-[3px] w-9 overflow-hidden rounded-full"
+            style={{
+              background:
+                i < activeChapter
+                  ? "rgba(123,238,169,0.3)"
+                  : "rgba(255,255,255,0.15)",
+            }}
+          >
+            {i === activeChapter && (
+              <motion.span
+                className="block h-full rounded-full"
+                style={{ background: "rgba(123,238,169,0.85)" }}
+                initial={false}
+                animate={{ width: `${((position + 1) / total) * 100}%` }}
+                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              />
+            )}
+          </span>
+        ))}
+      </div>
+      <span className="short:text-[8px] text-[9px] font-light tracking-[0.22em] text-white/70 uppercase">
+        {chapter.num} — {chapter.name}
+        <span className="ml-2 text-white/35 tabular-nums">
+          {String(position + 1).padStart(2, "0")}/
+          {String(total).padStart(2, "0")}
+        </span>
+      </span>
+    </div>
+  );
+}
+
 // ── main Scene 2 component ──────────────────────────────────────────────────────
 
 export default function Scene2({
@@ -305,7 +382,8 @@ export default function Scene2({
   if (normalizedIndex >= 0 && normalizedIndex <= 3) {
     chapterKey = 1;
     sectionNum = "I — Sensibility";
-    sectionTitle = "Every client is different, and so is every decision we make.";
+    sectionTitle =
+      "Every client is different, and so is every decision we make.";
     sectionDesc =
       "We take the time to understand your preferences, routines, values, and the details that matter most to you. Every recommendation, introduction, and experience is thoughtfully curated to feel personal, intuitive, and unmistakably yours.";
     tabTitle = "ExQuisite Living — Sensibility";
@@ -372,14 +450,7 @@ export default function Scene2({
         }
       >
         {(() => {
-          // Chapter boundaries
-          const chapters = [
-            { start: 0, end: 3 }, // Sensibility
-            { start: 4, end: 11 }, // Intelligence
-            { start: 12, end: 17 }, // Curation
-            { start: 18, end: 19 }, // Membership
-          ];
-          const currentChapter = chapters.find(
+          const currentChapter = CHAPTERS.find(
             (c) => normalizedIndex >= c.start && normalizedIndex <= c.end,
           );
           if (!currentChapter) return null;
@@ -518,41 +589,57 @@ export default function Scene2({
           />
         )}
         {chapterKey === 3 && <YoursResembleBlock />}
-        {chapterKey === 4 && <RegisterInterestForm />}
+        {chapterKey === 4 && <CorrespondenceBlock />}
       </motion.div>
 
-      {/* Mobile Drawer Trigger Button */}
+      {/* Mobile chapter indicator + drawer trigger */}
       <div
         className={`short:bottom-4! absolute bottom-36 left-1/2 z-8 mb-[env(safe-area-inset-bottom)] -translate-x-1/2 md:bottom-28 lg:hidden ${isActive ? "pointer-events-auto" : "pointer-events-none"}`}
       >
-        <motion.button
-          onClick={() => setIsDetailsOpen(true)}
-          disabled={!isActive}
-          className={`short:px-3 short:py-1.5 short:text-[9px]! flex cursor-pointer items-center gap-2 rounded-full border border-white/20 bg-black/50 px-5 py-2.5 text-[10px] font-light tracking-[0.15em] text-white/90 uppercase shadow-lg backdrop-blur-md transition-all duration-300 hover:border-white hover:bg-white hover:text-black md:text-xs ${imprima.className}`}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: isActive ? 1 : 0, y: isActive ? 0 : 20 }}
-          transition={
-            isReturning
-              ? { duration: 0.8, delay: 0, ease: [0.8, 0, 1, 0.2] }
-              : { duration: 0.8, delay: 1 }
-          }
-        >
-          ✦ View Details
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="1.5"
-            stroke="currentColor"
-            className="h-3 w-3"
+        <div className="short:gap-2.5 flex flex-col items-center gap-4">
+          {/* pointer-events-none so it never intercepts a wheel drag */}
+          <motion.div
+            className={`pointer-events-none ${imprima.className}`}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: isActive ? 1 : 0, y: isActive ? 0 : 12 }}
+            transition={
+              isReturning
+                ? { duration: 0.8, delay: 0, ease: [0.8, 0, 1, 0.2] }
+                : { duration: 0.8, delay: 1 }
+            }
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M4.5 15.75l7.5-7.5 7.5 7.5"
-            />
-          </svg>
-        </motion.button>
+            <MobileChapterIndicator normalizedIndex={normalizedIndex} />
+          </motion.div>
+
+          <motion.button
+            onClick={() => setIsDetailsOpen(true)}
+            disabled={!isActive}
+            className={`short:px-3 short:py-1.5 short:text-[9px]! flex cursor-pointer items-center gap-2 rounded-full border border-white/20 bg-black/50 px-5 py-2.5 text-[10px] font-light tracking-[0.15em] text-white/90 uppercase shadow-lg backdrop-blur-md transition-all duration-300 hover:border-white hover:bg-white hover:text-black md:text-xs ${imprima.className}`}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: isActive ? 1 : 0, y: isActive ? 0 : 20 }}
+            transition={
+              isReturning
+                ? { duration: 0.8, delay: 0, ease: [0.8, 0, 1, 0.2] }
+                : { duration: 0.8, delay: 1 }
+            }
+          >
+            ✦ View Details
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="1.5"
+              stroke="currentColor"
+              className="h-3 w-3"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M4.5 15.75l7.5-7.5 7.5 7.5"
+              />
+            </svg>
+          </motion.button>
+        </div>
       </div>
 
       {/* Mobile Details Modal Overlay */}
@@ -644,7 +731,7 @@ export default function Scene2({
                   />
                 )}
                 {chapterKey === 3 && <YoursResembleBlock />}
-                {chapterKey === 4 && <RegisterInterestForm />}
+                {chapterKey === 4 && <CorrespondenceBlock />}
               </div>
             </div>
           </motion.div>
