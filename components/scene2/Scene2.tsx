@@ -68,7 +68,7 @@ function ComparisonTable({ activeIndex }: { activeIndex: number }) {
         }
         className={`flex items-center justify-between rounded border p-3 transition-colors ${
           isExquisiteActive
-            ? "border-[#3E5343]/40 ring-1 ring-[#3E5343]/20"
+            ? "border-[#1fda64]/40 ring-1 ring-[#1fda64]/20"
             : "border-white/10 opacity-70"
         }`}
         style={{
@@ -77,7 +77,7 @@ function ComparisonTable({ activeIndex }: { activeIndex: number }) {
             : "rgba(255,255,255,0.04)",
         }}
       >
-        <span className="text-[10px] font-medium tracking-[0.15em] text-[#3E5343] uppercase md:text-xs">
+        <span className="text-[10px] font-medium tracking-[0.15em] text-[#1fda64] uppercase md:text-xs">
           ExQuisite
         </span>
         <span className="font-normal text-white">
@@ -136,7 +136,7 @@ function IntelligenceGrid({
               }
               className={`flex h-14 cursor-pointer flex-col justify-center rounded border p-2 font-light transition-colors md:h-16 md:p-3 ${
                 isActive
-                  ? "border-[#3E5343] bg-white/8 text-white"
+                  ? "border-[#1fda64] bg-white/8 text-white"
                   : "border-white/10 bg-white/4 text-white/70"
               }`}
             >
@@ -169,7 +169,7 @@ function YoursResembleBlock() {
         />
         <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent"></div>
       </div>
-      <span className="mb-1 block text-[9px] tracking-widest text-[#3E5343] uppercase md:text-[10px]">
+      <span className="mb-1 block text-[9px] tracking-widest text-[#1fda64] uppercase md:text-[10px]">
         ✦ The last leaf of this chapter
       </span>
       <h4
@@ -519,7 +519,7 @@ export default function Scene2({
               className="h-4 w-auto opacity-40"
             />
           )}
-          <span className="text-[10px] font-light tracking-[0.2em] text-[#3E5343] uppercase md:text-[11px]">
+          <span className="text-[10px] font-light tracking-[0.2em] text-[#1fda64] uppercase md:text-[11px]">
             {sectionNum}
           </span>
         </div>
@@ -681,7 +681,7 @@ export default function Scene2({
             {/* Content Container (Stacked) */}
             <div className="flex flex-col gap-6 pb-12">
               <div className="flex flex-col text-center">
-                <span className="mb-2 text-[10px] font-light tracking-[0.2em] text-[#3E5343] uppercase">
+                <span className="mb-2 text-[10px] font-light tracking-[0.2em] text-[#1fda64] uppercase">
                   {sectionNum}
                 </span>
                 <h3

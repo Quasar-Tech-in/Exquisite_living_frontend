@@ -30,7 +30,7 @@ export default function Scene2HeroText({
   } else if (normalizedIndex >= 4 && normalizedIndex <= 11) {
     title = "Behind every effortless experience, ";
     italicTitle = "is thoughtful planning.";
-    italicColor = "text-[#3E5343]";
+    italicColor = "text-[#1fda64]";
   } else if (normalizedIndex >= 12 && normalizedIndex <= 17) {
     title = "Every detail, ";
     italicTitle = "thoughtfully curated.";
