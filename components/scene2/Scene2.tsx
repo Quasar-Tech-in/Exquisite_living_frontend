@@ -191,11 +191,27 @@ function YoursResembleBlock() {
 function CorrespondenceBlock() {
   return (
     <div className="flex flex-col items-center p-3 text-center md:p-4">
-      <img
-        src="/icon_tree_cream.png"
-        alt=""
-        className="mb-5 h-7 w-auto opacity-70 md:mb-6 md:h-9"
-      />
+      {/* The three chapter marks together — this card closes the sequence the
+          wheel walks through, so it crests with all of them rather than its
+          own. Order matches the chapters: I Sensibility, II Intelligence,
+          III Curation. */}
+      <div
+        className="mb-5 flex items-center gap-5 md:mb-6 md:gap-6"
+        aria-hidden="true"
+      >
+        {[
+          "/icon_spiral_cream.png",
+          "/icon_clover_cream.png",
+          "/icon_tree_cream.png",
+        ].map((src) => (
+          <img
+            key={src}
+            src={src}
+            alt=""
+            className="h-7 w-auto opacity-70 md:h-9"
+          />
+        ))}
+      </div>
 
       <p
         className={`text-base leading-relaxed font-light text-[#E6C19A] italic md:text-lg lg:text-xl ${viaodaLibre.className}`}
@@ -475,7 +491,7 @@ export default function Scene2({
 
       {/* Desktop Left Details Sidebar */}
       <motion.div
-        className={`pointer-events-auto absolute top-[56dvh] left-[5vw] z-10 hidden h-fit max-h-[75dvh] w-[28vw] -translate-y-1/2 flex-col overflow-y-auto rounded-2xl border border-white/8 p-6 backdrop-blur-md select-none lg:flex ${imprima.className}`}
+        className={`scrollbar-on-dark pointer-events-auto absolute top-[56dvh] left-[5vw] z-10 hidden h-fit max-h-[75dvh] w-[28vw] -translate-y-1/2 flex-col overflow-y-auto rounded-2xl border border-white/8 p-6 backdrop-blur-md select-none lg:flex ${imprima.className}`}
         style={{
           background:
             "linear-gradient(145deg, rgba(20,32,25,0.92) 0%, rgba(10,18,14,0.96) 100%)",
@@ -562,7 +578,7 @@ export default function Scene2({
 
       {/* Desktop Right Component Sidebar */}
       <motion.div
-        className={`pointer-events-auto absolute top-[56dvh] right-[5vw] z-10 hidden h-fit max-h-[75dvh] -translate-y-1/2 flex-col overflow-y-auto rounded-2xl border border-white/8 p-6 backdrop-blur-md select-none lg:flex ${imprima.className}`}
+        className={`scrollbar-on-dark pointer-events-auto absolute top-[56dvh] right-[5vw] z-10 hidden h-fit max-h-[75dvh] -translate-y-1/2 flex-col overflow-y-auto rounded-2xl border border-white/8 p-6 backdrop-blur-md select-none lg:flex ${imprima.className}`}
         style={{
           background:
             "linear-gradient(145deg, rgba(20,32,25,0.92) 0%, rgba(10,18,14,0.96) 100%)",
@@ -649,7 +665,7 @@ export default function Scene2({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex h-dvh flex-col overflow-y-auto p-6 backdrop-blur-md"
+            className="scrollbar-on-dark fixed inset-0 z-50 flex h-dvh flex-col overflow-y-auto p-6 backdrop-blur-md"
             style={{
               background:
                 "linear-gradient(145deg, rgba(12,20,17,0.97) 0%, rgba(6,12,10,0.99) 100%)",

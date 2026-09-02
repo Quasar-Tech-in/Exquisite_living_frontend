@@ -19,6 +19,11 @@
   --brand-dark-sage: #3f4c43;
   --brand-light-sage: #bec6be;
   --brand-warm-white: #f3f1ec;
+
+  /* Scrollbar palette — see the Scrollbars section at the bottom of this file. */
+  --scrollbar-thumb: rgba(63, 76, 67, 0.3);
+  --scrollbar-thumb-hover: rgba(63, 76, 67, 0.5);
+  --scrollbar-track: transparent;
 }
 
 .hero {
@@ -51,6 +56,9 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    /* Sage is invisible on near-black; lift the thumb toward ivory instead. */
+    --scrollbar-thumb: rgba(190, 198, 190, 0.25);
+    --scrollbar-thumb-hover: rgba(190, 198, 190, 0.45);
   }
 }
 
@@ -58,4 +66,69 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/*
+ * ── Scrollbars ───────────────────────────────────────────────────────
+ * Two palettes driven by the same three vars, so a scroll container picks its
+ * look by redefining them rather than by restating scrollbar rules.
+ *
+ * The engine split is load-bearing, not belt-and-braces. Chromium 121+ drops
+ * every ::-webkit-scrollbar rule on any element that also sets
+ * `scrollbar-width`/`scrollbar-color`, and hands the scroller to the native
+ * Fluent scrollbar instead — which draws stepper arrows the standard
+ * properties give us no way to remove. So the standard properties are fenced
+ * behind a probe only a non-webkit engine (i.e. Firefox) passes, leaving
+ * Chromium and Safari on the webkit path where we control every part.
+ */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+/* The stepper arrows at both ends. */
+::-webkit-scrollbar-button {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--scrollbar-thumb-hover);
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/*
+ * Firefox path — `thin` is button-less there. Declaring on `*` rather than
+ * `:root` is what lets `scrollbar-on-dark` below work at all: `scrollbar-color`
+ * inherits its *computed* value, so a var() resolved once at the root would
+ * freeze the light palette in for every descendant.
+ */
+@supports not selector(::-webkit-scrollbar) {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+  }
+}
+
+/*
+ * Opt-in palette for the dark glass surfaces (Scene 2 sidebars, mobile details
+ * overlay): ivory at low opacity so the thumb reads as part of the panel's own
+ * hairline borders, warming to the signature green on hover.
+ */
+@utility scrollbar-on-dark {
+  --scrollbar-thumb: rgba(229, 228, 223, 0.2);
+  --scrollbar-thumb-hover: rgba(123, 238, 169, 0.45);
 }
