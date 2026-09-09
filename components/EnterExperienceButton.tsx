@@ -41,7 +41,7 @@ export default function EnterExperienceButton(
           transition: { duration: 0.65, ease: [0.8, 0, 1, 0.2] },
         },
       }}
-      className={`${rest.className} group flex h-32 w-32 items-center justify-center`}
+      className={`${rest.className} group flex h-32 w-32 items-center justify-center short:h-20 short:w-20`}
     >
       {/* Rotating Border and Text Container */}
       <motion.div

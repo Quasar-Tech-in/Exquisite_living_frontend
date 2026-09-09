@@ -32,7 +32,7 @@ export default function Scene2LowerCloudsLayer({ floorX, floorY, activeCardIndex
         <img
           src={"lower-clouds.webp"}
           alt=""
-          className="block w-full h-[30vh] md:h-[413px] scale-x-[-1] brightness-125"
+          className="block w-full h-[30dvh] md:h-[413px] scale-x-[-1] brightness-125"
         />
       </motion.div>
     </motion.div>
