@@ -15,7 +15,7 @@ export default function ExitExperienceButton() {
     <AnimatePresence>
       {isVisible && (
         <motion.button
-          className="flex absolute bottom-12 lg:bottom-[8vh] left-1/2 -translate-x-1/2 group h-24 w-24 lg:h-32 lg:w-32 items-center justify-center cursor-pointer"
+          className="flex absolute bottom-12 lg:bottom-[8dvh] short:bottom-10! left-1/2 -translate-x-1/2 mb-[env(safe-area-inset-bottom)] group h-24 w-24 lg:h-32 lg:w-32 short:h-16! short:w-16! items-center justify-center cursor-pointer"
           style={{ zIndex: 10 }}
           onClick={returnToScene1}
           initial={{ y: 500, opacity: 0 }}

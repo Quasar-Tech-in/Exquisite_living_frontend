@@ -41,3 +41,7 @@ yarn-error.log*
 next-env.d.ts
 /public/archive
 public/archive/Parallax Image/Parallax Image/V1.jpg
+
+#temporary and agent files
+/temp
+.claude/settings.json

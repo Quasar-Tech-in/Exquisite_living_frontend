@@ -3,6 +3,7 @@
 import { viaodaLibre, imprima } from "@/lib/fonts";
 
 import { cardsData } from "@/lib/cardsData";
+import { CARD_H } from "@/lib/wheelGeometry";
 
 // 10 premium organic colors that feel cohesive with the brand
 const colors: string[] = [
@@ -27,7 +28,6 @@ const cardColors: string[] = [...colors, ...colors];
 const TOTAL_CARDS = 20;
 const RADIUS = 905; // rim of wheel — tightened from 950 for ~2px visual gap
 const CARD_W = 220;
-const CARD_H = 240;
 const CARD_RADIUS = 40; // border-radius for all card corners
 const CIRCLE_R = 22; // radius of the accent circle
 // Place circle center at (CARD_RADIUS, CARD_RADIUS) from the corner vertex so it hugs the rounded corner
