@@ -45,7 +45,7 @@ export default function Scene1({
       <Scene1BgLayer bgX={bgX} bgY={bgY} onEntryComplete={onBgEntryComplete} isReturning={isReturning} />
       {/* Top gradient veil — darkens the sky behind the Navbar so the cream logo is legible on load */}
       <div
-        className="pointer-events-none absolute inset-x-0 top-0 h-[22vh]"
+        className="pointer-events-none absolute inset-x-0 top-0 h-[22dvh]"
         style={{
           zIndex: 7,
           background: "linear-gradient(to bottom, rgba(0,0,0,0.42) 0%, transparent 100%)",
@@ -56,7 +56,7 @@ export default function Scene1({
       <HomeImageCarousel carouselX={carouselX} isExiting={isExiting} isReturning={isReturning} />
       <EnterExperienceButton
         style={{ zIndex: 50 }}
-        className="absolute top-[80vh] left-[50vw] translate-x-[-50%]"
+        className="absolute top-[80dvh] short:top-[68dvh] left-[50vw] translate-x-[-50%]"
         onClick={startTransition}
         isExiting={isExiting}
         isReturning={isReturning}

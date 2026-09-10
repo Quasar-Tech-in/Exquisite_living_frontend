@@ -36,9 +36,11 @@ export function useParallax(isActive: boolean): ParallaxValues {
 
   useEffect(() => {
     if (!isActive) return;
+    // Gate on input modality, not viewport width — a 900px mouse-driven
+    // window should still get parallax, and a touch-only tablet shouldn't.
+    if (!window.matchMedia("(pointer: fine)").matches) return;
 
     const handleMouseMove = (e: MouseEvent) => {
-      if (window.innerWidth < 1024) return;
       mouseX.set((e.clientX / window.innerWidth) * 2 - 1);
       mouseY.set((e.clientY / window.innerHeight) * 2 - 1);
     };
