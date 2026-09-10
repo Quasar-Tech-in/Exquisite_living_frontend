@@ -15,44 +15,41 @@ const ASSETS_TO_LOAD = [
 
 export default function Preloader() {
   const { isLoaded, setIsLoaded } = useScene();
-  const [currentIndex, setCurrentIndex] = useState(0);
   const [showPreloader, setShowPreloader] = useState(true);
 
   useEffect(() => {
     let isCancelled = false;
+    let loadedCount = 0;
+    const total = ASSETS_TO_LOAD.length;
 
-    const loadNext = (index: number) => {
-      if (index >= ASSETS_TO_LOAD.length) {
-        if (!isCancelled) {
-          // Add a small delay for aesthetic purposes before unmounting
-          setTimeout(() => {
+    if (total === 0) {
+      setIsLoaded(true);
+      setShowPreloader(false);
+      return;
+    }
+
+    const onAssetFinished = () => {
+      if (isCancelled) return;
+      loadedCount++;
+      if (loadedCount >= total) {
+        setTimeout(() => {
+          if (!isCancelled) {
             setIsLoaded(true);
             setTimeout(() => setShowPreloader(false), 800);
-          }, 500);
-        }
-        return;
+          }
+        }, 300);
       }
-
-      setCurrentIndex(index);
-
-      const img = new window.Image();
-      img.src = ASSETS_TO_LOAD[index];
-
-      img.onload = () => {
-        if (!isCancelled) {
-          loadNext(index + 1);
-        }
-      };
-      img.onerror = () => {
-        // If an image fails to load, just continue so we don't get stuck forever
-        if (!isCancelled) {
-          console.warn(`Failed to preload ${ASSETS_TO_LOAD[index]}`);
-          loadNext(index + 1);
-        }
-      };
     };
 
-    loadNext(0);
+    ASSETS_TO_LOAD.forEach((src) => {
+      const img = new window.Image();
+      img.src = src;
+      img.onload = onAssetFinished;
+      img.onerror = () => {
+        console.warn(`Failed to preload ${src}`);
+        onAssetFinished();
+      };
+    });
 
     return () => {
       isCancelled = true;

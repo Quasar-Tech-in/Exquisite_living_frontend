@@ -110,7 +110,7 @@ function YoursResembleBlock() {
     <div className="flex flex-col p-3 md:p-4 bg-white/5 border border-white/5 rounded-xl">
       <div className="relative aspect-[16/10] overflow-hidden rounded-lg mb-3">
         <img
-          src="/exp_table.png"
+          src="/exp_table.webp"
           alt="An intimate composition"
           className="w-full h-full object-cover"
         />
