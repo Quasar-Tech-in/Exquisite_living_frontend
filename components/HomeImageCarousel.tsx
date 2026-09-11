@@ -19,25 +19,25 @@ type CardMeta =
 
 const CARDS: { src: string; delay: number; meta: CardMeta; icon: string }[] = [
   {
-    src: "/scene_dawn.png",
+    src: "/scene_dawn.webp",
     delay: 1,
     meta: { kind: "stat", number: "I", label: "The Sensibility" },
     icon: "/icon_spiral_cream.png",
   },
   {
-    src: "/scene_mist.png",
+    src: "/scene_mist.webp",
     delay: 1.15,
     meta: { kind: "stat", number: "II", label: "The Intelligence" },
     icon: "/icon_clover_cream.png",
   },
   {
-    src: "/closing_ambient.png",
+    src: "/closing_ambient.webp",
     delay: 1.3,
     meta: { kind: "stat", number: "III", label: "The Curation" },
     icon: "/icon_tree_cream.png",
   },
   {
-    src: "/exp_table.png",
+    src: "/exp_table.webp",
     delay: 1.45,
     meta: { kind: "stat", number: "IV", label: "The Membership" },
     icon: "/iconlogo_cream.png",
