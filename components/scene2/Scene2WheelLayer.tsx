@@ -87,7 +87,7 @@ export default function Scene2WheelLayer({
               ? { duration: 0 } // snap — no rotate animation on exit, just slide down
               : !isActive
               ? { duration: 1.4, ease: [0.9, 0, 0.1, 1], delay: 0 }
-              : { type: "spring", stiffness: 100, damping: 20 },
+              : { type: "spring", stiffness: 280, damping: 28, mass: 0.8 },
             scale: { duration: 0.4 },
           }}
         >

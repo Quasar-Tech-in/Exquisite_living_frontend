@@ -27,7 +27,7 @@ export default function Scene2LowerCloudsLayer({ floorX, floorY, activeCardIndex
       {/* Inner wrapper handles wheel swipe parallax with a spring transition */}
       <motion.div
         animate={{ x: cloudXOffset }}
-        transition={{ type: "spring", stiffness: 100, damping: 20 }}
+        transition={{ type: "spring", stiffness: 280, damping: 28, mass: 0.8 }}
       >
         <img
           src={"lower-clouds.webp"}

@@ -41,7 +41,7 @@ export default function EnterExperienceButton(
           transition: { duration: 0.65, ease: [0.8, 0, 1, 0.2] },
         },
       }}
-      className={`${rest.className} group flex h-32 w-32 items-center justify-center short:h-20 short:w-20`}
+      className={`${rest.className} group relative flex h-32 w-32 items-center justify-center rounded-full cursor-pointer short:h-20 short:w-20 shadow-[0_0_30px_rgba(0,0,0,0.6),0_0_20px_rgba(255,255,255,0.1)] backdrop-blur-md transition-all duration-500 hover:shadow-[0_0_40px_rgba(255,255,255,0.25)]`}
     >
       {/* Rotating Border and Text Container */}
       <motion.div
@@ -63,10 +63,10 @@ export default function EnterExperienceButton(
             transition: { duration: 0.5, delay: 0, ease: "easeInOut" },
           },
         }}
-        className={`pointer-events-none absolute inset-0 h-full w-full rounded-full transition-colors duration-500 ${
+        className={`pointer-events-none absolute inset-0 h-full w-full rounded-full transition-all duration-500 ${
           isExiting
             ? "bg-white text-black"
-            : "bg-transparent text-white/80 group-hover:bg-white group-hover:text-black"
+            : "bg-[#101c15]/70 text-white border border-white/20 group-hover:bg-white group-hover:text-black group-hover:border-white"
         }`}
       >
         {/* Custom Dashed Border & Circular Text */}
@@ -74,22 +74,22 @@ export default function EnterExperienceButton(
           viewBox="0 0 100 100"
           className="h-full w-full overflow-visible"
         >
-          {/* Custom dashed border: dash length 6, gap length 8 */}
+          {/* Custom dashed border: dash length 3, gap length 4 */}
           <circle
             cx="50"
             cy="50"
             r="49.5"
             fill="none"
             stroke="currentColor"
-            strokeWidth="0.3"
-            strokeDasharray="2 5"
+            strokeWidth="0.8"
+            strokeDasharray="3 4"
           />
           <path
             id="textPath"
             d="M 50, 50 m -36, 0 a 36,36 0 1,1 72,0 a 36,36 0 1,1 -72,0"
             fill="none"
           />
-          <text className="fill-current text-[8px] font-light tracking-[0.15em] uppercase">
+          <text className="fill-current text-[8.5px] font-medium tracking-[0.18em] uppercase">
             <textPath
               href="#textPath"
               startOffset="0%"
@@ -116,7 +116,7 @@ export default function EnterExperienceButton(
           className={`rotate-180 brightness-0 transition-all duration-500 ${
             isExiting
               ? "opacity-100 invert-0"
-              : "opacity-60 invert group-hover:opacity-100 group-hover:invert-0"
+              : "opacity-90 invert group-hover:opacity-100 group-hover:invert-0"
           }`}
         />
         <Image
@@ -127,7 +127,7 @@ export default function EnterExperienceButton(
           className={`brightness-0 transition-all duration-500 ${
             isExiting
               ? "opacity-100 invert-0"
-              : "opacity-60 invert group-hover:opacity-100 group-hover:invert-0"
+              : "opacity-90 invert group-hover:opacity-100 group-hover:invert-0"
           }`}
         />
       </div>
