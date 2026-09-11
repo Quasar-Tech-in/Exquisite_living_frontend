@@ -112,7 +112,7 @@ export default function CardsFerrisWheel({ activeCardIndex, setActiveCardIndex }
               boxShadow: isWebActive
                 ? "0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 30px rgba(255, 255, 255, 0.08)"
                 : "0 8px 16px -4px rgba(0, 0, 0, 0.3)",
-              transition: "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1)",
+              transition: "transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1)",
             }}
             onClick={(e) => {
               e.stopPropagation();

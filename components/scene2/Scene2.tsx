@@ -37,25 +37,25 @@ function ComparisonTable({ activeIndex }: { activeIndex: number }) {
   const isExquisiteActive = activeIndex >= 0 && activeIndex <= 3;
   return (
     <div className="flex flex-col gap-3 text-xs font-light md:text-sm">
-      {/* Concierge — neutral, recessive */}
+      {/* Concierge — neutral, legible but recessive relative to ExQuisite */}
       <div
-        className="flex items-center justify-between rounded border border-white/6 p-3 opacity-50"
-        style={{ background: "rgba(255,255,255,0.02)" }}
+        className="flex items-center justify-between rounded border border-white/12 p-3 transition-colors"
+        style={{ background: "rgba(255,255,255,0.04)" }}
       >
-        <span className="text-[10px] tracking-widest text-white/40 uppercase md:text-xs">
+        <span className="text-[10px] font-medium tracking-widest text-white/70 uppercase md:text-xs">
           The concierge
         </span>
-        <span className="text-white/60">Responds to requests</span>
+        <span className="text-white/85">Responds to requests</span>
       </div>
-      {/* Advisor — neutral, recessive */}
+      {/* Advisor — neutral, legible but recessive relative to ExQuisite */}
       <div
-        className="flex items-center justify-between rounded border border-white/6 p-3 opacity-50"
-        style={{ background: "rgba(255,255,255,0.02)" }}
+        className="flex items-center justify-between rounded border border-white/12 p-3 transition-colors"
+        style={{ background: "rgba(255,255,255,0.04)" }}
       >
-        <span className="text-[10px] tracking-widest text-white/40 uppercase md:text-xs">
+        <span className="text-[10px] font-medium tracking-widest text-white/70 uppercase md:text-xs">
           The advisor
         </span>
-        <span className="text-white/60">Presents options</span>
+        <span className="text-white/85">Presents options</span>
       </div>
       {/* Separator */}
       <div className="border-t border-white/8" />
