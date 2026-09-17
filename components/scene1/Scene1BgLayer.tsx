@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion, type MotionValue } from "framer-motion";
 import { useScene } from "@/context/SceneContext";
 
@@ -16,7 +17,7 @@ const exitTransition = { duration: 1.2, ease: [0.8, 0, 1, 0.2] } as const;
 const returnTransition = { duration: 2, ease: [0.9, 0, 0.1, 1] } as const;
 
 /**
- * bg1.png — owns both entry (scale in), exit (scale up + fade), and reverse entry.
+ * bg1.webp — owns both entry (scale in), exit (scale up + fade), and reverse entry.
  * Its exit onAnimationComplete is the authoritative signal to advance to scene2.
  * Its return onAnimationComplete signals the scene is fully back to scene1.
  */
@@ -25,9 +26,8 @@ export default function Scene1BgLayer({ bgX, bgY, onEntryComplete, isReturning =
   const isExiting = scene === "transitioning";
 
   return (
-    <motion.img
-      src={"bg1.webp"}
-      className="pointer-events-none absolute inset-0 h-full w-full object-cover"
+    <motion.div
+      className="pointer-events-none absolute inset-0 h-full w-full"
       style={{ zIndex: 6, x: bgX, y: bgY }}
       // When returning: start zoomed in (where Scene 2 left off) and scale back down
       initial={isReturning ? { scale: 6 } : { scale: 1.3 }}
@@ -36,6 +36,15 @@ export default function Scene1BgLayer({ bgX, bgY, onEntryComplete, isReturning =
       onAnimationComplete={
         isExiting ? completeTransition : isReturning ? completeReturn : onEntryComplete
       }
-    />
+    >
+      <Image
+        src="/bg1.webp"
+        alt=""
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover"
+      />
+    </motion.div>
   );
 }

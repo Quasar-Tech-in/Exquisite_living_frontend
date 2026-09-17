@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion, type MotionValue } from "framer-motion";
 
 interface Props {
@@ -26,13 +27,17 @@ export default function Scene2LowerCloudsLayer({ floorX, floorY, activeCardIndex
     >
       {/* Inner wrapper handles wheel swipe parallax with a spring transition */}
       <motion.div
+        className="relative h-[30dvh] w-full md:h-[413px]"
         animate={{ x: cloudXOffset }}
         transition={{ type: "spring", stiffness: 100, damping: 20 }}
       >
-        <img
-          src={"lower-clouds.webp"}
+        <Image
+          src="/lower-clouds.webp"
           alt=""
-          className="block w-full h-[30dvh] md:h-[413px] scale-x-[-1] brightness-125"
+          fill
+          loading="lazy"
+          sizes="110vw"
+          className="object-cover scale-x-[-1] brightness-125"
         />
       </motion.div>
     </motion.div>

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion, type MotionValue } from "framer-motion";
 import { useScene } from "@/context/SceneContext";
 import { useViewportScale } from "@/hooks/useViewportScale";
@@ -50,8 +51,7 @@ export default function Scene1Bushes({ fgX, fgY, isReturning = false }: Props) {
         Exit  (entering scene2): scale up + strong leftward x on desktop; flat slide-out on compact.
         Return (exiting scene2): starts from the exited position and reverses back to resting.
       */}
-      <motion.img
-        src={"left-full.webp"}
+      <motion.div
         className={bushClassName}
         style={{
           zIndex: 8,
@@ -65,7 +65,17 @@ export default function Scene1Bushes({ fgX, fgY, isReturning = false }: Props) {
           : isReturning ? returnTransition
           : entryTransition
         }
-      />
+      >
+        <Image
+          src="/left-full.webp"
+          alt=""
+          width={1920}
+          height={822}
+          priority
+          sizes="(max-width: 768px) 100vw, 50vw"
+          className="h-full w-auto max-w-none"
+        />
+      </motion.div>
 
       {/*
         Right bush — positioned with CSS `left`.
@@ -73,8 +83,7 @@ export default function Scene1Bushes({ fgX, fgY, isReturning = false }: Props) {
         Exit  (entering scene2): scale up + strong rightward x on desktop; flat slide-out on compact.
         Return (exiting scene2): starts from the exited position and reverses back to resting.
       */}
-      <motion.img
-        src={"right-full.webp"}
+      <motion.div
         className={bushClassName}
         style={{
           zIndex: 8,
@@ -88,7 +97,17 @@ export default function Scene1Bushes({ fgX, fgY, isReturning = false }: Props) {
           : isReturning ? returnTransition
           : entryTransition
         }
-      />
+      >
+        <Image
+          src="/right-full.webp"
+          alt=""
+          width={1920}
+          height={821}
+          priority
+          sizes="(max-width: 768px) 100vw, 50vw"
+          className="h-full w-auto max-w-none"
+        />
+      </motion.div>
     </>
   );
 }

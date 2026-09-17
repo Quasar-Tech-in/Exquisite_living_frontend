@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Image from "next/image";
 import { imprima } from "@/lib/fonts";
 import { HTMLMotionProps, motion, AnimatePresence, type Transition } from "framer-motion";
 import { useScene } from "@/context/SceneContext";
@@ -64,11 +65,7 @@ export default function Navbar({ className, ...props }: HTMLMotionProps<"nav">) 
 
       {/* Center Icon + hover tooltip */}
       <div className="flex shrink-0 flex-col items-center justify-center px-6 md:px-12 relative">
-        <motion.img
-          src="/iconlogo_cream.png"
-          alt="ExQuisite Living"
-          className="h-10 md:h-12 w-auto cursor-pointer short:h-7!"
-          style={{ filter: "drop-shadow(0 2px 8px rgba(0,0,0,0.55))" }}
+        <motion.div
           initial={{ rotate: -180, scale: 0.5, opacity: 0 }}
           animate={{ rotate: 0, scale: 1, opacity: 1 }}
           whileHover={{ scale: 1.12 }}
@@ -80,7 +77,18 @@ export default function Navbar({ className, ...props }: HTMLMotionProps<"nav">) 
           onClick={handleHomeClick}
           onHoverStart={() => setIsLogoHovered(true)}
           onHoverEnd={() => setIsLogoHovered(false)}
-        />
+        >
+          <Image
+            src="/iconlogo_cream.png"
+            alt="ExQuisite Living"
+            width={100}
+            height={100}
+            priority
+            sizes="48px"
+            className="h-10 md:h-12 w-auto cursor-pointer short:h-7!"
+            style={{ filter: "drop-shadow(0 2px 8px rgba(0,0,0,0.55))" }}
+          />
+        </motion.div>
         {/* Desktop hover tooltip — only visible when in Scene 2 */}
         <AnimatePresence>
           {isLogoHovered && isInScene2 && (

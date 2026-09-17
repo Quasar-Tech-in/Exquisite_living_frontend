@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence, type MotionValue } from "framer-motion";
 import { imprima, viaodaLibre } from "@/lib/fonts";
 import { useScene } from "@/context/SceneContext";
@@ -162,10 +163,13 @@ function YoursResembleBlock() {
   return (
     <div className="flex flex-col rounded-xl border border-white/5 bg-white/5 p-3 md:p-4">
       <div className="relative mb-3 aspect-16/10 overflow-hidden rounded-lg">
-        <img
+        <Image
           src="/exp_table.webp"
           alt="An intimate composition"
-          className="h-full w-full object-cover"
+          fill
+          loading="lazy"
+          sizes="(max-width: 768px) 100vw, 30vw"
+          className="object-cover"
         />
         <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent"></div>
       </div>

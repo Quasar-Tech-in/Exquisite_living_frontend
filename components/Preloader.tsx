@@ -1,58 +1,43 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { useScene } from "@/context/SceneContext";
 
-const ASSETS_TO_LOAD = [
+const CRITICAL_ASSETS = [
+  "/bg1.webp",
   "/left-full.webp",
   "/right-full.webp",
-  "/bg1.webp",
-  "/preenchimento-generativo.webp",
-  "/clouds.webp",
-  "/lower-clouds.webp",
 ];
 
 export default function Preloader() {
   const { isLoaded, setIsLoaded } = useScene();
-  const [currentIndex, setCurrentIndex] = useState(0);
   const [showPreloader, setShowPreloader] = useState(true);
 
   useEffect(() => {
     let isCancelled = false;
 
-    const loadNext = (index: number) => {
-      if (index >= ASSETS_TO_LOAD.length) {
-        if (!isCancelled) {
-          // Add a small delay for aesthetic purposes before unmounting
-          setTimeout(() => {
-            setIsLoaded(true);
-            setTimeout(() => setShowPreloader(false), 800);
-          }, 500);
-        }
-        return;
+    const loadAsset = (src: string) =>
+      new Promise<void>((resolve) => {
+        const img = new window.Image();
+        img.src = src;
+        img.onload = () => resolve();
+        img.onerror = () => resolve();
+      });
+
+    // Load critical Scene 1 assets in parallel with a 3s max fallback timeout
+    const timeoutPromise = new Promise<void>((resolve) => setTimeout(resolve, 3000));
+    const loadPromise = Promise.all(CRITICAL_ASSETS.map(loadAsset));
+
+    Promise.race([loadPromise, timeoutPromise]).then(() => {
+      if (!isCancelled) {
+        setTimeout(() => {
+          setIsLoaded(true);
+          setTimeout(() => setShowPreloader(false), 800);
+        }, 200);
       }
-
-      setCurrentIndex(index);
-
-      const img = new window.Image();
-      img.src = ASSETS_TO_LOAD[index];
-
-      img.onload = () => {
-        if (!isCancelled) {
-          loadNext(index + 1);
-        }
-      };
-      img.onerror = () => {
-        // If an image fails to load, just continue so we don't get stuck forever
-        if (!isCancelled) {
-          console.warn(`Failed to preload ${ASSETS_TO_LOAD[index]}`);
-          loadNext(index + 1);
-        }
-      };
-    };
-
-    loadNext(0);
+    });
 
     return () => {
       isCancelled = true;
@@ -71,13 +56,19 @@ export default function Preloader() {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.8, ease: "easeInOut" }}
         >
-          <motion.img
-            src="/iconlogo_cream.png"
-            alt="Logo"
-            className="h-16 w-auto opacity-80"
+          <motion.div
             animate={{ opacity: [0.4, 0.8, 0.4] }}
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          />
+          >
+            <Image
+              src="/iconlogo_cream.png"
+              alt="Logo"
+              width={120}
+              height={120}
+              priority
+              className="h-16 w-auto opacity-80"
+            />
+          </motion.div>
         </motion.div>
       )}
     </AnimatePresence>

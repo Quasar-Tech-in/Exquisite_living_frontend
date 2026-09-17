@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion, type MotionValue } from "framer-motion";
 import { useScene } from "@/context/SceneContext";
 
@@ -17,14 +18,22 @@ export default function Scene2CloudsLayer({ cloudX, cloudY }: Props) {
   return (
     <>
       {/* Base Clouds Layer */}
-      <motion.img
-        src={"clouds.webp"}
-        className="pointer-events-none absolute inset-0 h-full w-full object-cover brightness-110"
+      <motion.div
+        className="pointer-events-none absolute inset-0 h-full w-full"
         style={{ zIndex: 1, x: cloudX, y: cloudY }}
         initial={{ scale: 1.5 }}
         animate={{ scale: scene === "scene2" || scene === "transitioning" ? 1.1 : (isHoveringEnter ? 1.3 : 1.5) }}
         transition={transition}
-      />
+      >
+        <Image
+          src="/clouds.webp"
+          alt=""
+          fill
+          loading="lazy"
+          sizes="100vw"
+          className="object-cover brightness-110"
+        />
+      </motion.div>
 
       {/* Darkening Gradient Overlay (dullest at top, completely fades out by 60%) */}
       <motion.div

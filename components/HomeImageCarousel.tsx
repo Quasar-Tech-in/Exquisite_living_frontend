@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState, useEffect, useCallback, useRef } from "react";
 import {
   motion,
@@ -218,14 +219,18 @@ function CarouselCard({
         {/* background image layer — zooms more than the div */}
         <motion.div
           className="absolute inset-0"
-          style={{
-            backgroundImage: `url(${src})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
           whileHover={{ scale: 1.25 }}
           transition={{ type: "spring", stiffness: 200, damping: 20 }}
-        />
+        >
+          <Image
+            src={src}
+            alt=""
+            fill
+            loading="lazy"
+            sizes="160px"
+            className="object-cover"
+          />
+        </motion.div>
 
         {/* bottom blur ── 50% height, fades out toward top */}
         <div
