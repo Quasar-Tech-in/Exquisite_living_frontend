@@ -6,6 +6,7 @@ import Scene1Bushes from "./Scene1Bushes";
 import HeroTitleAndSubText from "@/components/HeroTitleAndSubText";
 import HomeImageCarousel from "@/components/HomeImageCarousel";
 import EnterExperienceButton from "@/components/EnterExperienceButton";
+import { imprima } from "@/lib/fonts";
 import { type MotionValue } from "framer-motion";
 
 interface Props {
@@ -56,11 +57,16 @@ export default function Scene1({
       <HomeImageCarousel carouselX={carouselX} isExiting={isExiting} isReturning={isReturning} />
       <EnterExperienceButton
         style={{ zIndex: 50 }}
-        className="absolute top-[80dvh] short:top-[68dvh] left-[50vw] translate-x-[-50%]"
+        className="absolute bottom-12 md:bottom-16 short:bottom-6 left-[50vw] -translate-x-1/2"
         onClick={startTransition}
         isExiting={isExiting}
         isReturning={isReturning}
       />
+      <p
+        className={`pointer-events-none absolute bottom-3 left-1/2 z-10 mb-[env(safe-area-inset-bottom)] -translate-x-1/2 text-[9px] font-light tracking-wider whitespace-nowrap text-white/20 ${imprima.className}`}
+      >
+        © 2026 ExQuisite Living.
+      </p>
     </>
   );
 }
