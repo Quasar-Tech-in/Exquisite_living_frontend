@@ -80,11 +80,10 @@ function InnerPage() {
 
 // ── root — SceneProvider wraps everything so any descendant can call useScene() ──
 function MainApp() {
-  const { isLoaded } = useScene();
   return (
     <>
       <Preloader />
-      {isLoaded && <InnerPage />}
+      <InnerPage />
     </>
   );
 }
