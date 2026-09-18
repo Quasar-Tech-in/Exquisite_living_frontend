@@ -190,15 +190,11 @@ function YoursResembleBlock() {
   );
 }
 
-// Membership Correspondence Block — replaces the former register-interest form.
-// Single mark at the top (acts as a letterhead seal); no closing glyph.
+// Membership Correspondence Block — single clean mailto hyperlink.
 function CorrespondenceBlock() {
   return (
     <div className="flex flex-col items-center p-3 text-center md:p-4">
-      {/* The three chapter marks together — this card closes the sequence the
-          wheel walks through, so it crests with all of them rather than its
-          own. Order matches the chapters: I Sensibility, II Intelligence,
-          III Curation. */}
+      {/* The three chapter marks together */}
       <div
         className="mb-5 flex items-center gap-5 md:mb-6 md:gap-6"
         aria-hidden="true"
