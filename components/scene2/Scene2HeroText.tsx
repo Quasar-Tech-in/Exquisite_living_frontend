@@ -24,11 +24,11 @@ export default function Scene2HeroText({
   let italicColor = "text-[#1fda64]";
 
   if (normalizedIndex >= 0 && normalizedIndex <= 3) {
-    title = "Every client is different, ";
+    title = "Every member is different, ";
     italicTitle = "and so is every decision we make.";
     italicColor = "text-[#ecb471]";
   } else if (normalizedIndex >= 4 && normalizedIndex <= 11) {
-    title = "Behind every effortless experience, ";
+    title = "Behind every effortless experience ";
     italicTitle = "is thoughtful planning.";
     italicColor = "text-[#1fda64]";
   } else if (normalizedIndex >= 12 && normalizedIndex <= 17) {

@@ -82,7 +82,7 @@ function ComparisonTable({ activeIndex }: { activeIndex: number }) {
           ExQuisite
         </span>
         <span className="font-normal text-white">
-          Composes what was never asked for
+          Anticipates what matters before it becomes a request
         </span>
       </motion.div>
       <img
@@ -111,7 +111,7 @@ function IntelligenceGrid({
     { num: "03", name: "Palate & provenance" },
     { num: "04", name: "Solitude vs. company" },
     { num: "05", name: "Movement & geography" },
-    { num: "06", name: "Sound, scent, light" },
+    { num: "06", name: "Sound, scent & light" },
     { num: "07", name: "Curiosities & fixations" },
     { num: "08", name: "Time of day you come alive" },
   ];
@@ -152,7 +152,7 @@ function IntelligenceGrid({
         })}
       </div>
       <p className="text-center text-[9px] leading-relaxed font-light text-white/55 md:text-[10px]">
-        Eight of more than two hundred. The others, we hold quietly.
+        Eight of more than two hundred. The rest, we hold quietly.
       </p>
     </div>
   );
@@ -174,7 +174,7 @@ function YoursResembleBlock() {
         <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent"></div>
       </div>
       <span className="mb-1 block text-[9px] tracking-widest text-[#1fda64] uppercase md:text-[10px]">
-        ✦ The last leaf of this chapter
+        ✦ Quiet discretion
       </span>
       <h4
         className={`mb-1.5 text-base leading-snug font-light text-white md:text-lg ${viaodaLibre.className}`}
@@ -280,7 +280,7 @@ function MembershipPolicies() {
     },
     {
       title: "Held to a number",
-      desc: "We keep our membership deliberately small, so that the work remains personal — never processed.",
+      desc: "We keep our membership deliberately small so that the work remains personal—never processed.",
     },
     {
       title: "Composed, not catered",
@@ -288,7 +288,7 @@ function MembershipPolicies() {
     },
     {
       title: "Discreet by nature",
-      desc: "Names, particulars, and the nature of the work stay entirely between us.",
+      desc: "Names, particulars and the nature of our work are treated with absolute discretion.",
     },
   ];
   return (
@@ -399,7 +399,7 @@ export default function Scene2({
     chapterKey = 1;
     sectionNum = "I — Sensibility";
     sectionTitle =
-      "Every client is different, and so is every decision we make.";
+      "Every member is different, and so is every decision we make.";
     sectionDesc =
       "We take the time to understand your preferences, routines, values, and the details that matter most to you. Every recommendation, introduction, and experience is thoughtfully curated to feel personal, intuitive, and unmistakably yours.";
     tabTitle = "ExQuisite Living — Sensibility";
@@ -415,7 +415,7 @@ export default function Scene2({
     sectionNum = "III — Curation";
     sectionTitle = "Every detail, thoughtfully curated";
     sectionDesc =
-      "No two lives are the same, and neither are the experiences we create. Every journey, celebration, introduction, and moment is thoughtfully composed around your preferences, priorities, and the way you choose to live—never from a template, always with intention.";
+      "Across travel, access, hospitality, residences, celebrations and the everyday, we quietly orchestrate the details of a life lived without friction.";
     tabTitle = "ExQuisite Living — Curation";
   } else if (normalizedIndex >= 18 && normalizedIndex <= 19) {
     chapterKey = 4;
