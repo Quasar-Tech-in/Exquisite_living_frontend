@@ -13,7 +13,7 @@ export default function HeroTitleAndSubText({
   return (
     <motion.div
       className="pointer-events-none absolute top-[20dvh] md:top-[30dvh] short:top-[16dvh] left-[8vw] md:left-[12vw] flex flex-col items-center text-left text-white"
-      style={{ zIndex: 9, x: textX }}
+      style={{ zIndex: 7, x: textX }}
     >
       <motion.div
         initial={isReturning ? { x: -2500, scale: 4 } : {}}
