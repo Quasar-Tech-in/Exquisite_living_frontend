@@ -418,7 +418,7 @@ export default function HomeImageCarousel({
   return (
     <motion.div
       className="pointer-events-none absolute top-[30dvh] short:top-[22dvh] right-4 hidden flex-col md:flex short:flex!"
-      style={{ zIndex: 10, x: carouselX, scale: carouselScale, transformOrigin: "right center" }}
+      style={{ zIndex: 7, x: carouselX, scale: carouselScale, transformOrigin: "right center" }}
     >
       <motion.div
         initial={isReturning ? { x: exitX, scale: 4 } : {}}
