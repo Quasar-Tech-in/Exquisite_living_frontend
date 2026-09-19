@@ -757,11 +757,18 @@ export default function Scene2({
       <ExitExperienceButton />
 
       {/* Minimal copyright */}
-      <p
+      <motion.p
         className={`short:hidden pointer-events-none absolute bottom-4 left-1/2 z-10 mb-[env(safe-area-inset-bottom)] -translate-x-1/2 text-[9px] font-light tracking-wider whitespace-nowrap text-white/20 ${imprima.className}`}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: isActive ? 1 : 0 }}
+        transition={
+          isReturning
+            ? { duration: 0.8, delay: 0, ease: [0.8, 0, 1, 0.2] }
+            : { duration: 0.8, delay: 0.8 }
+        }
       >
         © 2026 ExQuisite Living.
-      </p>
+      </motion.p>
     </>
   );
 }
