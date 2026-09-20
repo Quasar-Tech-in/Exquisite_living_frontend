@@ -41,7 +41,7 @@ export default function NotFound() {
           <span className="italic text-[#E6C19A]">unseen waters.</span>
         </h1>
 
-        <p className="mb-8 text-xs font-light leading-relaxed text-white/70 md:text-sm">
+        <p className="mb-8 text-xs font-light leading-relaxed text-white/85 md:text-sm">
           The page or resource you requested does not exist or may have moved quietly elsewhere.
         </p>
 
@@ -55,7 +55,7 @@ export default function NotFound() {
       </div>
 
       {/* Copyright Footer */}
-      <p className="absolute bottom-6 left-1/2 -translate-x-1/2 text-[9px] font-light tracking-wider text-white/25">
+      <p className="absolute bottom-6 left-1/2 -translate-x-1/2 text-[9px] font-light tracking-wider text-white/45">
         © 2026 ExQuisite Living.
       </p>
     </main>

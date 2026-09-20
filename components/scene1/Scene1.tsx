@@ -7,7 +7,7 @@ import HeroTitleAndSubText from "@/components/HeroTitleAndSubText";
 import HomeImageCarousel from "@/components/HomeImageCarousel";
 import EnterExperienceButton from "@/components/EnterExperienceButton";
 import { imprima } from "@/lib/fonts";
-import { type MotionValue } from "framer-motion";
+import { type MotionValue, motion } from "framer-motion";
 
 interface Props {
   bgX: MotionValue<number>;
@@ -62,11 +62,18 @@ export default function Scene1({
         isExiting={isExiting}
         isReturning={isReturning}
       />
-      <p
-        className={`pointer-events-none absolute bottom-3 left-1/2 z-10 mb-[env(safe-area-inset-bottom)] -translate-x-1/2 text-[9px] font-light tracking-wider whitespace-nowrap text-white/20 ${imprima.className}`}
+      <motion.p
+        className={`pointer-events-none absolute bottom-3 left-1/2 z-10 mb-[env(safe-area-inset-bottom)] -translate-x-1/2 text-[9px] font-light tracking-wider whitespace-nowrap text-white/45 ${imprima.className}`}
+        initial={isReturning ? { opacity: 0 } : { opacity: 1 }}
+        animate={isExiting ? { opacity: 0 } : { opacity: 1 }}
+        transition={
+          isExiting
+            ? { duration: 0.65, ease: [0.8, 0, 1, 0.2] }
+            : { duration: 0.8, delay: isReturning ? 0.6 : 0 }
+        }
       >
         © 2026 ExQuisite Living.
-      </p>
+      </motion.p>
     </>
   );
 }

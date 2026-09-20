@@ -43,20 +43,20 @@ function ComparisonTable({ activeIndex }: { activeIndex: number }) {
         className="flex items-center justify-between rounded border border-white/6 p-3 opacity-50"
         style={{ background: "rgba(255,255,255,0.02)" }}
       >
-        <span className="text-[10px] tracking-widest text-white/40 uppercase md:text-xs">
+        <span className="text-[10px] tracking-widest text-white/60 uppercase md:text-xs">
           The concierge
         </span>
-        <span className="text-white/60">Responds to requests</span>
+        <span className="text-white/80">Responds to requests</span>
       </div>
       {/* Advisor — neutral, recessive */}
       <div
-        className="flex items-center justify-between rounded border border-white/6 p-3 opacity-50"
+        className="flex items-center justify-between rounded border border-white/6 p-3 opacity-60"
         style={{ background: "rgba(255,255,255,0.02)" }}
       >
-        <span className="text-[10px] tracking-widest text-white/40 uppercase md:text-xs">
+        <span className="text-[10px] tracking-widest text-white/60 uppercase md:text-xs">
           The advisor
         </span>
-        <span className="text-white/60">Presents options</span>
+        <span className="text-white/80">Presents options</span>
       </div>
       {/* Separator */}
       <div className="border-t border-white/8" />
@@ -82,7 +82,7 @@ function ComparisonTable({ activeIndex }: { activeIndex: number }) {
           ExQuisite
         </span>
         <span className="font-normal text-white">
-          Composes what was never asked for
+          Anticipates what matters before it becomes a request
         </span>
       </motion.div>
       <img
@@ -111,7 +111,7 @@ function IntelligenceGrid({
     { num: "03", name: "Palate & provenance" },
     { num: "04", name: "Solitude vs. company" },
     { num: "05", name: "Movement & geography" },
-    { num: "06", name: "Sound, scent, light" },
+    { num: "06", name: "Sound, scent & light" },
     { num: "07", name: "Curiosities & fixations" },
     { num: "08", name: "Time of day you come alive" },
   ];
@@ -138,11 +138,11 @@ function IntelligenceGrid({
               className={`flex h-14 cursor-pointer flex-col justify-center rounded border p-2 font-light transition-colors md:h-16 md:p-3 ${
                 isActive
                   ? "border-[#1fda64] bg-white/8 text-white"
-                  : "border-white/10 bg-white/4 text-white/70"
+                  : "border-white/10 bg-white/4 text-white/85"
               }`}
             >
               <span
-                className={`text-[8px] tracking-widest uppercase md:text-[9px] ${isActive ? "text-[#E6C19A]" : "text-white/50"}`}
+                className={`text-[8px] tracking-widest uppercase md:text-[9px] ${isActive ? "text-[#E6C19A]" : "text-white/65"}`}
               >
                 {p.num}
               </span>
@@ -151,8 +151,8 @@ function IntelligenceGrid({
           );
         })}
       </div>
-      <p className="text-center text-[9px] leading-relaxed font-light text-white/55 md:text-[10px]">
-        Eight of more than two hundred. The others, we hold quietly.
+      <p className="text-center text-[9px] leading-relaxed font-light text-white/75 md:text-[10px]">
+        Eight of more than two hundred. The rest, we hold quietly.
       </p>
     </div>
   );
@@ -174,14 +174,14 @@ function YoursResembleBlock() {
         <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent"></div>
       </div>
       <span className="mb-1 block text-[9px] tracking-widest text-[#1fda64] uppercase md:text-[10px]">
-        ✦ The last leaf of this chapter
+        ✦ Quiet discretion
       </span>
       <h4
         className={`mb-1.5 text-base leading-snug font-light text-white md:text-lg ${viaodaLibre.className}`}
       >
         The best experiences never feel designed.
       </h4>
-      <p className="text-[11px] leading-relaxed font-light text-white/70 md:text-xs">
+      <p className="text-[11px] leading-relaxed font-light text-white/85 md:text-xs">
         They simply feel right. Behind that feeling is thoughtful planning,
         quiet attention, and a deep understanding of what matters most to you.
         That&apos;s how every experience we create begins.
@@ -264,7 +264,7 @@ function CorrespondenceBlock() {
         </span>
       </a>
 
-      <p className="mt-3 text-xs font-light text-white/55 md:text-sm">
+      <p className="mt-3 text-xs font-light text-white/75 md:text-sm">
         For matters beyond membership.
       </p>
     </div>
@@ -280,7 +280,7 @@ function MembershipPolicies() {
     },
     {
       title: "Held to a number",
-      desc: "We keep our membership deliberately small, so that the work remains personal — never processed.",
+      desc: "We keep our membership deliberately small so that the work remains personal—never processed.",
     },
     {
       title: "Composed, not catered",
@@ -288,7 +288,7 @@ function MembershipPolicies() {
     },
     {
       title: "Discreet by nature",
-      desc: "Names, particulars, and the nature of the work stay entirely between us.",
+      desc: "Names, particulars and the nature of our work are treated with absolute discretion.",
     },
   ];
   return (
@@ -306,7 +306,7 @@ function MembershipPolicies() {
           <span className="mb-1 font-medium tracking-widest text-[#E6C19A] uppercase">
             {p.title}
           </span>
-          <span className="leading-snug text-white/70">{p.desc}</span>
+          <span className="leading-snug text-white/85">{p.desc}</span>
         </div>
       ))}
     </div>
@@ -359,9 +359,9 @@ function MobileChapterIndicator({
           </span>
         ))}
       </div>
-      <span className="short:text-[8px] text-[9px] font-light tracking-[0.22em] text-white/70 uppercase">
+      <span className="short:text-[8px] text-[9px] font-light tracking-[0.22em] text-white/85 uppercase">
         {chapter.num} — {chapter.name}
-        <span className="ml-2 text-white/35 tabular-nums">
+        <span className="ml-2 text-white/55 tabular-nums">
           {String(position + 1).padStart(2, "0")}/
           {String(total).padStart(2, "0")}
         </span>
@@ -399,7 +399,7 @@ export default function Scene2({
     chapterKey = 1;
     sectionNum = "I — Sensibility";
     sectionTitle =
-      "Every client is different, and so is every decision we make.";
+      "Every member is different, and so is every decision we make.";
     sectionDesc =
       "We take the time to understand your preferences, routines, values, and the details that matter most to you. Every recommendation, introduction, and experience is thoughtfully curated to feel personal, intuitive, and unmistakably yours.";
     tabTitle = "ExQuisite Living — Sensibility";
@@ -415,7 +415,7 @@ export default function Scene2({
     sectionNum = "III — Curation";
     sectionTitle = "Every detail, thoughtfully curated";
     sectionDesc =
-      "No two lives are the same, and neither are the experiences we create. Every journey, celebration, introduction, and moment is thoughtfully composed around your preferences, priorities, and the way you choose to live—never from a template, always with intention.";
+      "Across travel, access, hospitality, residences, celebrations and the everyday, we quietly orchestrate the details of a life lived without friction.";
     tabTitle = "ExQuisite Living — Curation";
   } else if (normalizedIndex >= 18 && normalizedIndex <= 19) {
     chapterKey = 4;
@@ -544,7 +544,7 @@ export default function Scene2({
         >
           {sectionTitle}
         </h3>
-        <p className="text-xs leading-relaxed font-light text-white/75 md:text-sm">
+        <p className="text-xs leading-relaxed font-light text-white/88 md:text-sm">
           {sectionDesc}
         </p>
 
@@ -559,10 +559,10 @@ export default function Scene2({
             <span className="mb-0.5 block text-xs font-medium tracking-widest text-[#E6C19A] uppercase">
               {activeComp.title}
             </span>
-            <span className="mb-2 block text-[10px] text-white/55">
+            <span className="mb-2 block text-[10px] text-white/70">
               {activeComp.subtext}
             </span>
-            <p className="text-xs leading-relaxed font-light text-white/80">
+            <p className="text-xs leading-relaxed font-light text-white/90">
               {activeComp.desc}
             </p>
           </motion.div>
@@ -675,7 +675,7 @@ export default function Scene2({
             <div className="mb-4 flex justify-end">
               <button
                 onClick={() => setIsDetailsOpen(false)}
-                className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-white/10 text-white/70 transition-colors hover:border-white hover:text-white"
+                className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-white/10 text-white/85 transition-colors hover:border-white hover:text-white"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -706,7 +706,7 @@ export default function Scene2({
                   {sectionTitle}
                 </h3>
                 <p
-                  className={`px-2 text-xs leading-relaxed font-light text-white/75 ${imprima.className}`}
+                  className={`px-2 text-xs leading-relaxed font-light text-white/88 ${imprima.className}`}
                 >
                   {sectionDesc}
                 </p>
@@ -717,11 +717,11 @@ export default function Scene2({
                     <span className="mb-1 block text-xs font-medium tracking-widest text-[#E6C19A] uppercase">
                       {activeComp.title}
                     </span>
-                    <span className="mb-2 block text-[10px] text-white/55">
+                    <span className="mb-2 block text-[10px] text-white/70">
                       {activeComp.subtext}
                     </span>
                     <p
-                      className={`text-xs leading-relaxed font-light text-white/80 ${imprima.className}`}
+                      className={`text-xs leading-relaxed font-light text-white/90 ${imprima.className}`}
                     >
                       {activeComp.desc}
                     </p>
@@ -757,11 +757,18 @@ export default function Scene2({
       <ExitExperienceButton />
 
       {/* Minimal copyright */}
-      <p
-        className={`short:hidden pointer-events-none absolute bottom-4 left-1/2 z-10 mb-[env(safe-area-inset-bottom)] -translate-x-1/2 text-[9px] font-light tracking-wider whitespace-nowrap text-white/20 ${imprima.className}`}
+      <motion.p
+        className={`short:hidden pointer-events-none absolute bottom-4 left-1/2 z-10 mb-[env(safe-area-inset-bottom)] -translate-x-1/2 text-[9px] font-light tracking-wider whitespace-nowrap text-white/45 ${imprima.className}`}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: isActive ? 1 : 0 }}
+        transition={
+          isReturning
+            ? { duration: 0.8, delay: 0, ease: [0.8, 0, 1, 0.2] }
+            : { duration: 0.8, delay: 0.8 }
+        }
       >
         © 2026 ExQuisite Living.
-      </p>
+      </motion.p>
     </>
   );
 }

@@ -9,7 +9,7 @@ export const cardsData: CardData[] = [
   {
     title: "Anticipation",
     subtext: "True luxury lies in being understood.",
-    desc: "By understanding your preferences, routines, and the way you live, we begin to anticipate what matters before it becomes a request. It's this quiet attentiveness that allows every experience to feel effortless, thoughtful, and perfectly timed.",
+    desc: "Over time, familiarity becomes foresight. We begin to anticipate what matters before it becomes a request—allowing each experience to feel effortless, considered and perfectly timed.",
   },
   {
     title: "Curation Engine",
@@ -29,43 +29,43 @@ export const cardsData: CardData[] = [
 
   // --- Chapter 2: Intelligence (Indices 4-11) ---
   {
-    title: "Rhythm & Pace of Living",
+    title: "Rhythm & pace of living",
     subtext: "Every life moves to its own rhythm.",
     desc: "We learn how you spend your time, when you like to slow down, when you prefer momentum, and how to curate experiences that naturally fit your pace.",
   },
   {
-    title: "Aesthetic Sensibility",
+    title: "Aesthetic sensibility",
     subtext: "The art of knowing what feels right.",
     desc: "Your taste is shaped by countless details—from the spaces you're drawn to and the design you admire, to the colours, textures, and atmosphere that make you feel at home. We learn those nuances, so every recommendation feels instinctively right.",
   },
   {
-    title: "Palate & Provenance",
+    title: "Palate & provenance",
     subtext: "Discovering what excites your palate.",
-    desc: "Whether it's discovering a hidden neighbourhood trattoria, sourcing a rare vintage, or arranging a private dining experience, we understand what excites your palate and the stories behind what you enjoy.",
+    desc: "What you savour, where it comes from, and why it matters.",
   },
   {
-    title: "Solitude vs. Company",
-    subtext: "Some moments call for quiet retreat, others for lively conversation.",
+    title: "Solitude vs. company",
+    subtext: "Some moments call for quiet retreat; others for lively conversation.",
     desc: "We understand how you like to spend your time, who you enjoy sharing it with, and the settings where you feel most yourself.",
   },
   {
-    title: "Movement & Geography",
+    title: "Movement & geography",
     subtext: "Where you feel most at ease.",
-    desc: "From favourite cities and familiar destinations to spontaneous escapes, we understand where you feel most at ease. Whether close to home or across the world, we curate experiences that belong wherever life takes you.",
+    desc: "How you move, where you return, and where you feel most at ease.",
   },
   {
-    title: "Sound, Scent & Light",
+    title: "Sound, scent & light",
     subtext: "The smallest details often shape the strongest memories.",
-    desc: "We pay attention to the music, fragrances, lighting, and atmosphere that make a place feel welcoming, comforting, and unmistakably yours.",
+    desc: "We pay attention to music, fragrance, light and atmosphere—the sensory details that make a place feel instinctively, unmistakably yours.",
   },
   {
-    title: "Curiosities & Fixations",
+    title: "Curiosities & fixations",
     subtext: "What captures your attention, beyond the expected.",
     desc: "The things that genuinely fascinate you often become the most meaningful experiences. Whether it's art, watches, architecture, motorsport, wine, wellness, or something entirely unexpected, we quietly take notice and curate around your interests.",
   },
   {
-    title: "Time of Day You Come Alive",
-    subtext: "Some people thrive with sunrise, others after sunset.",
+    title: "Time of day you come alive",
+    subtext: "Some come alive at sunrise; others, after sunset.",
     desc: "By understanding your natural rhythm, we plan experiences that feel effortless, energising, and perfectly timed.",
   },
 
@@ -103,13 +103,13 @@ export const cardsData: CardData[] = [
 
   // --- Chapter 4: Membership (Indices 18-19) ---
   {
-    title: "The Last Leaf",
+    title: "Quiet Discretion",
     subtext: "Every story stays yours.",
     desc: "The moments shared here are only echoes. The experiences we create for our members remain private, remembered only by those who lived them.",
   },
   {
     title: "Conferral",
     subtext: "An invitation extended quietly.",
-    desc: "Membership is never transaction-based. It is a quiet alignment of worlds, extended only when we are certain the relationship will be meaningful.",
+    desc: "Membership is not defined by transaction. It is a quiet alignment of worlds, extended only when we believe the relationship will be meaningful.",
   },
 ];
