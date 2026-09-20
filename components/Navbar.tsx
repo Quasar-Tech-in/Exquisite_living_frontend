@@ -49,7 +49,7 @@ export default function Navbar({ className, ...props }: HTMLMotionProps<"nav">) 
         <div className="hidden md:flex short:hidden! flex-1 justify-around text-sm tracking-[0.15em] uppercase font-light">
           <span
             className={`cursor-pointer transition-colors duration-300 hover:text-white ${
-              isSensibilityActive ? "text-white font-normal" : "text-white/50"
+              isSensibilityActive ? "text-white font-normal" : "text-white/70"
             }`}
             onClick={() => handleNavClick(0)}
           >
@@ -57,7 +57,7 @@ export default function Navbar({ className, ...props }: HTMLMotionProps<"nav">) 
           </span>
           <span
             className={`cursor-pointer transition-colors duration-300 hover:text-white ${
-              isIntelligenceActive ? "text-white font-normal" : "text-white/50"
+              isIntelligenceActive ? "text-white font-normal" : "text-white/70"
             }`}
             onClick={() => handleNavClick(4)}
           >
@@ -95,7 +95,7 @@ export default function Navbar({ className, ...props }: HTMLMotionProps<"nav">) 
           <AnimatePresence>
             {isLogoHovered && isInScene2 && (
               <motion.span
-                className={`absolute top-full mt-1.5 text-[9px] tracking-[0.15em] uppercase text-white/50 whitespace-nowrap pointer-events-none ${imprima.className}`}
+                className={`absolute top-full mt-1.5 text-[9px] tracking-[0.15em] uppercase text-white/70 whitespace-nowrap pointer-events-none ${imprima.className}`}
                 initial={{ opacity: 0, y: -4 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -4 }}
@@ -111,7 +111,7 @@ export default function Navbar({ className, ...props }: HTMLMotionProps<"nav">) 
         <div className="hidden md:flex short:hidden! flex-1 justify-around text-sm tracking-[0.15em] uppercase font-light">
           <span
             className={`cursor-pointer transition-colors duration-300 hover:text-white ${
-              isCurationActive ? "text-white font-normal" : "text-white/50"
+              isCurationActive ? "text-white font-normal" : "text-white/70"
             }`}
             onClick={() => handleNavClick(12)}
           >
@@ -119,7 +119,7 @@ export default function Navbar({ className, ...props }: HTMLMotionProps<"nav">) 
           </span>
           <span
             className={`cursor-pointer transition-colors duration-300 hover:text-white ${
-              isMembershipActive ? "text-white font-normal" : "text-white/50"
+              isMembershipActive ? "text-white font-normal" : "text-white/70"
             }`}
             onClick={() => handleNavClick(18)}
           >
@@ -146,7 +146,7 @@ export default function Navbar({ className, ...props }: HTMLMotionProps<"nav">) 
         <AnimatePresence>
           {isInScene2 && (
             <motion.button
-              className={`md:hidden short:flex! absolute left-6 top-1/2 -translate-y-1/2 flex items-center gap-1.5 text-white/50 text-[9px] tracking-[0.15em] uppercase cursor-pointer hover:text-white transition-colors duration-300 ${imprima.className}`}
+              className={`md:hidden short:flex! absolute left-6 top-1/2 -translate-y-1/2 flex items-center gap-1.5 text-white/75 text-[9px] tracking-[0.15em] uppercase cursor-pointer hover:text-white transition-colors duration-300 ${imprima.className}`}
               initial={{ opacity: 0, x: -8 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -8, transition: { duration: 0.4, delay: 0, ease: [0.8, 0, 1, 0.2] } }}
@@ -178,7 +178,7 @@ export default function Navbar({ className, ...props }: HTMLMotionProps<"nav">) 
               </span>
               <button
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="text-white/60 hover:text-white"
+                className="text-white/80 hover:text-white"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="h-5 w-5">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -200,7 +200,7 @@ export default function Navbar({ className, ...props }: HTMLMotionProps<"nav">) 
                     setIsMobileMenuOpen(false);
                   }}
                   className={`flex items-center justify-between text-left text-sm tracking-[0.15em] uppercase transition-colors ${
-                    item.active ? "font-normal text-[#1fda64]" : "text-white/70 hover:text-white"
+                    item.active ? "font-normal text-[#1fda64]" : "text-white/85 hover:text-white"
                   }`}
                 >
                   <span>{item.name}</span>

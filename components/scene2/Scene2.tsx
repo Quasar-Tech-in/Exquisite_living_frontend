@@ -43,20 +43,20 @@ function ComparisonTable({ activeIndex }: { activeIndex: number }) {
         className="flex items-center justify-between rounded border border-white/6 p-3 opacity-50"
         style={{ background: "rgba(255,255,255,0.02)" }}
       >
-        <span className="text-[10px] tracking-widest text-white/40 uppercase md:text-xs">
+        <span className="text-[10px] tracking-widest text-white/60 uppercase md:text-xs">
           The concierge
         </span>
-        <span className="text-white/60">Responds to requests</span>
+        <span className="text-white/80">Responds to requests</span>
       </div>
       {/* Advisor — neutral, recessive */}
       <div
-        className="flex items-center justify-between rounded border border-white/6 p-3 opacity-50"
+        className="flex items-center justify-between rounded border border-white/6 p-3 opacity-60"
         style={{ background: "rgba(255,255,255,0.02)" }}
       >
-        <span className="text-[10px] tracking-widest text-white/40 uppercase md:text-xs">
+        <span className="text-[10px] tracking-widest text-white/60 uppercase md:text-xs">
           The advisor
         </span>
-        <span className="text-white/60">Presents options</span>
+        <span className="text-white/80">Presents options</span>
       </div>
       {/* Separator */}
       <div className="border-t border-white/8" />
@@ -138,11 +138,11 @@ function IntelligenceGrid({
               className={`flex h-14 cursor-pointer flex-col justify-center rounded border p-2 font-light transition-colors md:h-16 md:p-3 ${
                 isActive
                   ? "border-[#1fda64] bg-white/8 text-white"
-                  : "border-white/10 bg-white/4 text-white/70"
+                  : "border-white/10 bg-white/4 text-white/85"
               }`}
             >
               <span
-                className={`text-[8px] tracking-widest uppercase md:text-[9px] ${isActive ? "text-[#E6C19A]" : "text-white/50"}`}
+                className={`text-[8px] tracking-widest uppercase md:text-[9px] ${isActive ? "text-[#E6C19A]" : "text-white/65"}`}
               >
                 {p.num}
               </span>
@@ -151,7 +151,7 @@ function IntelligenceGrid({
           );
         })}
       </div>
-      <p className="text-center text-[9px] leading-relaxed font-light text-white/55 md:text-[10px]">
+      <p className="text-center text-[9px] leading-relaxed font-light text-white/75 md:text-[10px]">
         Eight of more than two hundred. The rest, we hold quietly.
       </p>
     </div>
@@ -181,7 +181,7 @@ function YoursResembleBlock() {
       >
         The best experiences never feel designed.
       </h4>
-      <p className="text-[11px] leading-relaxed font-light text-white/70 md:text-xs">
+      <p className="text-[11px] leading-relaxed font-light text-white/85 md:text-xs">
         They simply feel right. Behind that feeling is thoughtful planning,
         quiet attention, and a deep understanding of what matters most to you.
         That&apos;s how every experience we create begins.
@@ -264,7 +264,7 @@ function CorrespondenceBlock() {
         </span>
       </a>
 
-      <p className="mt-3 text-xs font-light text-white/55 md:text-sm">
+      <p className="mt-3 text-xs font-light text-white/75 md:text-sm">
         For matters beyond membership.
       </p>
     </div>
@@ -306,7 +306,7 @@ function MembershipPolicies() {
           <span className="mb-1 font-medium tracking-widest text-[#E6C19A] uppercase">
             {p.title}
           </span>
-          <span className="leading-snug text-white/70">{p.desc}</span>
+          <span className="leading-snug text-white/85">{p.desc}</span>
         </div>
       ))}
     </div>
@@ -359,9 +359,9 @@ function MobileChapterIndicator({
           </span>
         ))}
       </div>
-      <span className="short:text-[8px] text-[9px] font-light tracking-[0.22em] text-white/70 uppercase">
+      <span className="short:text-[8px] text-[9px] font-light tracking-[0.22em] text-white/85 uppercase">
         {chapter.num} — {chapter.name}
-        <span className="ml-2 text-white/35 tabular-nums">
+        <span className="ml-2 text-white/55 tabular-nums">
           {String(position + 1).padStart(2, "0")}/
           {String(total).padStart(2, "0")}
         </span>
@@ -544,7 +544,7 @@ export default function Scene2({
         >
           {sectionTitle}
         </h3>
-        <p className="text-xs leading-relaxed font-light text-white/75 md:text-sm">
+        <p className="text-xs leading-relaxed font-light text-white/88 md:text-sm">
           {sectionDesc}
         </p>
 
@@ -559,10 +559,10 @@ export default function Scene2({
             <span className="mb-0.5 block text-xs font-medium tracking-widest text-[#E6C19A] uppercase">
               {activeComp.title}
             </span>
-            <span className="mb-2 block text-[10px] text-white/55">
+            <span className="mb-2 block text-[10px] text-white/70">
               {activeComp.subtext}
             </span>
-            <p className="text-xs leading-relaxed font-light text-white/80">
+            <p className="text-xs leading-relaxed font-light text-white/90">
               {activeComp.desc}
             </p>
           </motion.div>
@@ -675,7 +675,7 @@ export default function Scene2({
             <div className="mb-4 flex justify-end">
               <button
                 onClick={() => setIsDetailsOpen(false)}
-                className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-white/10 text-white/70 transition-colors hover:border-white hover:text-white"
+                className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-white/10 text-white/85 transition-colors hover:border-white hover:text-white"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -706,7 +706,7 @@ export default function Scene2({
                   {sectionTitle}
                 </h3>
                 <p
-                  className={`px-2 text-xs leading-relaxed font-light text-white/75 ${imprima.className}`}
+                  className={`px-2 text-xs leading-relaxed font-light text-white/88 ${imprima.className}`}
                 >
                   {sectionDesc}
                 </p>
@@ -717,11 +717,11 @@ export default function Scene2({
                     <span className="mb-1 block text-xs font-medium tracking-widest text-[#E6C19A] uppercase">
                       {activeComp.title}
                     </span>
-                    <span className="mb-2 block text-[10px] text-white/55">
+                    <span className="mb-2 block text-[10px] text-white/70">
                       {activeComp.subtext}
                     </span>
                     <p
-                      className={`text-xs leading-relaxed font-light text-white/80 ${imprima.className}`}
+                      className={`text-xs leading-relaxed font-light text-white/90 ${imprima.className}`}
                     >
                       {activeComp.desc}
                     </p>
@@ -758,7 +758,7 @@ export default function Scene2({
 
       {/* Minimal copyright */}
       <motion.p
-        className={`short:hidden pointer-events-none absolute bottom-4 left-1/2 z-10 mb-[env(safe-area-inset-bottom)] -translate-x-1/2 text-[9px] font-light tracking-wider whitespace-nowrap text-white/20 ${imprima.className}`}
+        className={`short:hidden pointer-events-none absolute bottom-4 left-1/2 z-10 mb-[env(safe-area-inset-bottom)] -translate-x-1/2 text-[9px] font-light tracking-wider whitespace-nowrap text-white/45 ${imprima.className}`}
         initial={{ opacity: 0 }}
         animate={{ opacity: isActive ? 1 : 0 }}
         transition={

@@ -63,7 +63,7 @@ export default function Scene1({
         isReturning={isReturning}
       />
       <motion.p
-        className={`pointer-events-none absolute bottom-3 left-1/2 z-10 mb-[env(safe-area-inset-bottom)] -translate-x-1/2 text-[9px] font-light tracking-wider whitespace-nowrap text-white/20 ${imprima.className}`}
+        className={`pointer-events-none absolute bottom-3 left-1/2 z-10 mb-[env(safe-area-inset-bottom)] -translate-x-1/2 text-[9px] font-light tracking-wider whitespace-nowrap text-white/45 ${imprima.className}`}
         initial={isReturning ? { opacity: 0 } : { opacity: 1 }}
         animate={isExiting ? { opacity: 0 } : { opacity: 1 }}
         transition={

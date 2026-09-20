@@ -102,7 +102,7 @@ export default function Scene2WheelLayer({
           the DOM, so at a tied z-index they painted over these buttons
           wherever their bounding boxes overlapped. */}
     <motion.button
-      className="pointer-events-auto absolute left-3 md:left-4 top-[46dvh] md:top-[44dvh] -translate-y-1/2 short:top-[50dvh]! flex items-center justify-center h-12 w-12 rounded-full border border-white/10 bg-black/40 text-white/70 backdrop-blur-md transition-all duration-300 hover:bg-white hover:text-black hover:border-white hover:opacity-100 select-none z-20 cursor-pointer shadow-xl"
+      className="pointer-events-auto absolute left-2.5 sm:left-3 md:left-4 top-[46dvh] md:top-[44dvh] -translate-y-1/2 short:top-[50dvh]! flex items-center justify-center h-10 w-10 md:h-[42px] md:w-[42px] rounded-full border border-white/10 bg-black/35 text-white/75 backdrop-blur-md transition-all duration-300 hover:bg-white hover:text-black hover:border-white hover:opacity-100 select-none z-20 cursor-pointer shadow-lg"
       onClick={(e) => {
         e.stopPropagation();
         handleInteraction();
@@ -118,13 +118,13 @@ export default function Scene2WheelLayer({
       }
       aria-label="Previous card"
     >
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-4 h-4">
         <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
       </svg>
     </motion.button>
 
     <motion.button
-      className="pointer-events-auto absolute right-3 md:right-4 top-[46dvh] md:top-[44dvh] -translate-y-1/2 short:top-[50dvh]! flex items-center justify-center h-12 w-12 rounded-full border border-white/10 bg-black/40 text-white/70 backdrop-blur-md transition-all duration-300 hover:bg-white hover:text-black hover:border-white hover:opacity-100 select-none z-20 cursor-pointer shadow-xl"
+      className="pointer-events-auto absolute right-2.5 sm:right-3 md:right-4 top-[46dvh] md:top-[44dvh] -translate-y-1/2 short:top-[50dvh]! flex items-center justify-center h-10 w-10 md:h-[42px] md:w-[42px] rounded-full border border-white/10 bg-black/35 text-white/75 backdrop-blur-md transition-all duration-300 hover:bg-white hover:text-black hover:border-white hover:opacity-100 select-none z-20 cursor-pointer shadow-lg"
       onClick={(e) => {
         e.stopPropagation();
         handleInteraction();
@@ -140,7 +140,7 @@ export default function Scene2WheelLayer({
       }
       aria-label="Next card"
     >
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-4 h-4">
         <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
       </svg>
     </motion.button>

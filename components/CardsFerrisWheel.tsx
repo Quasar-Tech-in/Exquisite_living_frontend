@@ -86,11 +86,31 @@ export default function CardsFerrisWheel({ activeCardIndex, setActiveCardIndex }
         );
 
         let cardOpacity = 0;
-        if (dist === 0) cardOpacity = 1;
-        else if (dist === 1) cardOpacity = 0.65;
-        else if (dist === 2) cardOpacity = 0.35;
-        else if (dist === 3) cardOpacity = 0.1;
-        else cardOpacity = 0;
+        let cardScale = 0.7;
+        let cardFilter = "none";
+        let cardShadow = "none";
+
+        if (dist === 0) {
+          cardOpacity = 1;
+          cardScale = 1.06;
+          cardFilter = "none";
+          cardShadow = "0 25px 50px -12px rgba(0, 0, 0, 0.65), 0 0 35px rgba(255, 255, 255, 0.12)";
+        } else if (dist === 1) {
+          cardOpacity = 0.48;
+          cardScale = 0.78;
+          cardFilter = "brightness(0.82) contrast(0.96)";
+          cardShadow = "0 8px 18px -4px rgba(0, 0, 0, 0.28)";
+        } else if (dist === 2) {
+          cardOpacity = 0.18;
+          cardScale = 0.70;
+          cardFilter = "brightness(0.68) blur(0.4px)";
+          cardShadow = "0 4px 10px -2px rgba(0, 0, 0, 0.2)";
+        } else {
+          cardOpacity = 0;
+          cardScale = 0.65;
+          cardFilter = "none";
+          cardShadow = "none";
+        }
 
         return (
           <div
@@ -103,16 +123,16 @@ export default function CardsFerrisWheel({ activeCardIndex, setActiveCardIndex }
               left: `calc(50% + ${cx}px - ${CARD_W / 2}px)`,
               top: `calc(50% + ${cy}px - ${CARD_H / 2}px)`,
               // Rotate so the card's bottom edge is tangent to the wheel rim, and scale active/inactive
-              transform: `rotate(${angle}deg) scale(${isWebActive ? 1.05 : 0.82})`,
+              transform: `rotate(${angle}deg) scale(${cardScale})`,
               transformOrigin: "center center",
               // Uniform 40px radius; circle is inset to align with the corner arc
               borderRadius: CARD_RADIUS,
               opacity: cardOpacity,
+              filter: cardFilter,
+              WebkitFilter: cardFilter,
               pointerEvents: cardOpacity > 0 ? "auto" : "none",
-              boxShadow: isWebActive
-                ? "0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 30px rgba(255, 255, 255, 0.08)"
-                : "0 8px 16px -4px rgba(0, 0, 0, 0.3)",
-              transition: "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1)",
+              boxShadow: cardShadow,
+              transition: "transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1)",
             }}
             onClick={(e) => {
               e.stopPropagation();
@@ -123,7 +143,9 @@ export default function CardsFerrisWheel({ activeCardIndex, setActiveCardIndex }
           >
             {/* Black semi-transparent circle at top-right, inset from corner */}
             <div
-              className="absolute flex items-center justify-center transition-transform duration-300 hover:scale-110"
+              className={`absolute flex items-center justify-center transition-transform duration-300 hover:scale-110 ${
+                isWebActive ? "opacity-100" : "opacity-75"
+              }`}
               style={{
                 width: CIRCLE_R * 2,
                 height: CIRCLE_R * 2,
@@ -139,18 +161,20 @@ export default function CardsFerrisWheel({ activeCardIndex, setActiveCardIndex }
             </div>
 
             {/* Text — tilted with the card (no counter-rotation) */}
-            <h3
-              className={`text-[28px] md:text-[30px] font-medium leading-tight text-black capitalize ${viaodaLibre.className}`}
-              style={{ textShadow: "0 1px 4px rgba(255,255,255,0.6), 0 2px 12px rgba(0,0,0,0.15)" }}
-            >
-              {cardsData[i % cardsData.length].title}
-            </h3>
-            <p
-              className={`mt-1.5 text-[14px] md:text-[15px] leading-snug text-black/75 ${imprima.className}`}
-              style={{ textShadow: "0 1px 3px rgba(255,255,255,0.5), 0 1px 8px rgba(0,0,0,0.1)" }}
-            >
-              {cardsData[i % cardsData.length].subtext}
-            </p>
+            <div className={`flex flex-col transition-opacity duration-300 ${isWebActive ? "opacity-100" : "opacity-80"}`}>
+              <h3
+                className={`text-[28px] md:text-[30px] font-medium leading-tight text-black capitalize ${viaodaLibre.className}`}
+                style={{ textShadow: "0 1px 4px rgba(255,255,255,0.6), 0 2px 12px rgba(0,0,0,0.15)" }}
+              >
+                {cardsData[i % cardsData.length].title}
+              </h3>
+              <p
+                className={`mt-1.5 text-[14px] md:text-[15px] leading-snug text-black/85 ${imprima.className}`}
+                style={{ textShadow: "0 1px 3px rgba(255,255,255,0.5), 0 1px 8px rgba(0,0,0,0.1)" }}
+              >
+                {cardsData[i % cardsData.length].subtext}
+              </p>
+            </div>
           </div>
         );
       })}
