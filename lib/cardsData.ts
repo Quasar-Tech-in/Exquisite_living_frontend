@@ -12,7 +12,7 @@ export const cardsData: CardData[] = [
     desc: "Over time, familiarity becomes foresight. We begin to anticipate what matters before it becomes a request—allowing each experience to feel effortless, considered and perfectly timed.",
   },
   {
-    title: "Curation Engine",
+    title: "Curation engine",
     subtext: "Understanding that evolves with every interaction.",
     desc: "The more we know you, the more intuitive every recommendation becomes. Every conversation, preference, and experience adds to a deeper understanding of your world, allowing us to curate with greater thoughtfulness and precision over time.",
   },
@@ -71,39 +71,39 @@ export const cardsData: CardData[] = [
 
   // --- Chapter 3: Curation (Indices 12-17) ---
   {
-    title: "Cuisine Artistry",
+    title: "Cuisine artistry",
     subtext: "Every meal, thoughtfully curated.",
     desc: "Whether it's securing a coveted reservation, arranging a private chef, or creating an unforgettable dining experience, every table is curated around your tastes, the occasion, and the people you're sharing it with.",
   },
   {
-    title: "Closed Hall",
+    title: "Closed hall",
     subtext: "Moments shared in complete privacy.",
     desc: "Some occasions are meant to remain personal. From intimate celebrations to exclusive gatherings, we curate every detail with discretion, allowing you to be fully present while everything unfolds seamlessly behind the scenes.",
   },
   {
-    title: "Vanishing Craft",
+    title: "Vanishing craft",
     subtext: "The finest work is rarely seen.",
     desc: "Our greatest success is when everything simply feels effortless. Behind every seamless experience is meticulous planning, thoughtful coordination, and quiet execution that allows the extraordinary to feel entirely natural.",
   },
   {
-    title: "Unhurried Dawn",
+    title: "Unhurried dawn",
     subtext: "Luxury begins with having time.",
     desc: "Whether it's a slow morning overlooking the sea or an unhurried start in the city, we create space for you to savour each moment—free from logistics, distractions, or unnecessary urgency.",
   },
   {
-    title: "Undisclosed Ridge",
+    title: "Undisclosed ridge",
     subtext: "Beyond the places everyone knows.",
     desc: "Some of the world's most remarkable experiences are found away from the spotlight. We curate destinations and retreats chosen not for popularity, but for their privacy, authenticity, and quiet sense of discovery.",
   },
   {
-    title: "Unnamed Coast",
+    title: "Unnamed coast",
     subtext: "Journeys that feel entirely your own.",
     desc: "Every destination is chosen with intention, reflecting the way you like to travel, unwind, and explore. The result is a journey that feels deeply personal, seamlessly planned, and unlike anyone else's.",
   },
 
   // --- Chapter 4: Membership (Indices 18-19) ---
   {
-    title: "Quiet Discretion",
+    title: "Quiet discretion",
     subtext: "Every story stays yours.",
     desc: "The moments shared here are only echoes. The experiences we create for our members remain private, remembered only by those who lived them.",
   },
