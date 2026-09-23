@@ -163,7 +163,7 @@ export default function CardsFerrisWheel({ activeCardIndex, setActiveCardIndex }
             {/* Text — tilted with the card (no counter-rotation) */}
             <div className={`flex flex-col transition-opacity duration-300 ${isWebActive ? "opacity-100" : "opacity-80"}`}>
               <h3
-                className={`text-[28px] md:text-[30px] font-medium leading-tight text-black capitalize ${viaodaLibre.className}`}
+                className={`text-[28px] md:text-[30px] font-medium leading-tight text-black ${viaodaLibre.className}`}
                 style={{ textShadow: "0 1px 4px rgba(255,255,255,0.6), 0 2px 12px rgba(0,0,0,0.15)" }}
               >
                 {cardsData[i % cardsData.length].title}
